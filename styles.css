@@ -1,0 +1,216 @@
+body, html { margin: 0; padding: 0; }
+#main-content { 
+    display: none;   
+    align-items: center; 
+    text-align: center; 
+    padding: 2rem; 
+}
+
+/* The Intro Screen */
+#intro-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, #080839, #000000); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+}
+#intro-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+#binary-rain-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background: linear-gradient(to bottom, #080839, #000000); 
+    /* NEW: Ensure the canvas itself has no background color */
+    /* background-color: transparent;  */
+}
+/* UPDATE: Ensure the SVG is on top */
+#handwriting-svg {
+    position: relative; /* Needed for z-index to work */
+    z-index: 10; /* Place it on the very top layer */
+}
+
+
+/* SVG Styling */
+#handwriting-svg path {
+    /* Set the appearance of the line */
+    stroke: #FFFFFF; /* The color of the "ink" */
+    stroke-width: 2px; /* The thickness of the "ink" */
+    fill: none; /* IMPORTANT: No fill, just the line */
+    
+    /* The magic happens here */
+    stroke-dasharray: 1000;  /* A very long dash. We'll fix this with JS. */
+    stroke-dashoffset: 1000; /* Start with the dash hidden. We'll fix this too. */
+    /* transform: scaleX(-1); */
+    /* Apply the animation */
+    /* animation: draw-in 4s linear forwards; */
+}
+
+/* The Keyframe Animation */
+@keyframes draw-in {
+    /* Animate the stroke-dashoffset from its initial value to 0 */
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#navbar{
+    position: fixed;
+    top: 5%;
+    border-radius: 30px; /* Slightly rounded corners */
+    width: 40%; 
+    height: 60px;
+    background: linear-gradient(to bottom, #292947, #080839);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    color: white;
+    padding: 0 20px; /* Spacing around the navbar */
+    z-index: 10000; /* Ensure it's above everything else */
+    left:50%; /* Center horizontally */
+    transform: translateX(-50%);  /* Display items in a row */ /* Ensure items are in a row */
+    display: flex;
+    justify-content: center; /* Center the UL inside the navbar */
+    align-items: center;
+    
+}
+#navbar ul{
+    width: 100%; /* Full width of the navbar */
+    list-style: none; /* Remove bullet points */
+    padding: 0 25px;
+    box-sizing: border-box; /* Include padding in width */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; 
+    align-items: center; /* Space items evenly */ /* Full width of the navbar */
+    margin: 0; /* Remove default margin *//* Remove default padding */
+}
+#navbar li{
+    list-style: none; /* Remove bullet points */ /* Spacing between items */
+     /* Use flexbox for layout */
+    /* Allow items to grow and shrink equally */
+ }
+#navbar li a{
+    color: white; /* White text for links */
+    display: block; /* Make links block-level for padding */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Spacing around the links */
+    font-size: 20px; /* Font size for readability */
+    transition: color 0.3s ease; /* Smooth color transition */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+     /* Rounded corners for the links */ /* Center the links */
+
+}
+#navbar li a:hover {
+    color: #00E5FF; /* Change color on hover */ /* Underline on hover */
+    background: linear-gradient(to bottom, #2f2f52, #121246);
+    transform: translateY(-2px); 
+    /* border: solid 1px white; */
+    border-radius: 30px; /* Center the links */
+}
+#main-home{
+    display: flex; /* Use flexbox for layout */
+    justify-content:center; /* Center the UL inside the navbar */ /* Center the items vertically */
+    flex-direction: row; /* Display items in a row */
+    padding: 0;
+    gap: 24px; /* Remove default padding */
+    margin: 0;
+    position: fixed;
+    z-index: 10000; /* Remove default margin */
+}
+#home-img img{
+    margin-top: 60px; /* Space from the top */
+    width: 400px; /* Set a fixed width for the image */
+    height: 400px; /* Set a fixed height for the image */
+    border-radius: 50%; /* Make the image circular */
+     /* Space between the image and text */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+#Home {
+    margin-top: 50px; /* Space from the top */
+    margin-left: 40px; /* Space from the left */
+    width: 50%; /* Full width of the navbar */
+    display: flex; /* Use flexbox for layout */
+     /* Space items evenly */ /* Full width of the navbar */ /* Slightly rounded corners */
+    /* Ensure it's above everything else */ /* Slightly transparent */
+    flex-direction: column; /* Stack items vertically */ /* Center the items */
+
+}
+#Home h1{
+     /* Center the text vertically */
+    color: white; /* Highlight the home link */
+    text-align: left; 
+    font-weight: 900; /* Make it stand out */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+    font-size: 76px; /* Larger font size for emphasis */
+    /* padding: 10px; Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+#name{
+    color: #c0f3f6;
+    text-shadow: 0px 0px 10px #000000; /* Subtle shadow for depth */
+    
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+}
+#social-links{
+
+    padding:0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex;
+    justify-content: left;
+    margin-top: 10px; /* Use flexbox for layout */ /* Center the UL inside the navbar */
+}
+#social-links .download-resume{
+    margin: 0; /* Spacing between the links */
+    background: transparent;
+    color: white; /* White text for links */
+    padding: 12px 18px; 
+    font-size: 18px;
+    font-weight: 600; /* Font size for readability */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+    border: solid 2px white;
+    border-radius: 30px;
+    text-decoration: none;/* Spacing around the links */
+}
+#social-links .fa-solid.fa-download{
+    margin-right: 10px; /* Space between icon and text */
+}
+#social-links .download-resume:hover {
+    color: #121246; /* Change color on hover */
+    background-color: white; /* Change background color on hover */
+    transform: translateY(-2px); 
+    border: solid 2px white; /* Change border color on hover */
+}
+#description{
+    display: flex; /* Center the UL inside the navbar */
+    flex-direction: row;/* Use flexbox for layout */ /* White text for readability */ /* Font size for readability */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel *//* Space from the top */ /* Improved line spacing for readability */ /* Align text to the left */
+    margin: 0;
+    padding: 0;
+     /* Remove default padding */
+}
+#description p{
+    margin: 0; /* Remove default margin */
+    margin-bottom: 15px; /* Space below the paragraph */
+    margin-right: 50px;
+    text-align: left; /* Align text to the left */
+    color: white; /* Highlight the home link */
+    font-weight: 900; /* Make it stand out */
+    font-size: 20px;
+    display: inline-block;
+ /* Larger font size for emphasis */ /* Space below the heading */
+}
+#description .fa-solid.fa-location-dot{
+    margin-right: 10px; /* Space between icon and text */
+}
+ 
+
+
+
