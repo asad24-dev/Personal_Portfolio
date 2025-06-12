@@ -397,3 +397,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // Add cache-busting to GitHub stats images
+    function refreshGitHubStats() {
+        const timestamp = new Date().getTime();
+        const statImages = document.querySelectorAll('.github-stats-image');
+        
+        statImages.forEach(img => {
+            const currentSrc = img.getAttribute('src');
+            // Add or update timestamp parameter
+            if (currentSrc.includes('?')) {
+                img.setAttribute('src', currentSrc + '&t=' + timestamp);
+            } else {
+                img.setAttribute('src', currentSrc + '?t=' + timestamp);
+            }
+        });
+    }
+    
+    // Add refresh button
+    const githubSection = document.getElementById('Github');
+    const refreshButton = document.createElement('button');
+    refreshButton.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Stats';
+    refreshButton.className = 'refresh-stats-btn';
+    refreshButton.addEventListener('click', refreshGitHubStats);
+    
+    // Insert button after heading
+    const heading = githubSection.querySelector('h2');
+    heading.parentNode.insertBefore(refreshButton, heading.nextSibling);
+});

@@ -184,7 +184,14 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
 #Github h2{
     font-size: 36px; /* Larger font size for emphasis */
     margin-bottom: 20px; /* Space below the heading */
-    font-weight: 900; /* Make it stand out */
+    font-weight: 900;
+    margin-right: 15px;/* Make it stand out */
+}
+.fas.fa-external-link-alt{
+    margin-left: 10px; /* Space between icon and text */ /* Icon color */
+    transition: color 0.3s ease; /* Smooth color transition */
+    width: 10px; /* Set a fixed width for the icon */
+    height: 10px; /* Set a fixed height for the icon */
 }
 #Home {
     margin-top: 50px; /* Space from the top */
@@ -358,6 +365,8 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
     flex-wrap: wrap;
     gap: 40px;
     margin-right: 10px;
+    justify-content: center;
+    gap: 10px;
 }
 
 /* Contact Form Styles */
@@ -368,6 +377,7 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding-bottom: 0; /* Add padding at the bottom for the submit button */
 }
 
 .contact-form h3 {
@@ -455,7 +465,7 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
 
 .social-icons {
     display: flex;
-    gap: 20px;
+    gap: 50px;
 }
 
 .social-icons a {
@@ -493,4 +503,24 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
         padding-left: 20px;
         padding-right: 20px;
     }
+}
+.refresh-stats-btn {
+    background: rgba(8, 8, 57, 0.6);
+    border: 1px solid #1074bd;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.refresh-stats-btn:hover {
+    background: rgba(0, 229, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.refresh-stats-btn i {
+    margin-right: 5px;
 }
