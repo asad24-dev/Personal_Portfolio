@@ -7,6 +7,8 @@
     <link rel="icon" href="favicon.ico"/>
     <script src="https://kit.fontawesome.com/0bbcec82aa.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css">
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
     <title>Muhammad Asad Majeed</title>
 </head>
 <body>
@@ -300,12 +302,81 @@
         </section>
         <section id="Github">
             <h2>Github</h2>
+            <div class="github-stats-container">
+                <!-- GitHub Profile Stats -->
+                <div class="github-card">
+                    <img src="https://github-readme-stats.vercel.app/api?username=asad24-dev&theme=algolia&show_icons=true&hide_border=true&count_private=true" 
+                        alt="GitHub Stats" 
+                        class="github-stats-image">
+                </div>
+                
+                <!-- You can add more GitHub stats cards here -->
+                <div class="github-card">
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=asad24-dev&theme=algolia&hide_border=true" 
+                        alt="GitHub Streak" 
+                        class="github-stats-image">
+                </div>
+                
+                <div class="github-card">
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=asad24-dev&theme=algolia&show_icons=true&hide_border=true&layout=compact" 
+                        alt="Most Used Languages" 
+                        class="github-stats-image">
+                </div>
+                <div class="github-card calendar-card">
+                    <div class="calendar">
+                        <!-- Calendar will be loaded here -->
+                        Loading contribution calendar...
+                    </div>
+                </div>
+            </div>
         </section>
         <section id="Contact">
             <h2>Contact</h2>
-            <p>Get in touch through this contact section.</p>
+            
+            <div class="contact-container">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3>Send me a message</h3>
+                    <form id="contact-form" action="https://formspree.io/f/manjopgz" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fa-solid fa-paper-plane"></i> Send Message
+                        </button>
+                        <div id="form-status"></div>
+                    </form>
+                </div>
+                
+                <!-- Contact Links -->
+                <div class="contact-links">
+                    <div class="social-icons">
+                        <a href="mailto:asadmajeed2005@gmail.com" aria-label="Email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                        <a href="https://github.com/asad24-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/muhammad-asad-majeed" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/asad._majeed" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
-    </main>
+    </main> 
     
 </body>
 </html>

@@ -13,15 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const ctx = canvas.getContext('2d');
 
     // Set canvas dimensions to match the window
-    
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     // --- Configuration ---
     const binaryChars = '01';
     const fontSize = 16;
-     // A bright, vibrant cyan
+    // A bright, vibrant cyan
     const trailLength = 20; // How many characters long the trail is
     const rainSpeed = 25;   // Milliseconds per frame (~30 FPS)
 
@@ -83,8 +81,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Start the animation loop AND STORE ITS ID
+    // Check if user has seen the animation before - MOVED DOWN AFTER FUNCTIONS ARE DEFINED
+    const hasSeenAnimation = sessionStorage.getItem('hasSeenIntro');
     
+    // Start the binary rain animation (regardless of whether intro is shown)
+    const rainInterval = setInterval(drawBinaryRain, rainSpeed);
+    
+    if (hasSeenAnimation) {
+        // User has already seen animation, skip intro
+        introScreen.classList.add('hidden');
+        mainContent.style.display = 'block';
+        return; // Exit early to skip animation code
+    }
+    
+    // If we get here, this is the first visit - continue with animation
     svg.style.opacity = '0'; // Hide SVG initially to prevent flicker
 
     setTimeout(() => {
@@ -109,25 +119,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 // This event now fires when the *last letter* is done drawing.
                 svg.classList.add('drawn');
         
-        // A short pause for effect
-            setTimeout(() => {
-                // Stop the rain and start the fade-out
-                // clearInterval(rainInterval);
-                introScreen.classList.add('hidden');
+                // A short pause for effect
+                setTimeout(() => {
+                    // Start the fade-out
+                    introScreen.classList.add('hidden');
+                    sessionStorage.setItem('hasSeenIntro', 'true');
+                    // --- LISTEN FOR THE FADE-OUT TO COMPLETE ---
+                    introScreen.addEventListener('transitionend', () => {
+                        // This function will ONLY run after the 'opacity: 1s' transition is done
+                        mainContent.style.display = 'block';
+                    }, { once: true }); // Pro-tip: { once: true } automatically removes the listener after it runs.
 
-                // --- LISTEN FOR THE FADE-OUT TO COMPLETE ---
-                introScreen.addEventListener('transitionend', () => {
-                    // This function will ONLY run after the 'opacity: 1s' transition is done
-                    const rainInterval = setInterval(drawBinaryRain, rainSpeed);
-                    mainContent.style.display = 'block';
-                    
-                }, { once: true }); // Pro-tip: { once: true } automatically removes the listener after it runs.
-
-            }, 500); // Convert seconds to milliseconds
+                }, 500); // Convert seconds to milliseconds
             });
         }
-    }, 200);//
-    
+    }, 200);
 });
 // ...existing code...
 
@@ -309,4 +315,85 @@ document.addEventListener('DOMContentLoaded', function() {
         
     // Initialize the active nav link on page load
     updateActiveNavLink();
+});
+// Add this to your existing JavaScript file
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize GitHub Calendar with colors matching your theme
+    GitHubCalendar(".calendar", "asad24-dev", {
+        responsive: true,
+        tooltips: true,
+        global_stats: false,
+        years: [2025],
+        from: "2025-01-01",
+        until: "2025-12-31",
+        summary_text: '📅 2025 Contribution Activity',
+        cache: 86400,
+        proxy: function(username) {
+            return {
+                url: `https://cors-anywhere.herokuapp.com/https://github.com/users/${username}/contributions?from=2025-01-01&to=2025-12-31`,
+                headers: {
+                    "User-Agent": "GitHub Calendar Widget"
+                }
+            };
+        } 
+    });
+
+    // Override the calendar colors to match your site's theme
+    document.documentElement.style.setProperty('--color-calendar-graph-day-bg', '#0d1f2d');
+    document.documentElement.style.setProperty('--color-calendar-graph-day-L1-bg', '#033b5a');
+    document.documentElement.style.setProperty('--color-calendar-graph-day-L2-bg', '#1074bd');
+    document.documentElement.style.setProperty('--color-calendar-graph-day-L3-bg', '#0eb9d5');
+    document.documentElement.style.setProperty('--color-calendar-graph-day-L4-bg', '#09ddff');
+});
+
+// Add this to your existing script.js file
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Form submission handler
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Show sending status
+            formStatus.textContent = 'Sending...';
+            formStatus.style.color = '#00E5FF';
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            
+            // Send form data using Formspree
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    formStatus.textContent = 'Message sent successfully!';
+                    formStatus.style.color = '#00E5FF';
+                    contactForm.reset(); // Clear the form
+                    
+                    // Clear success message after 5 seconds
+                    setTimeout(() => {
+                        formStatus.textContent = '';
+                    }, 5000);
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .catch(error => {
+                // Show error message
+                formStatus.textContent = 'Error sending message. Please try again.';
+                formStatus.style.color = '#ff3366';
+                
+                console.error('Form submission error:', error);
+            });
+        });
+    }
 });

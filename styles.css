@@ -153,10 +153,13 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
     font-weight: 900; /* Make it stand out */
 }
 #About p{
-    font-size: 16px; /* Font size for readability */
-    line-height: 1.4; /* Improved line spacing for readability */
+    font-size: 18px; /* Font size for readability */
+    line-height: 1.6; /* Improved line spacing for readability */
     margin-bottom: 20px; /* Space below the paragraph */
     text-align: left; /* Align text to the left */
+    background: rgba(13, 31, 45, 0.6);
+    padding: 20px; /* Padding around the text */
+    border-radius: 10px; /* Rounded corners for the text box */
 }
 #Projects{
     color: white; /* White text for readability */
@@ -173,6 +176,15 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
     min-height: 100vh; /* Make sections full height */
     padding-top: 100px; /* Space from the top */
     margin-top: 90px; /* Space from the bottom */
+}
+#Github{
+    color: white; /* White text for readability */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+}
+#Github h2{
+    font-size: 36px; /* Larger font size for emphasis */
+    margin-bottom: 20px; /* Space below the heading */
+    font-weight: 900; /* Make it stand out */
 }
 #Home {
     margin-top: 50px; /* Space from the top */
@@ -252,6 +264,233 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
     margin-right: 10px; /* Space between icon and text */
 }
  
+.github-stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+    background: rgba(13, 31, 45, 0.6);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-right: 10px;
+    padding: 20px;
+}
+
+.github-card {
+    border-radius: 10px;
+    padding: 0;
+    transition: transform 0.3s ease;
+    max-width: 495px;
+}
+
+.github-card:hover {
+    transform: translateY(-5px);
+}
+
+.github-stats-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .github-stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .github-card {
+        width: 100%;
+        max-width: 95%;
+    }
+}
+.calendar-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Style calendar text to match your site */
+.calendar {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    width: 100%;
+}
+
+/* Ensure the text in the calendar is readable */
+.calendar text.month,
+.calendar text.wday,
+.calendar .contrib-legend {
+    fill: white !important;
+    color: white !important;
+}
+
+/* Style the contribution summary text */
+.calendar-graph text.wday,
+.calendar-graph text.month {
+    font-size: 10px;
+    fill: white;
+}
+
+/* Make the contribution graph stand out better */
+.js-calendar-graph-svg {
+    border-radius: 3px;
+    background: rgba(21, 39, 58, 0.4);
+    padding: 8px;
+}
+/* Contact Section Styles */
+#Contact {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#Contact h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    font-weight: 900;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-right: 10px;
+}
+
+/* Contact Form Styles */
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(13, 31, 45, 0.6);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: calc(100% - 10px);
+    padding: 10px; /* Space for the icon */
+    margin-right:0;
+    background: rgba(8, 8, 57, 0.4);
+    border: 1px solid #1074bd;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #00E5FF;
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+
+.submit-btn {
+    background: transparent;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    border: solid 2px white;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: white;
+    color: #080839;
+    transform: translateY(-2px);
+}
+
+.submit-btn i {
+    margin-right: 8px;
+}
+
+#form-status {
+    margin-top: 15px;
+    font-weight: bold;
+    height: 20px;
+}
+
+/* Contact Links Styles */
+.contact-links {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-width: 300px;
+    background: rgba(13, 31, 45, 0.6);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
 
 
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
 
+.social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(8, 8, 57, 0.6);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: white;
+    color: #080839;
+    transform: translateY(-5px);
+}
+
+.contact-message {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column;
+    }
+    
+    #Contact {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
