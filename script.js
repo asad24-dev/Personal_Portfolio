@@ -152,7 +152,33 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollPosition = window.scrollY;
         const aboutOffset = aboutSection.offsetTop;
         const triggerStart = aboutOffset - startTransformDistance;
-        
+        if (window.innerWidth <= 768) {
+        // Reset any styling if we're on mobile
+            if (homeElement) {
+                homeElement.style.transform = '';
+                homeElement.style.position = '';
+                homeElement.style.top = '';
+                homeElement.style.left = '';
+                homeElement.style.width = '';
+                
+                // Reset typography
+                const h1Elements = homeElement.querySelectorAll('h1');
+                h1Elements.forEach(el => el.style.fontSize = '');
+                
+                const nameElement = document.getElementById('name');
+                if (nameElement) nameElement.style.fontSize = '';
+                
+                const descriptionElements = document.querySelectorAll('#description p');
+                descriptionElements.forEach(el => el.style.fontSize = '');
+                
+                const resumeButton = document.querySelector('.download-resume');
+                if (resumeButton) {
+                    resumeButton.style.padding = '';
+                    resumeButton.style.fontSize = '';
+                }
+            }
+            return;
+        }
         // Calculate how far into the animation we are (0 to 1)
         let progress = 0;
         
@@ -424,4 +450,71 @@ document.addEventListener('DOMContentLoaded', function() {
     // Insert button after heading
     const heading = githubSection.querySelector('h2');
     heading.parentNode.insertBefore(refreshButton, heading.nextSibling);
+});
+
+// Add to your existing script.js
+
+// Replace your existing mobile menu functionality with this updated code
+// Replace your mobile menu toggle functionality in script.js with this:
+// Mobile Menu Toggle
+// Complete replacement for your mobile menu toggle code
+document.addEventListener('DOMContentLoaded', function() {
+    // Store navbar state
+    let navbarVisible = true;
+    
+    // Mobile menu functionality
+    const menuButton = document.querySelector('.mobile-nav-toggle');
+    const navbar = document.getElementById('navbar');
+    
+    if (menuButton && navbar) {
+        // Toggle mobile menu
+        menuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Toggle button appearance
+            const menuIcon = this.querySelector('.menu-icon');
+            if (menuIcon) {
+                menuIcon.classList.toggle('change');
+            }
+            
+            // Get current display state
+            const isCurrentlyHidden = window.getComputedStyle(navbar).display === 'none';
+            
+            // Toggle display based on current state
+            if (isCurrentlyHidden) {
+                navbar.style.display = 'flex';
+            } else {
+                navbar.style.display = 'none';
+            }
+        });
+        
+        // Hide menu when clicking a link (mobile only)
+        const navLinks = navbar.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    const menuIcon = menuButton.querySelector('.menu-icon');
+                    if (menuIcon) {
+                        menuIcon.classList.remove('change');
+                    }
+                    navbar.style.display = 'none';
+                }
+            });
+        });
+    }
+    
+    // Handle window resize - make navbar visible on large screens
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navbar) {
+            navbar.style.display = 'flex';
+            navbarVisible = true;
+        }
+    });
+    
+    // Handle scrolling - maintain navbar visibility on big screens
+    window.addEventListener('scroll', function() {
+        if (window.innerWidth > 768 && navbar) {
+            navbar.style.display = 'flex';
+        }
+    });
 });

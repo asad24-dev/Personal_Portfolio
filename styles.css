@@ -524,3 +524,411 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
 .refresh-stats-btn i {
     margin-right: 5px;
 }
+
+/* Add to the bottom of your styles.css file */
+
+/* Media Queries for Responsive Design */
+
+/* Large Tablets and Small Desktops */
+/* =====================
+   RESPONSIVE STYLES 
+   ===================== */
+
+/* Mobile Navigation Toggle Button (Hidden by Default) */
+.mobile-nav-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10001;
+    cursor: pointer;
+    background: rgba(8, 8, 57, 0.7);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.menu-icon {
+    width: 30px;
+    height: 24px;
+    position: relative;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+    border-radius: 2px;
+}
+
+/* Transform to X when opened */
+.change .bar1 {
+    transform: translate(0, 9px) rotate(-45deg);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    transform: translate(0, -9px) rotate(45deg);
+}
+
+/* Large Tablets and Small Desktops */
+@media screen and (max-width: 1024px) {
+    #navbar {
+        width: 80%;
+    }
+    
+    #About, #Projects, #Contact, #Github {
+        padding-left: 5%; 
+        margin-right: 5%;
+    }
+    
+    #Home {
+        width: 60%;
+        margin-left: 20px;
+    }
+    
+    #home-img img {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+/* Medium Tablets and Below */
+@media screen and (max-width: 768px) {
+    /* Mobile Menu Setup */
+    .mobile-nav-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10001;
+        background: rgba(8, 8, 57, 0.7);
+        border-radius: 5px;
+        padding: 10px;
+    }
+    
+    #navbar {
+        position: fixed;
+        top: 0;
+        /* left: 0; Start from left edge */
+
+        width: 100%; /* Full width */
+        height: 100vh;
+        background: rgba(8, 8, 57, 0.95);
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Below the toggle button */
+        text-align: center;
+        padding: 50px 20px; /* Padding for the menu */
+
+    }
+     #navbar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(8, 8, 57, 0.95);
+        z-index: -1;
+    }
+    #navbar ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 20px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    #navbar li {
+        width: 100%;
+        margin: 10px 0;
+        text-align: center;
+    }
+    
+    #navbar li a {
+        display: block;
+        padding: 15px 0;
+        font-size: 18px;
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    /* Home Section Layout */
+    #main-home {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    
+    #Home {
+        width: 90%;
+        margin: 20px auto;
+        text-align: center;
+    }
+    
+    #Home h1 {
+        font-size: 64px;
+        text-align: center;
+    }
+    
+    #name {
+        font-size: 48px;
+    }
+    
+   #home-img {
+        position: relative;
+        z-index: 1; /* Lower than the menu z-index */
+    }
+    
+    #home-img img {
+        width: 300px;
+        height: 300px;
+    }
+    
+    #description {
+        justify-content: center;
+    }
+    
+    #description p {
+        text-align: center;
+        font-size: 14px;
+        margin: 10px auto;
+    }
+    
+    #social-links {
+        justify-content: center;
+    }
+    
+    /* Content Section Layout */
+    #About, #Projects, #Contact, #Github {
+        margin-left: 20px;
+        padding: 80px 20px 40px 20px;
+        margin-top: 0;
+        margin-right: 0;
+        width: calc(100% - 40px);
+        min-height: auto;
+        height: auto;
+        overflow: visible;
+        box-sizing: border-box;
+    }
+    
+    /* Section Headers */
+    #About h2, #Projects h2, #Contact h2, #Github h2 {
+        position: relative;
+        left: 0;
+        transform: none;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    /* Full Width Content */
+    #About p, .project-container, .github-stats-container, .contact-container {
+        max-width: 100%;
+    }
+    
+    /* Containers and Cards */
+    .github-stats-container, .contact-form, .contact-links {
+        margin: 20px 0;
+        width: 100%;
+        padding: 15px;
+    }
+    .github-stats-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .github-card {
+        /* width: 100%; */
+        width: 100%;
+        max-width: 450px;
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .github-stats-image {
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+    .calendar {
+        width: 100%;
+        max-width: 450px;
+        margin: 0 auto;
+        overflow-x: auto;
+    }
+    .calendar-card {
+        padding: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    /* Language distribution visualization */
+    .most-used-languages {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    /* Form Elements */
+    .form-group input, .form-group textarea {
+        width: 100%;
+        margin-right: 0;
+        box-sizing: border-box;
+    }
+    body.menu-open #home-img {
+        visibility: hidden;
+    }
+    
+    /* Contact Form */
+    .contact-form {
+        padding: 20px 15px;
+    }
+    
+    /* Animation Adjustments */
+    #handwriting-svg {
+        width: 80%;
+        height: auto;
+    }
+}
+
+/* Small Tablets and Large Phones */
+@media screen and (max-width: 600px) {
+    #navbar {
+        width: 95%;
+        padding: 8px 0;
+    }
+    
+    #navbar ul {
+        gap: 5px;
+    }
+    
+    #navbar li a {
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+    
+    #Home h1 {
+        font-size: 48px;
+    }
+    
+    #name {
+        font-size: 36px;
+    }
+    
+    #home-img img {
+        width: 250px;
+        height: 250px;
+    }
+    
+    #About, #Projects, #Contact, #Github {
+        padding: 70px 15px 30px 15px;
+    }
+    
+    .calendar {
+        overflow-x: auto;
+    }
+    
+    .github-stats-container {
+        padding: 10px;
+    }
+}
+
+/* Mobile Phones */
+@media screen and (max-width: 480px) {
+    #Home h1 {
+        font-size: 36px;
+    }
+    
+    #name {
+        font-size: 28px;
+    }
+    
+    #description p {
+        font-size: 16px;
+    }
+    
+    #home-img img {
+        width: 200px;
+        height: 200px;
+    }
+    
+    #About h2, #Projects h2, #Contact h2, #Github h2 {
+        font-size: 28px;
+    }
+    
+    #About p {
+        font-size: 16px;
+        padding: 15px;
+    }
+    
+    .social-icons {
+        gap: 20px;
+    }
+    
+    .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .form-group input, .form-group textarea {
+        padding: 8px;
+    }
+    
+    .submit-btn {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+    
+    #handwriting-svg {
+        width: 90%;
+    }
+}
+
+/* Very Small Phones */
+@media screen and (max-width: 360px) {
+    #Home h1 {
+        font-size: 32px;
+    }
+    
+    #name {
+        font-size: 24px;
+    }
+    
+    #home-img img {
+        width: 180px;
+        height: 180px;
+    }
+    
+    #social-links .download-resume {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .social-icons {
+        gap: 15px;
+    }
+    
+    .social-icons a {
+        width: 35px;
+        height: 35px;
+    }
+}
