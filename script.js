@@ -128,6 +128,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     introScreen.addEventListener('transitionend', () => {
                         // This function will ONLY run after the 'opacity: 1s' transition is done
                         mainContent.style.display = 'block';
+                        const navbar = document.getElementById('navbar');
+                        if (navbar) {
+                            navbar.style.position = 'fixed';
+                        }
                     }, { once: true }); // Pro-tip: { once: true } automatically removes the listener after it runs.
 
                 }, 500); // Convert seconds to milliseconds
