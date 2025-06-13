@@ -345,32 +345,29 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add this to your existing JavaScript file
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize GitHub Calendar with colors matching your theme
-    GitHubCalendar(".calendar", "asad24-dev", {
-        responsive: true,
-        tooltips: true,
-        global_stats: false,
-        years: [2025],
-        from: "2025-01-01",
-        until: "2025-12-31",
-        summary_text: '📅 2025 Contribution Activity',
-        cache: 86400,
-        proxy: function(username) {
-            return {
-                url: `https://cors-anywhere.herokuapp.com/https://github.com/users/${username}/contributions?from=2025-01-01&to=2025-12-31`,
-                headers: {
-                    "User-Agent": "GitHub Calendar Widget"
-                }
-            };
-        } 
-    });
-
-    // Override the calendar colors to match your site's theme
-    document.documentElement.style.setProperty('--color-calendar-graph-day-bg', '#0d1f2d');
-    document.documentElement.style.setProperty('--color-calendar-graph-day-L1-bg', '#033b5a');
-    document.documentElement.style.setProperty('--color-calendar-graph-day-L2-bg', '#1074bd');
-    document.documentElement.style.setProperty('--color-calendar-graph-day-L3-bg', '#0eb9d5');
-    document.documentElement.style.setProperty('--color-calendar-graph-day-L4-bg', '#09ddff');
+    // Initialize GitHub Calendar with colors matching your theme
+GitHubCalendar(".calendar", "asad24-dev", {
+    responsive: true,
+    tooltips: true,
+    global_stats: false,
+    years: [2025],
+    from: "2025-01-01",
+    until: "2025-12-31",
+    summary_text: '📅 2025 Contribution Activity',
+    cache: 86400,
+    proxy: function(username) {
+        return {
+            url: `https://cors-anywhere.herokuapp.com/https://github.com/users/${username}/contributions?from=2025-01-01&to=2025-12-31`,
+            headers: {
+                "User-Agent": "GitHub Calendar Widget"
+            }
+        };
+    } 
 });
+
+
+}
+);
 
 // Add this to your existing script.js file
 

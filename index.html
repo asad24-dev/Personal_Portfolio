@@ -7,8 +7,6 @@
     <link rel="icon" href="favicon.ico"/>
     <script src="https://kit.fontawesome.com/0bbcec82aa.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css">
-    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
     <title>Muhammad Asad Majeed</title>
 </head>
 <body>
@@ -332,10 +330,13 @@
                         alt="Most Used Languages" 
                         class="github-stats-image">
                 </div>
+                <!-- In index.html, find and replace the calendar-card div with this -->
                 <div class="github-card calendar-card">
                     <div class="calendar">
-                        <!-- Calendar will be loaded here -->
-                        Loading contribution calendar...
+                        <h3 class="github-calendar-header">GitHub Contributions</h3>
+                        <div class="github-calendar-wrapper">
+                            <img src="https://ghchart.rshah.org/275ba7/asad24-dev" alt="GitHub Contribution Chart" class="github-calendar-img">
+                        </div>
                     </div>
                 </div>
             </div>

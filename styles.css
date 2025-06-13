@@ -320,33 +320,48 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
 }
 
 /* Style calendar text to match your site */
+/* Replace your existing calendar styles with these */
 .calendar {
-    font-family: 'Courier New', Courier, monospace;
-    color: white;
+    /* background: rgba(13, 31, 45, 0.6); */
+    border-radius: 10px;
+    padding: 20px;
     width: 100%;
+    text-align: center;
+}
+
+.github-calendar-header {
+    color: #00aeff;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* Add this to your styles.css */
+.github-calendar-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    background-color: rgba(13, 31, 45, 0.6); /* Dark blue background */
+    padding: 10px;
+    mix-blend-mode: screen; /* This blend mode will darken the white areas */
+    filter: brightness(0.85) contrast(1.2); /* Adjusts the overall brightness */
+}
+
+/* Add a dark container behind the image */
+.github-calendar-wrapper {
+    overflow-x: auto;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: #050f2c; /* Match your site's dark blue background */
+    border-radius: 5px;
+    padding: 5px;
 }
 
 /* Ensure the text in the calendar is readable */
-.calendar text.month,
-.calendar text.wday,
-.calendar .contrib-legend {
-    fill: white !important;
-    color: white !important;
-}
+
 
 /* Style the contribution summary text */
-.calendar-graph text.wday,
-.calendar-graph text.month {
-    font-size: 10px;
-    fill: white;
-}
 
-/* Make the contribution graph stand out better */
-.js-calendar-graph-svg {
-    border-radius: 3px;
-    background: rgba(21, 39, 58, 0.4);
-    padding: 8px;
-}
 /* Contact Section Styles */
 #Contact {
     color: white;
