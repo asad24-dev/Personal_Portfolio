@@ -1,3 +1,6 @@
+body{
+    cursor: none;
+}
 body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-gradient(to bottom, #080839, #000000);}
 #main-content { 
     display: none;   
@@ -5,7 +8,82 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
     z-index: 2;
     padding-top: 150px; 
 }
+#cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background-color: #00E5FF;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+}
 
+/* Secondary cursor outline */
+#cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(0, 229, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.6;
+    transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+a:hover ~ #cursor-outline,
+button:hover ~ #cursor-outline,
+.nav-link:hover ~ #cursor-outline,
+input:hover ~ #cursor-outline,
+textarea:hover ~ #cursor-outline {
+    transform: translate(-50%, -50%) scale(1.5);
+    border-color: rgba(0, 229, 255, 0.8);
+    background-color: rgba(0, 229, 255, 0.1);
+}
+
+/* Trail container */
+#cursor-trail-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9997;
+    overflow: hidden;
+}
+.trail-particle {
+    position: absolute;
+    font-family: 'Courier New', monospace;
+    color: rgba(0, 229, 255, 0.7);
+    font-size: 20px;
+    font-weight: bold;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.8;
+    animation: fadeOut 1s forwards;
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+
+/* Fade out animation for trail particles */
+@keyframes fadeOut {
+    0% { opacity: 0.8; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* Ensure cursor effects work on mobile too */
+@media (max-width: 768px) {
+    #cursor-dot, #cursor-outline {
+        display: none; /* Hide on touch devices */
+    }
+}
 /* The Intro Screen */
 #intro-screen {
     position: fixed;
@@ -68,7 +146,7 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
     position: fixed;
     top: 5%;
     border-radius: 30px; /* Slightly rounded corners */
-    width: 50%; 
+    width: 70%; 
     height: 60px;
     background: linear-gradient(to bottom, #292947, #080839);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
@@ -88,7 +166,7 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
     padding: 0 25px;
     box-sizing: border-box; /* Include padding in width */
     display: flex; /* Use flexbox for layout */
-    justify-content: space-between; 
+    justify-content: center; 
     align-items: center; /* Space items evenly */ /* Full width of the navbar */
     margin: 0; /* Remove default margin *//* Remove default padding */
 }
@@ -947,3 +1025,747 @@ body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-
         height: 35px;
     }
 }
+/* Add this to your styles.css file */
+
+/* Common styles for all new sections */
+#Skills, #Publications, #Recommendations {
+    margin-right: 10px;
+    padding-left: 45%; /* Make space for the sidebar */
+    min-height: 100vh; /* Make sections full height */
+    padding-top: 100px; /* Space from the top */
+    margin-top: 90px; /* Space from the bottom */
+    font-family: 'Courier New', Courier, monospace; /* Consistent font */
+    color: white;
+}
+
+#Skills h2, #Publications h2, #Recommendations h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: 900;
+    color: white;
+}
+
+/* Skills Section */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 40px;
+    background: rgba(13, 31, 45, 0.6);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background: rgba(8, 8, 57, 0.6);
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 229, 255, 0.2);
+}
+
+.skill-item i {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #00E5FF;
+}
+
+.skill-item span {
+    text-align: center;
+    color: white;
+    font-size: 14px;
+}
+
+/* Publications Section */
+.publications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.publication-card {
+    background: rgba(13, 31, 45, 0.6);
+    border-radius: 10px;
+    padding: 25px;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.publication-card:hover {
+    transform: translateY(-5px);
+}
+
+.publication-content h3 {
+    color: #00E5FF;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.publication-journal {
+    color: #ffffff;
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+.publication-authors {
+    color: #bbbbbb;
+    margin-bottom: 15px;
+}
+
+.publication-abstract {
+    color: #ffffff;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.publication-link {
+    display: inline-block;
+    background: transparent;
+    color: white;
+    padding: 8px 15px;
+    font-size: 16px;
+    border: solid 2px #00E5FF;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.publication-link:hover {
+    background-color: rgba(0, 229, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Recommendations Section */
+.recommendations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.recommendation-card {
+    background: rgba(13, 31, 45, 0.6);
+    border-radius: 10px;
+    padding: 25px;
+    position: relative;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.recommendation-card:hover {
+    transform: translateY(-5px);
+}
+
+.quote-icon {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: rgba(0, 229, 255, 0.2);
+    font-size: 24px;
+}
+
+.recommendation-content {
+    margin-left: 25px;
+    margin-bottom: 20px;
+    color: white;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.recommendation-author {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(0, 229, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-right: 15px;
+}
+
+.author-info h4 {
+    margin: 0;
+    color: #00E5FF;
+    font-size: 18px;
+}
+
+.author-info p {
+    margin: 5px 0 0;
+    color: #bbbbbb;
+    font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+    #Skills, #Publications, #Recommendations {
+        padding-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+     .refresh-stats-btn {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #Skills, #Publications, #Recommendations {
+        margin-left: 20px;
+        padding: 80px 20px 40px 20px;
+        margin-top: 0;
+        margin-right: 0;
+        width: calc(100% - 40px);
+    }
+    
+    #Skills h2, #Publications h2, #Recommendations h2 {
+        position: relative;
+        left: 0;
+        transform: none;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .skills-container {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .skill-item {
+        width: 100px;
+        height: 100px;
+    }
+}
+/* Add this to your styles.css file */
+.skill-item {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skill-item::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 229, 255, 0.2) 100%);
+    transition: top 0.5s ease;
+    z-index: 1;
+}
+
+.skill-item:hover::before {
+    top: 0;
+}
+
+.skill-item i {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.skill-item:hover i {
+    transform: scale(1.2);
+    color: #ffffff;
+}
+
+.skill-item span {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.skill-item:hover span {
+    transform: translateY(3px);
+    color: #00E5FF;
+}
+/* Add this to your styles.css */
+#About h2, #Skills h2, #Projects h2, #Publications h2, #Recommendations h2, #Github h2, #Contact h2 {
+    position: relative;
+    display: inline-block;
+}
+
+#About h2::after, #Skills h2::after, #Projects h2::after, #Publications h2::after, 
+#Recommendations h2::after, #Github h2::after, #Contact h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, #00E5FF, transparent);
+    transition: width 0.6s ease;
+}
+
+#About:hover h2::after, #Skills:hover h2::after, #Projects:hover h2::after, 
+#Publications:hover h2::after, #Recommendations:hover h2::after, 
+#Github:hover h2::after, #Contact:hover h2::after {
+    width: 100%;
+}
+/* Add this to your styles.css */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background: rgba(13, 31, 45, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.2);
+}
+
+.project-image {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 8, 57, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-links {
+    display: flex;
+    gap: 20px;
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(0, 229, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+    line-height: 0;
+    padding: 0;
+}
+.project-link.fas.fa-external-link-alt {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+}
+/* More aggressive fix for the external link icon */
+.project-link:nth-child(2), 
+.project-link:has(.fa-external-link-alt) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-link:nth-child(2) i, 
+.project-link:has(.fa-external-link-alt) i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    width: 1em;
+    height: 1em;
+    display: block;
+}
+
+.project-card:hover .project-link {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.project-card:hover .project-link:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.project-link:hover {
+    background: #00E5FF;
+    color: #080839;
+}
+
+.project-info {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-info h3 {
+    margin: 0 0 15px 0;
+    color: #00E5FF;
+}
+
+.project-info p {
+    margin: 0 0 20px 0;
+    color: #ffffff;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.project-tech span {
+    font-size: 12px;
+    padding: 5px 10px;
+    background: rgba(0, 229, 255, 0.1);
+    border-radius: 20px;
+    color: #00E5FF;
+}
+/* Enhance your existing publication cards */
+.publication-card {
+    position: relative;
+    border-left: 3px solid transparent;
+    transition: border-left 0.3s ease, transform 0.3s ease;
+}
+
+.publication-card:hover {
+    border-left: 3px solid #00E5FF;
+}
+
+.publication-link {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.publication-link:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #00E5FF;
+    transition: width 0.3s ease;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+.publication-link:hover:before {
+    width: 100%;
+}
+
+.publication-link:hover {
+    color: #fff;
+}
+/* Add this to your styles.css */
+.recommendations-slider {
+    position: relative;
+    padding: 20px 0 50px; /* Add padding at the bottom for controls */
+    margin-bottom: 30px;
+}
+
+.slider-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    z-index: 10;
+    background: rgba(8, 8, 57, 0.6);
+    padding: 10px;
+    border-radius: 30px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.slider-btn {
+    background: transparent;
+    border: none;
+    color: #00E5FF;
+    font-size: 20px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+}
+
+.slider-btn:hover {
+    background: rgba(0, 229, 255, 0.2);
+}
+
+.slider-dots {
+    display: flex;
+    gap: 10px;
+    margin: 0 20px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: #00E5FF;
+    transform: scale(1.2);
+}
+
+.recommendations-container {
+    position: relative;
+    height: auto;
+    min-height: 280px;
+    overflow: visible;
+    margin-bottom: 30px;
+}
+
+.recommendation-card {
+    position: absolute;
+    width: calc(100% - 50px);
+    left: 0;
+    right: 0;
+    margin: auto;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    padding-bottom: 30px; /* Ensure there's space below the card for controls */
+}
+
+.recommendation-card.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 1;
+}
+/* Add this to your styles.css file */
+.gradient-text {
+    background: linear-gradient(to right, #00E5FF, #007bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-shift 8s ease infinite;
+    display: inline-block;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Apply to your main title */
+#Home h1 span#name {
+    background-size: 200% auto;
+}
+/* Add these to your styles.css */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #8b9cb5;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-group input:focus + label,
+.form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+    color: #00E5FF;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid rgba(16, 215, 250, 0.3);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+.submit-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.7s;
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+/* Add interactive hover effects to GitHub cards */
+.github-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+.github-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 15px 30px rgba(0, 229, 255, 0.15);
+}
+
+/* Style GitHub calendar */
+.github-calendar-img {
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    transition: filter 0.3s ease;
+}
+
+.github-calendar-img:hover {
+    filter: brightness(1.1) contrast(1.1);
+}
+
+
+
+/* Add to your styles.css */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Update your particle styling */
+.particle {
+    position: absolute;
+    background-color: rgba(0, 229, 255, 0.4); /* Brighter cyan color */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5; /* Make sure particles are visible above other elements */
+    box-shadow: 0 0 5px 2px rgba(0, 229, 255, 0.3); /* Add glow effect */
+}
+/* Add this to your styles.css file */
+#Github {
+    position: relative;
+}
+
+#Github h2 {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.refresh-stats-btn {
+    position: relative;
+    display: block;  /* Changed from inline to block */
+    margin-top: 15px;  /* Add spacing below the heading */
+    margin-bottom: 25px;  /* Add spacing before stats content */
+    background: linear-gradient(45deg, rgba(8, 8, 57, 0.8), rgba(13, 31, 45, 0.8));
+    color: white;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    max-width: 200px;  /* Limit the width */
+}
+
+.refresh-stats-btn:hover {
+    background: linear-gradient(45deg, rgba(13, 31, 45, 0.8), rgba(8, 8, 57, 0.8));
+    border-color: rgba(0, 229, 255, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+}
+
+.refresh-stats-btn i {
+    margin-right: 8px;
+    transition: transform 0.5s ease;
+}
+
+.refresh-stats-btn:hover i {
+    transform: rotate(180deg);
+}
+
+/* For mobile responsiveness */
+

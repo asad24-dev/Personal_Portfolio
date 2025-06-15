@@ -264,12 +264,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Make sure sections below have appropriate padding to make room for sidebar
+        // Add this to your scroll event listener in script.js, modifying the section around line 255
+// Look for the section that adjusts padding on scroll
         if (progress > 0.8) { // When we're mostly done with the animation
-            document.querySelectorAll('#About, #Projects, #Contact, #Github').forEach(section => {
+            document.querySelectorAll('#About, #Projects, #Skills, #Publications, #Recommendations, #Github, #Contact').forEach(section => {
                 section.style.paddingLeft = '45%';
             });
         } else {
-            document.querySelectorAll('#About, #Projects, #Contact').forEach(section => {
+            document.querySelectorAll('#About, #Projects, #Skills, #Publications, #Recommendations, #Github, #Contact').forEach(section => {
                 section.style.paddingLeft = '';
             });
         }
@@ -518,4 +520,245 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.style.display = 'flex';
         }
     });
+});
+// Add this to your script.js
+// Replace your current parallax effect code with this:
+document.addEventListener('DOMContentLoaded', function() {
+    // Apply parallax effect to binary rain canvas globally
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        const canvas = document.getElementById('binary-rain-canvas');
+        
+        if (canvas) {
+            // Create a smoother parallax effect by reducing the multiplier
+            canvas.style.transform = 'none';
+        }
+    });
+});
+// Add this to your script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize recommendation slider
+    const recommendationCards = document.querySelectorAll('.recommendation-card');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    if (recommendationCards.length > 0) {
+        let currentIndex = 0;
+        
+        // Set first card as active
+        recommendationCards[0].classList.add('active');
+        
+        // Function to show a specific card
+        function showCard(index) {
+            recommendationCards.forEach(card => card.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            recommendationCards[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentIndex = index;
+        }
+        
+        // Next button click
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                let newIndex = currentIndex + 1;
+                if (newIndex >= recommendationCards.length) {
+                    newIndex = 0;
+                }
+                showCard(newIndex);
+            });
+        }
+        
+        // Previous button click
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                let newIndex = currentIndex - 1;
+                if (newIndex < 0) {
+                    newIndex = recommendationCards.length - 1;
+                }
+                showCard(newIndex);
+            });
+        }
+        
+        // Dot clicks
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-index'));
+                showCard(index);
+            });
+        });
+        
+        // Auto-advance the slider every 5 seconds
+        setInterval(() => {
+            let newIndex = currentIndex + 1;
+            if (newIndex >= recommendationCards.length) {
+                newIndex = 0;
+            }
+            showCard(newIndex);
+        }, 5000);
+    }
+});
+// Add to your script.js
+// Custom cursor and trail effects
+document.addEventListener('DOMContentLoaded', function() {
+    // Only initialize cursor effects on non-touch devices
+    if (window.matchMedia("(pointer: fine)").matches) {
+        initCustomCursor();
+        initCursorTrail();
+    }
+});
+
+function initCustomCursor() {
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorOutline = document.getElementById('cursor-outline');
+    
+    // Variables for smooth animation
+    let dotX = 0, dotY = 0;
+    let outlineX = 0, outlineY = 0;
+    
+    // Update cursor position on mouse move
+    document.addEventListener('mousemove', function(e) {
+        // Target positions
+        dotX = e.clientX;
+        dotY = e.clientY;
+        
+        // Apply position immediately to dot for responsive feel
+        cursorDot.style.transform = `translate(${dotX}px, ${dotY}px)`;
+    });
+    
+    // Animate cursor outline with a smoother follow effect
+    function animateCursor() {
+        // Calculate distance to target
+        const dx = dotX - outlineX;
+        const dy = dotY - outlineY;
+        
+        // Move outline cursor with easing
+        outlineX += dx * 0.2;
+        outlineY += dy * 0.2;
+        
+        cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+        
+        requestAnimationFrame(animateCursor);
+    }
+    
+    animateCursor();
+    
+    // Change cursor state on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .nav-link, input, textarea');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorDot.style.transform = 'scale(1.5)';
+            cursorOutline.classList.add('hover');
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            cursorDot.style.transform = 'scale(1)';
+            cursorOutline.classList.remove('hover');
+        });
+    });
+    
+    // Hide cursor when mouse leaves window
+    document.addEventListener('mouseleave', () => {
+        cursorDot.style.opacity = '0';
+        cursorOutline.style.opacity = '0';
+    });
+    
+    // Show cursor when mouse enters window
+    document.addEventListener('mouseenter', () => {
+        cursorDot.style.opacity = '1';
+        cursorOutline.style.opacity = '0.6';
+    });
+    
+    // Add click effect
+    document.addEventListener('mousedown', () => {
+        cursorDot.style.transform = 'scale(0.8)';
+        cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) scale(0.8)`;
+    });
+    
+    document.addEventListener('mouseup', () => {
+        cursorDot.style.transform = 'scale(1)';
+        cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) scale(1)`;
+    });
+}
+
+function initCursorTrail() {
+    const trailContainer = document.getElementById('cursor-trail-container');
+    let lastX = 0;
+    let lastY = 0;
+    let lastTimestamp = 0;
+    
+    // Code symbols to use for trail
+    const codeSymbols = ['0', '1', '{', '}', '[', ']', '(', ')', '<', '>', '/', '*', '+', '-', '=', ';'];
+    
+    document.addEventListener('mousemove', function(e) {
+        const currentTime = Date.now();
+        
+        // Only create trail particles at certain intervals
+        if (currentTime - lastTimestamp > 20) {
+            // Check if mouse has moved enough to create new particle
+            const distance = Math.sqrt(Math.pow(e.clientX - lastX, 2) + Math.pow(e.clientY - lastY, 2));
+            
+            if (distance > 8) {
+                for (let i = 0; i < 3; i++) { // Create 3 particles at once
+                    createTrailParticle(e.clientX, e.clientY);
+                }
+                lastX = e.clientX;
+                lastY = e.clientY;
+                lastTimestamp = currentTime;
+            }
+        }
+    });
+    
+    function createTrailParticle(x, y) {
+        const particle = document.createElement('div');
+        particle.className = 'trail-particle';
+        
+        // Random code symbol
+        const symbol = codeSymbols[Math.floor(Math.random() * codeSymbols.length)];
+        particle.textContent = symbol;
+        
+        // Random position offset
+        const offsetX = (Math.random() - 0.5) * 30;
+        const offsetY = (Math.random() - 0.5) * 30;
+        const size = Math.random() * 6 + 15; // 10-16px font size
+        particle.style.fontSize = size + 'px';
+        
+        // Random rotation for more visual interest
+        const rotation = (Math.random() - 0.5) * 60;
+        particle.style.transform = `rotate(${rotation}deg)`;
+        // Set position
+        particle.style.left = (x + offsetX) + 'px';
+        particle.style.top = (y + offsetY) + 'px';
+        
+        // Add to container
+        trailContainer.appendChild(particle);
+        
+        // Remove after animation completes
+        setTimeout(() => {
+            if (particle.parentNode === trailContainer) {
+                trailContainer.removeChild(particle);
+            }
+        }, 1000);
+    }
+}
+// Enhance interactive elements with cursor effects
+function enhanceInteractiveElements() {
+    const interactiveElements = document.querySelectorAll('a, button, .nav-link, input, textarea, .skill-item, .project-card');
+    
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            document.body.classList.add('cursor-hover');
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            document.body.classList.remove('cursor-hover');
+        });
+    });
+}
+
+// Call this function after DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Other initialization code...
+    enhanceInteractiveElements();
 });

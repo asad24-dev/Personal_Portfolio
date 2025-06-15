@@ -14,7 +14,10 @@
 </head>
 <body>
     <!-- Mobile Hamburger Menu -->
-    
+    <!-- Custom cursor elements -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+    <div id="cursor-trail-container"></div>
     <canvas id="binary-rain-canvas"></canvas>
     <div id="intro-screen">
         
@@ -268,21 +271,25 @@
             <div class="bar3"></div>
         </div>
         </div>
+        <!-- Update your navbar in index.html -->
         <nav id="navbar">
             <ul>
                 <li><a href="#main-home" class="nav-link active">Home</a></li>
                 <li><a href="#About" class="nav-link">About</a></li>
+                <li><a href="#Skills" class="nav-link">Skills</a></li>
                 <li><a href="#Projects" class="nav-link">Projects</a></li>
                 <li><a href="#Github" class="nav-link">Github</a></li>
-                <li><a href="https://www.linkedin.com/in/muhammad-asad-majeed" class="nav-link">LinkedIn</a></li>
-                <li><a href="#Contact" class="nav-link">Contact</a></li>
+                <li><a href="#Publications" class="nav-link">Publications</a></li>
+                <li><a href="#Recommendations" class="nav-link">Recommendations</a></li>
                 
+                <li><a href="#Contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
         <div id="main-home">
             <div id="Home">
                 <h1 style = "font-size: 96px;">Hi,</h1>
-                <h1>I am <span id="name">Muhammad Asad Majeed</span></h1>
+                <!-- Update your name span in index.html -->
+                <h1>I am <span id="name" class="gradient-text">Muhammad Asad Majeed</span></h1>
                 <div id = "description">
                     <p>Software Engineer</p>
                     <p><i class = "fa-solid fa-location-dot"></i>London, United Kingdom</p>
@@ -308,8 +315,86 @@
             <p>Outside academics, youl will either find me on a football field or glued to my laptop trying to build things from scratch, working on open-ended projects, and learning through hands-on exploration. 
                 I’m particularly excited about opportunities that combine software engineering with machine learning, and I’m always open to collaborations in research or product-focused applications of AI.</p>
         </section>
+        <!-- Add this after your About section -->
+        <section id="Skills">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-java"></i>
+                    <span>Java</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-react"></i>
+                    <span>React</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-node-js"></i>
+                    <span>Node.js</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-git-alt"></i>
+                    <span>Git</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-docker"></i>
+                    <span>Docker</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <span>SQL</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-brain"></i>
+                    <span>Machine Learning</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-robot"></i>
+                    <span>AI</span>
+                </div>
+            </div>
+        </section>
         <section id="Projects">
             <h2>Projects</h2>
+            <!-- Add this HTML structure to your Projects section -->
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="./images/project1.jpg" alt="Project 1">
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>AI Research Assistant</h3>
+                    <p>A machine learning tool for automating literature reviews in academic research.</p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>TensorFlow</span>
+                        <span>NLP</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more project cards as needed -->
+        </div>
         </section>
         <section id="Github">
             <h2>Github<a href="https://github.com/asad24-dev" style ="text-decoration:none; color:white; font-size:19.5px;"><i class="fas fa-external-link-alt"></i></a></h2>
@@ -344,6 +429,104 @@
                 </div>
             </div>
         </section>
+        <!-- Add this after your Projects section -->
+        <section id="Publications">
+            <h2>Publications</h2>
+            <div class="publications-container">
+                <div class="publication-card">
+                    <div class="publication-content">
+                        <h3>Machine Learning for Predictive Analytics in Healthcare</h3>
+                        <p class="publication-journal">Journal of Computer Science and Medicine, 2024</p>
+                        <p class="publication-authors">Majeed, M.A., Johnson, R., Chen, L.</p>
+                        <p class="publication-abstract">
+                            A comprehensive study on applying machine learning algorithms to predict patient outcomes,
+                            with a focus on improving early diagnosis and treatment planning. The paper explores
+                            various supervised learning approaches and their effectiveness in clinical settings.
+                        </p>
+                        <a href="#" class="publication-link">Read Paper <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="publication-content">
+                        <h3>Natural Language Processing in Clinical Documentation</h3>
+                        <p class="publication-journal">AI in Medicine Conference, 2023</p>
+                        <p class="publication-authors">Majeed, M.A., Smith, K.</p>
+                        <p class="publication-abstract">
+                            An exploration of NLP techniques for analyzing medical records and extracting actionable insights
+                            to improve patient care and clinical outcomes. The paper presents a novel approach to
+                            automated documentation analysis with 95% accuracy.
+                        </p>
+                        <a href="#" class="publication-link">Read Paper <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Add this after your Publications section -->
+        <section id="Recommendations">
+            <h2>Recommendations</h2>
+            
+            <div class="recommendations-slider">
+                <!-- Testimonial Cards Container -->
+                <div class="recommendations-container">
+                    <!-- First testimonial -->
+                    <div class="recommendation-card active">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <div class="recommendation-content">
+                            <p>Asad is an exceptional developer with strong analytical skills and attention to detail. His ability to tackle complex problems and deliver elegant solutions is impressive.</p>
+                        </div>
+                        <div class="recommendation-author">
+                            <div class="author-avatar">JS</div>
+                            <div class="author-info">
+                                <h4>Dr. Jane Smith</h4>
+                                <p>Professor, Computer Science at UCL</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Second testimonial -->
+                    <div class="recommendation-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <div class="recommendation-content">
+                            <p>Working with Asad on our machine learning project was incredibly productive. He brings both technical expertise and creative thinking to every challenge.</p>
+                        </div>
+                        <div class="recommendation-author">
+                            <div class="author-avatar">MJ</div>
+                            <div class="author-info">
+                                <h4>Michael Johnson</h4>
+                                <p>Lead Developer, AI Solutions</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Third testimonial -->
+                    <div class="recommendation-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <div class="recommendation-content">
+                            <p>Asad consistently demonstrates a deep understanding of software architecture principles and best practices in his work.</p>
+                        </div>
+                        <div class="recommendation-author">
+                            <div class="author-avatar">SC</div>
+                            <div class="author-info">
+                                <h4>Sarah Chen</h4>
+                                <p>Senior Engineer, Tech Innovations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation controls placed AFTER testimonials -->
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    </div>
+                    <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
         <section id="Contact">
             <h2>Contact</h2>
             
@@ -352,17 +535,20 @@
                 <div class="contact-form">
                     <h3>Send me a message</h3>
                     <form id="contact-form" action="https://formspree.io/f/manjopgz" method="POST">
+                        <!-- Update your form inputs to work with the new label animation -->
                         <div class="form-group">
+                            <input type="text" id="name" name="name" required placeholder=" ">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
                         </div>
+
                         <div class="form-group">
+                            <input type="email" id="email" name="email" required placeholder=" ">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
                         </div>
+
                         <div class="form-group">
+                            <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">
                             <i class="fa-solid fa-paper-plane"></i> Send Message
