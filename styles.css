@@ -698,6 +698,9 @@ textarea:hover ~ #cursor-outline {
 
 /* Medium Tablets and Below */
 @media screen and (max-width: 768px) {
+    html, body{
+        max-width: 100%;
+    }
     /* Mobile Menu Setup */
     .mobile-nav-toggle {
         display: block;
@@ -764,13 +767,19 @@ textarea:hover ~ #cursor-outline {
         flex-direction: column-reverse;
         align-items: center;
         justify-content: center;
+        padding: 0;
+        margin: 0;
+        width: 100%;
     }
     
     #Home {
-        width: 95%;
-        margin: 20px auto;
-        margin-left: 40px;
+        width: 100%;
+        margin: 20px 0;
+        margin-left: 12px;
         text-align: center;
+        padding: 0 20px;
+        text-align: center;
+        box-sizing: border-box;
     }
     
     #Home h1 {
@@ -784,33 +793,64 @@ textarea:hover ~ #cursor-outline {
     
    #home-img {
         position: relative;
-        z-index: 1; /* Lower than the menu z-index */
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+        padding: 0; /* Lower than the menu z-index */
     }
     
     #home-img img {
         margin-left: 40px;
         width: 300px;
         height: 300px;
+        margin: 60px auto 0;
     }
     
     #description {
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
+        /* width: 100%; */
+        margin: 0;
     }
     
     #description p {
         text-align: center;
         font-size: 14px;
-        margin: 10px auto;
+        margin: 10px 0;
+        margin-right: 0;
+        margin-left: 0;
+        box-sizing: border-box;
     }
     
     #social-links {
         justify-content: center;
+        width: 100%;
+    }
+    #About {
+        margin-left: 0;
+        padding: 80px 20px 40px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #About h2 {
+        text-align: center;
+        width: 100%;
     }
     
+    /* Fix all other section alignments */
+    section {
+        padding: 80px 20px 40px !important;
+        margin: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
     /* Content Section Layout */
     #About, #Projects, #Contact, #Github {
         margin-left: 40px;
-        padding: 80px 40px 40px 40px;
+        padding: 80px 20px 40px 40px;
         margin-top: 0;
         margin-right: 0;
         width: calc(100% - 20px);
@@ -819,8 +859,8 @@ textarea:hover ~ #cursor-outline {
         overflow: visible;
         box-sizing: border-box;
     }
-    #Contact{
-        margin-left: 20px;
+    .contact-container{
+        margin-left: 16px;
     }
     
     /* Section Headers */
@@ -844,6 +884,7 @@ textarea:hover ~ #cursor-outline {
         margin: 20px 0;
         width: 100%;
         padding: 15px;
+        box-sizing: border-box;
     }
     .github-stats-container{
         display: flex;
@@ -905,6 +946,7 @@ textarea:hover ~ #cursor-outline {
     /* Contact Form */
     .contact-form {
         padding: 20px 15px;
+        box-sizing: border-box;
     }
     
     /* Animation Adjustments */
