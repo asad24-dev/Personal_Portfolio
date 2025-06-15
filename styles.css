@@ -1,13 +1,17 @@
 body{
     cursor: none;
 }
-body, html { margin: 0; scroll-behavior: smooth; padding: 0; background: linear-gradient(to bottom, #080839, #000000);}
+body, html {overflow-x: hidden; width: 100%; max-width: 100%; margin: 0; scroll-behavior: smooth; padding: 0; background: linear-gradient(to bottom, #080839, #000000);}
 #main-content { 
     display: none;   
     position: relative;
     z-index: 2;
     padding-top: 150px; 
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
+
 #cursor-dot {
     position: fixed;
     top: 0;
@@ -146,7 +150,7 @@ textarea:hover ~ #cursor-outline {
     position: fixed;
     top: 5%;
     border-radius: 30px; /* Slightly rounded corners */
-    width: 70%; 
+    width: 90%; 
     height: 60px;
     background: linear-gradient(to bottom, #292947, #080839);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
@@ -167,6 +171,7 @@ textarea:hover ~ #cursor-outline {
     box-sizing: border-box; /* Include padding in width */
     display: flex; /* Use flexbox for layout */
     justify-content: center; 
+    gap: 30px; /* Spacing between items */
     align-items: center; /* Space items evenly */ /* Full width of the navbar */
     margin: 0; /* Remove default margin *//* Remove default padding */
 }
@@ -249,7 +254,7 @@ textarea:hover ~ #cursor-outline {
     font-weight: 900; /* Make it stand out */
 }
 #About, #Projects, #Contact, #Github{
-    margin-right:10px;
+    margin-right:20px;
     padding-left: 45%; /* Make space for the sidebar */
     min-height: 100vh; /* Make sections full height */
     padding-top: 100px; /* Space from the top */
@@ -1036,7 +1041,7 @@ textarea:hover ~ #cursor-outline {
 
 /* Common styles for all new sections */
 #Skills, #Publications, #Recommendations {
-    margin-right: 10px;
+    margin-right: 20px;
     padding-left: 45%; /* Make space for the sidebar */
     min-height: 100vh; /* Make sections full height */
     padding-top: 100px; /* Space from the top */
@@ -1056,11 +1061,13 @@ textarea:hover ~ #cursor-outline {
 .skills-container {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 25px;
     margin-top: 40px;
     background: rgba(13, 31, 45, 0.6);
     border-radius: 10px;
-    padding: 30px;
+    padding: 30px 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -1773,6 +1780,77 @@ textarea:hover ~ #cursor-outline {
 .refresh-stats-btn:hover i {
     transform: rotate(180deg);
 }
+/* Add this to your styles.css file */
+/* Add this to your styles.css file */
+/* Add this to your styles.css file */
+.site-footer {
+  background: rgba(8, 8, 57, 0.8);
+  padding: 15px 0;
+  text-align: center;
+  margin-top: 50px;
+  border-top: 1px solid rgba(0, 229, 255, 0.2);
+  font-family: 'Courier New', Courier, monospace;
+  width: 100%;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+  left: 0;
+  right: 0;
+  position: relative;
+}
 
-/* For mobile responsiveness */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
+.site-footer p {
+  color: #bbbbbb;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Social media icons styling */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: #bbbbbb;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.social-links a:hover {
+  color: #00E5FF;
+  transform: translateY(-3px);
+  background: rgba(0, 229, 255, 0.1);
+}
+
+/* Responsive adjustment */
+@media screen and (max-width: 768px) {
+  .site-footer {
+    padding: 10px 0;
+    margin-top: 30px;
+  }
+  
+  .social-links {
+    gap: 15px;
+  }
+}
