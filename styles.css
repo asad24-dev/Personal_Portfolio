@@ -387,7 +387,7 @@ textarea:hover ~ #cursor-outline {
     
     .github-card {
         width: 100%;
-        max-width: 95%;
+        /* max-width: 95%; */
     }
 }
 .calendar-card {
@@ -758,11 +758,13 @@ textarea:hover ~ #cursor-outline {
     #main-home {
         flex-direction: column-reverse;
         align-items: center;
+        justify-content: center;
     }
     
     #Home {
-        width: 90%;
+        width: 95%;
         margin: 20px auto;
+        margin-left: 40px;
         text-align: center;
     }
     
@@ -781,6 +783,7 @@ textarea:hover ~ #cursor-outline {
     }
     
     #home-img img {
+        margin-left: 40px;
         width: 300px;
         height: 300px;
     }
@@ -801,11 +804,11 @@ textarea:hover ~ #cursor-outline {
     
     /* Content Section Layout */
     #About, #Projects, #Contact, #Github {
-        margin-left: 20px;
-        padding: 80px 20px 40px 20px;
+        margin-left: 40px;
+        padding: 80px 40px 40px 40px;
         margin-top: 0;
         margin-right: 0;
-        width: calc(100% - 40px);
+        width: calc(100% - 20px);
         min-height: auto;
         height: auto;
         overflow: visible;
@@ -825,6 +828,7 @@ textarea:hover ~ #cursor-outline {
     /* Full Width Content */
     #About p, .project-container, .github-stats-container, .contact-container {
         max-width: 100%;
+        padding: 20 20px;
     }
     
     /* Containers and Cards */
