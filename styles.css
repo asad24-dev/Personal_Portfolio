@@ -814,6 +814,9 @@ textarea:hover ~ #cursor-outline {
         overflow: visible;
         box-sizing: border-box;
     }
+    #Contact{
+        margin-left: 20px;
+    }
     
     /* Section Headers */
     #About h2, #Projects h2, #Contact h2, #Github h2 {
