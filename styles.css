@@ -1412,7 +1412,7 @@ textarea:hover ~ #cursor-outline {
 .project-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 1s ease;
 }
 
@@ -1535,6 +1535,8 @@ textarea:hover ~ #cursor-outline {
     background: rgba(0, 229, 255, 0.1);
     border-radius: 20px;
     color: #00E5FF;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: normal;
 }
 /* Enhance your existing publication cards */
 .publication-card {
