@@ -1538,6 +1538,11 @@ textarea:hover ~ #cursor-outline {
     font-family: 'Courier New', Courier, monospace;
     font-style: normal;
 }
+.project-tech .icon {
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+}
 /* Enhance your existing publication cards */
 .publication-card {
     position: relative;
