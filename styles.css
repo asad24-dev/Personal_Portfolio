@@ -375,27 +375,6 @@ textarea:hover ~ #cursor-outline {
     justify-content: left;
     margin-top: 10px; /* Use flexbox for layout */ /* Center the UL inside the navbar */
 }
-#social-links .download-resume{
-    margin: 0; /* Spacing between the links */
-    background: transparent;
-    color: var(--color-text); /* White text for links */
-    padding: 12px 18px; 
-    font-size: 18px;
-    font-weight: 600; /* Font size for readability */
-    font-family: var(--font-mono); /* Monospace font for a techy feel */
-    border: solid 2px var(--color-border);
-    border-radius: 30px;
-    text-decoration: none;/* Spacing around the links */
-}
-#social-links .fa-solid.fa-download{
-    margin-right: 10px; /* Space between icon and text */
-}
-#social-links .download-resume:hover {
-    color: var(--color-bg); /* Change color on hover */
-    background-color: var(--color-text); /* Change background color on hover */
-    transform: translateY(-2px); 
-    border: solid 2px var(--color-text); /* Change border color on hover */
-}
 #description{
     display: flex; /* Center the UL inside the navbar */
     flex-direction: row;/* Use flexbox for layout */ /* White text for readability */ /* Font size for readability */
@@ -1041,11 +1020,6 @@ textarea:hover ~ #cursor-outline {
     #home-img img {
         width: 180px;
         height: 180px;
-    }
-    
-    #social-links .download-resume {
-        padding: 10px 12px;
-        font-size: 14px;
     }
     
     .social-icons {
@@ -1760,79 +1734,95 @@ textarea:hover ~ #cursor-outline {
     margin-right: 20px;
 }
 
-/* Add this to your styles.css file */
-/* Add this to your styles.css file */
-/* Add this to your styles.css file */
 .site-footer {
-  background: var(--color-bg-muted);
-  padding: 15px 0;
-  text-align: center;
-  margin-top: 50px;
-  border-top: 1px solid rgba(var(--color-accent-rgb), 0.2);
-  font-family: var(--font-sans);
-  width: 100%;
-  margin: 0;
-  padding-left: 0;
-  padding-right: 0;
-  box-sizing: border-box;
-  left: 0;
-  right: 0;
-  position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 34px clamp(20px, 5vw, 72px);
+    border-top: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.92);
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    position: relative;
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 18px;
 }
 
-.site-footer p {
-  color: var(--color-text-muted);
-  margin: 5px 0;
-  font-size: 14px;
+.footer-signature {
+    margin: 0;
+    color: var(--color-text-subtle);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0;
 }
 
-/* Social media icons styling */
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin-top: 10px;
+.footer-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-.social-links a {
-  color: var(--color-text-muted);
-  font-size: 20px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
+.footer-social-links a {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 15px;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.social-links a:hover {
-  color: var(--color-accent);
-  transform: translateY(-3px);
-  background: rgba(var(--color-accent-rgb), 0.1);
+.footer-social-links a:hover,
+.footer-cv-link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(var(--color-accent-rgb), 0.42);
+    background: rgba(var(--color-accent-rgb), 0.1);
+    color: var(--color-text);
 }
 
-/* Responsive adjustment */
+.footer-cv-link {
+    justify-self: end;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
 @media screen and (max-width: 768px) {
-  .site-footer {
-    padding: 10px 0;
-    margin-top: 30px;
-  }
-  
-  .social-links {
-    gap: 15px;
-  }
+    .site-footer {
+        padding: 28px 24px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 14px;
+    }
+
+    .footer-cv-link {
+        justify-self: center;
+    }
 }
 
 /* Step 2: Hero rewrite */
@@ -1959,16 +1949,14 @@ textarea:hover ~ #cursor-outline {
     border-color: var(--color-accent-hover);
 }
 
-#social-links .hero-secondary,
-#social-links .download-resume {
+#social-links .hero-secondary {
     padding: 0 14px;
     color: var(--color-text-muted);
     background: transparent;
     border: 1px solid var(--color-border);
 }
 
-#social-links .hero-secondary:hover,
-#social-links .download-resume:hover {
+#social-links .hero-secondary:hover {
     color: var(--color-text);
     background: rgba(var(--color-accent-rgb), 0.1);
     border-color: rgba(var(--color-accent-rgb), 0.42);

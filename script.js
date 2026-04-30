@@ -175,11 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const descriptionElements = document.querySelectorAll('#description p');
                 descriptionElements.forEach(el => el.style.fontSize = '');
                 
-                const resumeButton = document.querySelector('.download-resume');
-                if (resumeButton) {
-                    resumeButton.style.padding = '';
-                    resumeButton.style.fontSize = '';
-                }
             }
             return;
         }
@@ -227,16 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const descriptionElements = document.querySelectorAll('#description p');
             descriptionElements.forEach(el => el.style.fontSize = `${descriptionSize}px`);
             
-            // Make social links/resume button smaller
-            const resumeButton = document.querySelector('.download-resume');
-            if (resumeButton) {
-                const paddingV = 12 - (4 * progress); // Vertical padding
-                const paddingH = 18 - (4 * progress); // Horizontal padding
-                const fontSize = 18 - (4 * progress); // Font size
-                resumeButton.style.padding = `${paddingV}px ${paddingH}px`;
-                resumeButton.style.fontSize = `${fontSize}px`;
-            }
-            
         } else {
             // Reset all styles when back at the top
             homeElement.style.transform = '';
@@ -255,12 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const descriptionElements = document.querySelectorAll('#description p');
             descriptionElements.forEach(el => el.style.fontSize = '');
             
-            // Reset button
-            const resumeButton = document.querySelector('.download-resume');
-            if (resumeButton) {
-                resumeButton.style.padding = '';
-                resumeButton.style.fontSize = '';
-            }
         }
         
         // Make sure sections below have appropriate padding to make room for sidebar
