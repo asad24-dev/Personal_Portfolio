@@ -2335,3 +2335,102 @@ textarea:hover ~ #cursor-outline {
         transform-origin: left;
     }
 }
+
+/* Step 4: About trim and layout */
+#About {
+    max-width: var(--container-max);
+    min-height: auto;
+    margin: 0 auto;
+    padding: 120px clamp(20px, 5vw, 72px) 80px !important;
+    color: var(--color-text);
+}
+
+.section-label {
+    margin-bottom: 20px;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: clamp(32px, 7vw, 96px);
+    align-items: start;
+}
+
+.about-copy h2 {
+    max-width: 720px;
+    margin: 0 0 28px;
+    color: var(--color-text);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 760;
+    line-height: 1;
+}
+
+#About .about-copy p {
+    max-width: 760px;
+    margin: 0 0 16px;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-text-muted);
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+#About .about-copy p:first-of-type {
+    color: var(--color-text);
+}
+
+.about-facts {
+    margin: 8px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.about-facts div {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.about-facts dt {
+    margin-bottom: 6px;
+    color: var(--color-text-subtle);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.about-facts dd {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+@media screen and (max-width: 768px) {
+    #About {
+        padding: 88px 24px 56px !important;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .about-copy h2 {
+        text-align: left;
+    }
+
+    #About .about-copy p {
+        font-size: 16px;
+    }
+
+    .about-facts {
+        margin-top: 0;
+    }
+}
