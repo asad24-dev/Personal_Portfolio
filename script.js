@@ -267,11 +267,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add this to your scroll event listener in script.js, modifying the section around line 255
 // Look for the section that adjusts padding on scroll
         if (progress > 0.8) { // When we're mostly done with the animation
-            document.querySelectorAll('#About, #Projects, #Skills, #Publications, #Recommendations, #Github, #Contact').forEach(section => {
+            document.querySelectorAll('#About, #Projects, #Skills, #Publications, #Recommendations, #Contact').forEach(section => {
                 section.style.paddingLeft = '45%';
             });
         } else {
-            document.querySelectorAll('#About, #Projects, #Skills, #Publications, #Recommendations, #Github, #Contact').forEach(section => {
+            document.querySelectorAll('#About, #Projects, #Skills, #Publications, #Recommendations, #Contact').forEach(section => {
                 section.style.paddingLeft = '';
             });
         }
@@ -390,33 +390,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     tick();
 });
-// Add this to your existing JavaScript file
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize GitHub Calendar with colors matching your theme
-    // Initialize GitHub Calendar with colors matching your theme
-GitHubCalendar(".calendar", "asad24-dev", {
-    responsive: true,
-    tooltips: true,
-    global_stats: false,
-    years: [2025],
-    from: "2025-01-01",
-    until: "2025-12-31",
-    summary_text: '📅 2025 Contribution Activity',
-    cache: 86400,
-    proxy: function(username) {
-        return {
-            url: `https://cors-anywhere.herokuapp.com/https://github.com/users/${username}/contributions?from=2025-01-01&to=2025-12-31`,
-            headers: {
-                "User-Agent": "GitHub Calendar Widget"
-            }
-        };
-    } 
-});
-
-
-}
-);
-
 // Add this to your existing script.js file
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -468,35 +441,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-document.addEventListener('DOMContentLoaded', function() {
-    // Add cache-busting to GitHub stats images
-    function refreshGitHubStats() {
-        const timestamp = new Date().getTime();
-        const statImages = document.querySelectorAll('.github-stats-image');
-        
-        statImages.forEach(img => {
-            const currentSrc = img.getAttribute('src');
-            // Add or update timestamp parameter
-            if (currentSrc.includes('?')) {
-                img.setAttribute('src', currentSrc + '&t=' + timestamp);
-            } else {
-                img.setAttribute('src', currentSrc + '?t=' + timestamp);
-            }
-        });
-    }
-    
-    // Add refresh button
-    const githubSection = document.getElementById('Github');
-    const refreshButton = document.createElement('button');
-    refreshButton.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Stats';
-    refreshButton.className = 'refresh-stats-btn';
-    refreshButton.addEventListener('click', refreshGitHubStats);
-    
-    // Insert button after heading
-    const heading = githubSection.querySelector('h2');
-    heading.parentNode.insertBefore(refreshButton, heading.nextSibling);
-});
-
 // Add to your existing script.js
 
 // Replace your existing mobile menu functionality with this updated code

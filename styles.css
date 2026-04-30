@@ -460,55 +460,7 @@ textarea:hover ~ #cursor-outline {
         /* max-width: 95%; */
     }
 }
-.calendar-card {
-    width: 100%;
-    max-width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-}
 
-/* Style calendar text to match your site */
-/* Replace your existing calendar styles with these */
-.calendar {
-    /* background: rgba(13, 31, 45, 0.6); */
-    border-radius: 10px;
-    padding: 20px;
-    width: 100%;
-    text-align: center;
-}
-
-.github-calendar-header {
-    color: var(--color-accent-hover);
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-/* Add this to your styles.css */
-.github-calendar-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    background-color: var(--color-surface); /* Dark background */
-    padding: 10px;
-    mix-blend-mode: screen; /* This blend mode will darken the white areas */
-    filter: brightness(0.85) contrast(1.2); /* Adjusts the overall brightness */
-}
-
-/* Add a dark container behind the image */
-.github-calendar-wrapper {
-    overflow-x: auto;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    background-color: var(--color-bg-muted); /* Match your site's dark background */
-    border-radius: 5px;
-    padding: 5px;
-}
-
-/* Ensure the text in the calendar is readable */
-
-
-/* Style the contribution summary text */
 
 /* Contact Section Styles */
 #Contact {
@@ -667,27 +619,6 @@ textarea:hover ~ #cursor-outline {
         padding-right: 20px;
     }
 }
-.refresh-stats-btn {
-    background: var(--color-bg-muted);
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: var(--font-mono);
-    margin: 0;
-    transition: all 0.3s ease;
-}
-
-.refresh-stats-btn:hover {
-    background: rgba(var(--color-accent-rgb), 0.15);
-    transform: translateY(-2px);
-}
-
-.refresh-stats-btn i {
-    margin-right: 5px;
-}
-
 /* Add to the bottom of your styles.css file */
 
 /* Media Queries for Responsive Design */
@@ -978,20 +909,7 @@ textarea:hover ~ #cursor-outline {
         margin: 0 auto;
         display: block;
     }
-    .calendar {
-        width: 100%;
-        max-width: 450px;
-        margin: 0 auto;
-        overflow-x: auto;
-    }
-    .calendar-card {
-        padding: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    
-    /* Language distribution visualization */
+/* Language distribution visualization */
     .most-used-languages {
         width: 100%;
         max-width: 500px;
@@ -1053,12 +971,7 @@ textarea:hover ~ #cursor-outline {
     #About, #Projects, #Contact, #Github {
         padding: 70px 15px 30px 15px;
     }
-    
-    .calendar {
-        overflow-x: auto;
-    }
-    
-    .github-stats-container {
+.github-stats-container {
         padding: 10px;
     }
 }
@@ -1344,10 +1257,6 @@ textarea:hover ~ #cursor-outline {
 }
 
 @media screen and (max-width: 768px) {
-     .refresh-stats-btn {
-        margin-left: auto;
-        margin-right: auto;
-    }
     #Skills, #Publications, #Recommendations {
         margin-left: 20px;
         padding: 80px 20px 40px 20px;
@@ -1820,17 +1729,6 @@ textarea:hover ~ #cursor-outline {
     box-shadow: 0 15px 30px rgba(var(--color-accent-rgb), 0.15);
 }
 
-/* Style GitHub calendar */
-.github-calendar-img {
-    border: 1px solid rgba(var(--color-accent-rgb), 0.2);
-    transition: filter 0.3s ease;
-}
-
-.github-calendar-img:hover {
-    filter: brightness(1.1) contrast(1.1);
-}
-
-
 
 /* Add to your styles.css */
 .particles {
@@ -1862,38 +1760,6 @@ textarea:hover ~ #cursor-outline {
     margin-right: 20px;
 }
 
-.refresh-stats-btn {
-    position: relative;
-    display: block;  /* Changed from inline to block */
-    margin-top: 15px;  /* Add spacing below the heading */
-    margin-bottom: 25px;  /* Add spacing before stats content */
-    background: var(--color-surface);
-    color: var(--color-text);
-    border: 1px solid rgba(var(--color-accent-rgb), 0.3);
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: var(--font-mono);
-    font-size: 16px;
-    transition: all 0.3s ease;
-    max-width: 200px;  /* Limit the width */
-}
-
-.refresh-stats-btn:hover {
-    background: var(--color-surface-strong);
-    border-color: rgba(var(--color-accent-rgb), 0.6);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.2);
-}
-
-.refresh-stats-btn i {
-    margin-right: 8px;
-    transition: transform 0.5s ease;
-}
-
-.refresh-stats-btn:hover i {
-    transform: rotate(180deg);
-}
 /* Add this to your styles.css file */
 /* Add this to your styles.css file */
 /* Add this to your styles.css file */
@@ -2776,5 +2642,161 @@ textarea:hover ~ #cursor-outline {
 
     .skill-group {
         min-height: auto;
+    }
+}
+
+/* Step 7 revision: polished GitHub stat cards */
+#Github {
+    max-width: var(--container-max);
+    min-height: auto;
+    margin: 0 auto;
+    padding: 104px clamp(20px, 5vw, 72px) 72px !important;
+    color: var(--color-text);
+}
+
+.github-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
+    gap: clamp(24px, 5vw, 72px);
+    align-items: end;
+    margin-bottom: 28px;
+}
+
+.github-heading h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(32px, 4.5vw, 54px);
+    font-weight: 760;
+    line-height: 1;
+}
+
+.github-heading p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+#Github .github-stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+#Github .github-card {
+    width: 100%;
+    max-width: none;
+    display: grid;
+    gap: 14px;
+    padding: 18px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: rgba(17, 17, 19, 0.72);
+    box-shadow: none;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+#Github .github-card:hover {
+    transform: translateY(-3px) !important;
+    border-color: rgba(var(--color-accent-rgb), 0.42);
+    background: rgba(24, 24, 27, 0.84);
+    box-shadow: none;
+}
+
+.github-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--color-text-subtle);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.github-card-header a {
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+}
+
+.github-card-header a:hover {
+    border-color: rgba(var(--color-accent-rgb), 0.5);
+    background: rgba(var(--color-accent-rgb), 0.12);
+    color: var(--color-text);
+}
+
+#Github .github-stats-image {
+    width: 100%;
+    height: 190px;
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    object-fit: contain;
+}
+
+#Github .github-calendar-card {
+    grid-column: 1 / -1;
+    width: min(100%, 920px);
+    justify-self: center;
+}
+
+#Github .github-calendar-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    object-fit: contain;
+}
+
+@media screen and (max-width: 980px) {
+    #Github .github-stats-container {
+        grid-template-columns: 1fr;
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    #Github .github-calendar-card {
+        grid-column: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #Github {
+        padding: 80px 24px 56px !important;
+    }
+
+    .github-heading {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    #Github h2 {
+        text-align: left;
+    }
+
+    #Github .github-stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    #Github .github-calendar-img {
+        padding: 10px;
+        overflow-x: auto;
     }
 }
