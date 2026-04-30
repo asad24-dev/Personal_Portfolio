@@ -2660,3 +2660,121 @@ textarea:hover ~ #cursor-outline {
         font-size: 24px;
     }
 }
+
+/* Step 6: Skills grouped list */
+#Skills {
+    max-width: var(--container-max);
+    min-height: auto;
+    margin: 0 auto;
+    padding: 104px clamp(20px, 5vw, 72px) 72px !important;
+    color: var(--color-text);
+}
+
+.skills-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+    gap: clamp(24px, 5vw, 72px);
+    align-items: end;
+    margin-bottom: 28px;
+}
+
+.skills-heading h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(32px, 4.5vw, 54px);
+    font-weight: 760;
+    line-height: 1;
+}
+
+.skills-heading p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+#Skills .skills-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.skill-group {
+    min-height: 228px;
+    padding: 20px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: rgba(17, 17, 19, 0.68);
+}
+
+.skill-group h3 {
+    margin: 0 0 18px;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.skill-list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.skill-list li {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.skill-list li::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-right: 9px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+@media screen and (max-width: 900px) {
+    #Skills .skills-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #Skills {
+        padding: 80px 24px 56px !important;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    .skills-heading {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    #Skills h2 {
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    #Skills .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-group {
+        min-height: auto;
+    }
+}
