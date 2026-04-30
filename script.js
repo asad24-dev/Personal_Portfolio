@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Replace your updateActiveNavLink function with this improved version
     function updateActiveNavLink() {
         // Get all sections that should be tracked in the navigation
-        const sections = document.querySelectorAll('section[id]');
+        const sections = document.querySelectorAll('#main-home, section[id]');
         
         // Get current scroll position with a smaller offset for better detection
         const scrollPosition = window.scrollY + 100;
@@ -504,33 +504,26 @@ document.addEventListener('DOMContentLoaded', function() {
 // Mobile Menu Toggle
 // Complete replacement for your mobile menu toggle code
 document.addEventListener('DOMContentLoaded', function() {
-    // Store navbar state
-    let navbarVisible = true;
-    
     // Mobile menu functionality
     const menuButton = document.querySelector('.mobile-nav-toggle');
     const navbar = document.getElementById('navbar');
     
     if (menuButton && navbar) {
+        function closeMenu() {
+            navbar.classList.remove('is-open');
+            document.body.classList.remove('menu-open');
+            menuButton.setAttribute('aria-expanded', 'false');
+            menuButton.textContent = 'Menu';
+        }
+
         // Toggle mobile menu
         menuButton.addEventListener('click', function(e) {
             e.stopPropagation();
-            
-            // Toggle button appearance
-            const menuIcon = this.querySelector('.menu-icon');
-            if (menuIcon) {
-                menuIcon.classList.toggle('change');
-            }
-            
-            // Get current display state
-            const isCurrentlyHidden = window.getComputedStyle(navbar).display === 'none';
-            
-            // Toggle display based on current state
-            if (isCurrentlyHidden) {
-                navbar.style.display = 'flex';
-            } else {
-                navbar.style.display = 'none';
-            }
+
+            const isOpen = navbar.classList.toggle('is-open');
+            document.body.classList.toggle('menu-open', isOpen);
+            menuButton.setAttribute('aria-expanded', String(isOpen));
+            menuButton.textContent = isOpen ? 'Close' : 'Menu';
         });
         
         // Hide menu when clicking a link (mobile only)
@@ -538,30 +531,18 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) {
-                    const menuIcon = menuButton.querySelector('.menu-icon');
-                    if (menuIcon) {
-                        menuIcon.classList.remove('change');
-                    }
-                    navbar.style.display = 'none';
+                    closeMenu();
                 }
             });
         });
+
+        // Reset mobile-only state on larger screens.
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
     }
-    
-    // Handle window resize - make navbar visible on large screens
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && navbar) {
-            navbar.style.display = 'flex';
-            navbarVisible = true;
-        }
-    });
-    
-    // Handle scrolling - maintain navbar visibility on big screens
-    window.addEventListener('scroll', function() {
-        if (window.innerWidth > 768 && navbar) {
-            navbar.style.display = 'flex';
-        }
-    });
 });
 // Add this to your script.js
 // Replace your current parallax effect code with this:

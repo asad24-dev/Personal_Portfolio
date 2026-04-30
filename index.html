@@ -264,15 +264,10 @@
     
     <main id="main-content">
         
-        <div class="mobile-nav-toggle">
-        <div class="menu-icon">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-        </div>
+        <button class="mobile-nav-toggle" type="button" aria-controls="navbar" aria-expanded="false">Menu</button>
         <!-- Update your navbar in index.html -->
-        <nav id="navbar">
+        <nav id="navbar" aria-label="Primary navigation">
+            <a class="nav-brand" href="#main-home">MAM</a>
             <ul>
                 <li><a href="#main-home" class="nav-link active">Home</a></li>
                 <li><a href="#About" class="nav-link">About</a></li>
