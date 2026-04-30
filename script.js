@@ -348,6 +348,48 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the active nav link on page load
     updateActiveNavLink();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const typewriter = document.getElementById('hero-typewriter');
+    if (!typewriter) return;
+
+    const phrases = (typewriter.dataset.phrases || '')
+        .split('|')
+        .map(phrase => phrase.trim())
+        .filter(Boolean);
+
+    if (phrases.length === 0) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        typewriter.textContent = phrases[0];
+        return;
+    }
+
+    let phraseIndex = 0;
+    let characterIndex = phrases[0].length;
+    let isDeleting = false;
+
+    function tick() {
+        const currentPhrase = phrases[phraseIndex];
+        typewriter.textContent = currentPhrase.slice(0, characterIndex);
+
+        if (!isDeleting && characterIndex === currentPhrase.length) {
+            isDeleting = true;
+            window.setTimeout(tick, 1600);
+            return;
+        }
+
+        if (isDeleting && characterIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+
+        characterIndex += isDeleting ? -1 : 1;
+        window.setTimeout(tick, isDeleting ? 34 : 54);
+    }
+
+    tick();
+});
 // Add this to your existing JavaScript file
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize GitHub Calendar with colors matching your theme

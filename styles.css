@@ -1968,3 +1968,202 @@ textarea:hover ~ #cursor-outline {
     gap: 15px;
   }
 }
+
+/* Step 2: Hero rewrite */
+#main-home {
+    min-height: 100vh;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 7%;
+    gap: 0;
+}
+
+#Home {
+    width: min(920px, 100%);
+    margin: 0;
+    padding-top: 6rem;
+}
+
+.hero-kicker {
+    margin: 0 0 18px;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#Home h1 {
+    max-width: 860px;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 72px;
+    font-weight: 760;
+    line-height: 0.98;
+    margin: 0;
+}
+
+#name {
+    color: var(--color-text);
+    font-family: inherit;
+    text-shadow: none;
+}
+
+.gradient-text {
+    background: none;
+    color: var(--color-text);
+    animation: none;
+}
+
+#description.hero-terminal {
+    width: min(760px, 100%);
+    margin: 30px 0 0;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: rgba(17, 17, 19, 0.58);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+}
+
+.terminal-prompt {
+    color: var(--color-accent);
+    font-size: 14px;
+    line-height: 1;
+}
+
+#description.hero-terminal p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 1em;
+    margin-left: 2px;
+    background: var(--color-accent);
+    transform: translateY(2px);
+    animation: terminal-caret 1s steps(1) infinite;
+}
+
+@keyframes terminal-caret {
+    50% {
+        opacity: 0;
+    }
+}
+
+#social-links {
+    align-items: center;
+    gap: 10px;
+    margin-top: 26px;
+}
+
+#social-links a {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+#social-links a:hover {
+    transform: translateY(-1px);
+}
+
+#social-links .hero-primary {
+    padding: 0 16px;
+    color: var(--color-bg);
+    background: var(--color-text);
+    border: 1px solid var(--color-text);
+}
+
+#social-links .hero-primary:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+}
+
+#social-links .hero-secondary,
+#social-links .download-resume {
+    padding: 0 14px;
+    color: var(--color-text-muted);
+    background: transparent;
+    border: 1px solid var(--color-border);
+}
+
+#social-links .hero-secondary:hover,
+#social-links .download-resume:hover {
+    color: var(--color-text);
+    background: rgba(var(--color-accent-rgb), 0.1);
+    border-color: rgba(var(--color-accent-rgb), 0.42);
+}
+
+#home-img {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    #main-home {
+        min-height: 100vh;
+        padding: 96px 24px 48px !important;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    #Home {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
+
+    .hero-kicker {
+        font-size: 12px;
+    }
+
+    #Home h1 {
+        font-size: 48px;
+        line-height: 1.02;
+        text-align: left;
+    }
+
+    #description.hero-terminal {
+        align-items: flex-start;
+    }
+
+    #description.hero-terminal p {
+        text-align: left;
+        font-size: 14px;
+    }
+
+    #social-links {
+        justify-content: flex-start;
+        width: auto;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #Home h1 {
+        font-size: 38px;
+    }
+
+    #description.hero-terminal {
+        padding: 11px 12px;
+    }
+
+    #social-links a {
+        min-height: 38px;
+        font-size: 12px;
+    }
+}
