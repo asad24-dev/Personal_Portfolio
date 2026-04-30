@@ -1,7 +1,71 @@
-body{
-    cursor: none;
+:root {
+    color-scheme: dark;
+    --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "Geist Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    --color-bg: #0a0a0a;
+    --color-bg-muted: #111113;
+    --color-surface: rgba(17, 17, 19, 0.78);
+    --color-surface-strong: rgba(24, 24, 27, 0.92);
+    --color-border: rgba(255, 255, 255, 0.09);
+    --color-text: #f4f4f5;
+    --color-text-muted: #a1a1aa;
+    --color-text-subtle: #71717a;
+    --color-accent: #3b82f6;
+    --color-accent-hover: #60a5fa;
+    --color-accent-rgb: 59, 130, 246;
+    --shadow-panel: 0 18px 60px rgba(0, 0, 0, 0.34);
+    --shadow-accent: 0 0 18px rgba(var(--color-accent-rgb), 0.34);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --container-max: 1120px;
 }
-body, html {overflow-x: hidden; width: 100%; max-width: 100%; margin: 0; scroll-behavior: smooth; padding: 0; background: linear-gradient(to bottom, #080839, #000000);}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    scroll-behavior: smooth;
+    padding: 0;
+    background: var(--color-bg);
+}
+
+body {
+    cursor: none;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    letter-spacing: 0;
+}
+
+a {
+    color: inherit;
+}
+
+::selection {
+    background: rgba(var(--color-accent-rgb), 0.32);
+    color: var(--color-text);
+}
 #main-content { 
     display: none;   
     position: relative;
@@ -18,13 +82,13 @@ body, html {overflow-x: hidden; width: 100%; max-width: 100%; margin: 0; scroll-
     left: 0;
     width: 12px;
     height: 12px;
-    background-color: #00E5FF;
+    background-color: var(--color-accent);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     opacity: 1;
     transition: opacity 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+    box-shadow: var(--shadow-accent);
 }
 
 /* Secondary cursor outline */
@@ -34,7 +98,7 @@ body, html {overflow-x: hidden; width: 100%; max-width: 100%; margin: 0; scroll-
     left: 0;
     width: 40px;
     height: 40px;
-    border: 2px solid rgba(0, 229, 255, 0.5);
+    border: 2px solid rgba(var(--color-accent-rgb), 0.5);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
@@ -48,8 +112,8 @@ button:hover ~ #cursor-outline,
 input:hover ~ #cursor-outline,
 textarea:hover ~ #cursor-outline {
     transform: translate(-50%, -50%) scale(1.5);
-    border-color: rgba(0, 229, 255, 0.8);
-    background-color: rgba(0, 229, 255, 0.1);
+    border-color: rgba(var(--color-accent-rgb), 0.8);
+    background-color: rgba(var(--color-accent-rgb), 0.1);
 }
 
 /* Trail container */
@@ -65,15 +129,15 @@ textarea:hover ~ #cursor-outline {
 }
 .trail-particle {
     position: absolute;
-    font-family: 'Courier New', monospace;
-    color: rgba(0, 229, 255, 0.7);
+    font-family: var(--font-mono);
+    color: rgba(var(--color-accent-rgb), 0.7);
     font-size: 20px;
     font-weight: bold;
     pointer-events: none;
     user-select: none;
     opacity: 0.8;
     animation: fadeOut 1s forwards;
-    text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+    text-shadow: 0 0 5px rgba(var(--color-accent-rgb), 0.5);
 }
 
 /* Fade out animation for trail particles */
@@ -93,7 +157,7 @@ textarea:hover ~ #cursor-outline {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: linear-gradient(to bottom, #080839, #000000); 
+    background: var(--color-bg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,7 +176,7 @@ textarea:hover ~ #cursor-outline {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: linear-gradient(to bottom, #080839, #000000); 
+    background: var(--color-bg);
     /* NEW: Ensure the canvas itself has no background color */
     /* background-color: transparent;  */
 }
@@ -126,7 +190,7 @@ textarea:hover ~ #cursor-outline {
 /* SVG Styling */
 #handwriting-svg path {
     /* Set the appearance of the line */
-    stroke: #FFFFFF; /* The color of the "ink" */
+    stroke: var(--color-text); /* The color of the "ink" */
     stroke-width: 2px; /* The thickness of the "ink" */
     fill: none; /* IMPORTANT: No fill, just the line */
     
@@ -152,9 +216,10 @@ textarea:hover ~ #cursor-outline {
     border-radius: 30px; /* Slightly rounded corners */
     width: 90%; 
     height: 60px;
-    background: linear-gradient(to bottom, #292947, #080839);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-    color: white;
+    background: var(--color-surface-strong);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-panel);
+    color: var(--color-text);
     padding: 0 20px; /* Spacing around the navbar */
     z-index: 10000; /* Ensure it's above everything else */
     left:50%; /* Center horizontally */
@@ -181,27 +246,27 @@ textarea:hover ~ #cursor-outline {
     /* Allow items to grow and shrink equally */
  }
 #navbar li a{
-    color: white; /* White text for links */
+    color: var(--color-text-muted); /* White text for links */
     display: block; /* Make links block-level for padding */
     text-decoration: none; /* Remove underline */
     padding: 10px 15px; /* Spacing around the links */
     font-size: 20px; /* Font size for readability */
     transition: color 0.3s ease; /* Smooth color transition */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+    font-family: var(--font-mono); /* Monospace font for a techy feel */
      /* Rounded corners for the links */ /* Center the links */
 
 }
 #navbar li a:hover {
-    color: #00E5FF; /* Change color on hover */ /* Underline on hover */
-    background: linear-gradient(to bottom, #2f2f52, #121246);
+    color: var(--color-accent); /* Change color on hover */ /* Underline on hover */
+    background: rgba(var(--color-accent-rgb), 0.12);
     transform: translateY(-2px); 
     /* border: solid 1px white; */
     border-radius: 30px; /* Center the links */
 }
 
 #navbar li a.active {
-    color: #00E5FF; /* Change color on hover */ /* Underline on hover */
-    background: linear-gradient(to bottom, #2f2f52, #121246);
+    color: var(--color-accent); /* Change color on hover */ /* Underline on hover */
+    background: rgba(var(--color-accent-rgb), 0.12);
     transform: translateY(-2px); 
     /* border: solid 1px white; */
     border-radius: 30px;/* Underline the active link */
@@ -227,8 +292,8 @@ textarea:hover ~ #cursor-outline {
     transition: transform 0.3s ease; /* Smooth scaling effect */
 }
 #About{
-    color: white; /* White text for readability */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+    color: var(--color-text); /* White text for readability */
+    font-family: var(--font-sans); /* Base reading font */
 }
 #About h2{
     font-size: 36px; /* Larger font size for emphasis */
@@ -240,13 +305,13 @@ textarea:hover ~ #cursor-outline {
     line-height: 1.6; /* Improved line spacing for readability */
     margin-bottom: 20px; /* Space below the paragraph */
     text-align: left; /* Align text to the left */
-    background: rgba(13, 31, 45, 0.6);
+    background: var(--color-surface);
     padding: 20px; /* Padding around the text */
     border-radius: 10px; /* Rounded corners for the text box */
 }
 #Projects{
-    color: white; /* White text for readability */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+    color: var(--color-text); /* White text for readability */
+    font-family: var(--font-sans); /* Base reading font */
 }
 #Projects h2{
     font-size: 36px; /* Larger font size for emphasis */
@@ -261,8 +326,8 @@ textarea:hover ~ #cursor-outline {
     margin-top: 90px; /* Space from the bottom */
 }
 #Github{
-    color: white; /* White text for readability */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+    color: var(--color-text); /* White text for readability */
+    font-family: var(--font-sans); /* Base reading font */
 }
 #Github h2{
     font-size: 36px; /* Larger font size for emphasis */
@@ -288,19 +353,19 @@ textarea:hover ~ #cursor-outline {
 }
 #Home h1{
      /* Center the text vertically */
-    color: white; /* Highlight the home link */
+    color: var(--color-text); /* Highlight the home link */
     text-align: left; 
     font-weight: 900; /* Make it stand out */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+    font-family: var(--font-sans); /* Base headline font */
     font-size: 76px; /* Larger font size for emphasis */
     /* padding: 10px; Remove default padding */
     margin: 0; /* Remove default margin */
 }
 #name{
-    color: #c0f3f6;
+    color: var(--color-text);
     text-shadow: 0px 0px 10px #000000; /* Subtle shadow for depth */
     
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+    font-family: var(--font-sans); /* Base headline font */
 }
 #social-links{
 
@@ -313,12 +378,12 @@ textarea:hover ~ #cursor-outline {
 #social-links .download-resume{
     margin: 0; /* Spacing between the links */
     background: transparent;
-    color: white; /* White text for links */
+    color: var(--color-text); /* White text for links */
     padding: 12px 18px; 
     font-size: 18px;
     font-weight: 600; /* Font size for readability */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
-    border: solid 2px white;
+    font-family: var(--font-mono); /* Monospace font for a techy feel */
+    border: solid 2px var(--color-border);
     border-radius: 30px;
     text-decoration: none;/* Spacing around the links */
 }
@@ -326,15 +391,15 @@ textarea:hover ~ #cursor-outline {
     margin-right: 10px; /* Space between icon and text */
 }
 #social-links .download-resume:hover {
-    color: #121246; /* Change color on hover */
-    background-color: white; /* Change background color on hover */
+    color: var(--color-bg); /* Change color on hover */
+    background-color: var(--color-text); /* Change background color on hover */
     transform: translateY(-2px); 
-    border: solid 2px white; /* Change border color on hover */
+    border: solid 2px var(--color-text); /* Change border color on hover */
 }
 #description{
     display: flex; /* Center the UL inside the navbar */
     flex-direction: row;/* Use flexbox for layout */ /* White text for readability */ /* Font size for readability */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel *//* Space from the top */ /* Improved line spacing for readability */ /* Align text to the left */
+    font-family: var(--font-mono); /* Monospace font for labels */
     margin: 0;
     padding: 0;
      /* Remove default padding */
@@ -344,7 +409,7 @@ textarea:hover ~ #cursor-outline {
     margin-bottom: 15px; /* Space below the paragraph */
     margin-right: 50px;
     text-align: left; /* Align text to the left */
-    color: white; /* Highlight the home link */
+    color: var(--color-text-muted); /* Highlight the home link */
     font-weight: 900; /* Make it stand out */
     font-size: 20px;
     display: inline-block;
@@ -360,8 +425,8 @@ textarea:hover ~ #cursor-outline {
     gap: 20px;
     justify-content: center;
     margin: 30px 0;
-    background: rgba(13, 31, 45, 0.6);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-panel);
     margin-right: 10px;
     padding: 20px;
 }
@@ -413,7 +478,7 @@ textarea:hover ~ #cursor-outline {
 }
 
 .github-calendar-header {
-    color: #00aeff;
+    color: var(--color-accent-hover);
     margin-top: 0;
     margin-bottom: 15px;
 }
@@ -423,7 +488,7 @@ textarea:hover ~ #cursor-outline {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
-    background-color: rgba(13, 31, 45, 0.6); /* Dark blue background */
+    background-color: var(--color-surface); /* Dark background */
     padding: 10px;
     mix-blend-mode: screen; /* This blend mode will darken the white areas */
     filter: brightness(0.85) contrast(1.2); /* Adjusts the overall brightness */
@@ -435,7 +500,7 @@ textarea:hover ~ #cursor-outline {
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
-    background-color: #050f2c; /* Match your site's dark blue background */
+    background-color: var(--color-bg-muted); /* Match your site's dark background */
     border-radius: 5px;
     padding: 5px;
 }
@@ -447,8 +512,8 @@ textarea:hover ~ #cursor-outline {
 
 /* Contact Section Styles */
 #Contact {
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
+    color: var(--color-text);
+    font-family: var(--font-sans);
 }
 
 #Contact h2 {
@@ -471,10 +536,10 @@ textarea:hover ~ #cursor-outline {
 .contact-form {
     flex: 1;
     min-width: 300px;
-    background: rgba(13, 31, 45, 0.6);
+    background: var(--color-surface);
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-panel);
     padding-bottom: 0; /* Add padding at the bottom for the submit button */
 }
 
@@ -482,7 +547,7 @@ textarea:hover ~ #cursor-outline {
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 22px;
-    color: white;
+    color: var(--color-text);
 }
 
 .form-group {
@@ -500,11 +565,11 @@ textarea:hover ~ #cursor-outline {
     width: calc(100% - 10px);
     padding: 10px; /* Space for the icon */
     margin-right:0;
-    background: rgba(8, 8, 57, 0.4);
-    border: 1px solid #1074bd;
+    background: var(--color-bg-muted);
+    border: 1px solid var(--color-border);
     border-radius: 5px;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
+    color: var(--color-text);
+    font-family: var(--font-sans);
     box-sizing: border-box; /* Include padding and border in element's total width and height */
     transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -512,26 +577,26 @@ textarea:hover ~ #cursor-outline {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #00E5FF;
-    box-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 5px rgba(var(--color-accent-rgb), 0.5);
 }
 
 .submit-btn {
     background: transparent;
-    color: white;
+    color: var(--color-text);
     padding: 12px 24px;
     font-size: 16px;
     font-weight: 600;
-    font-family: 'Courier New', Courier, monospace;
-    border: solid 2px white;
+    font-family: var(--font-mono);
+    border: solid 2px var(--color-border);
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
-    background-color: white;
-    color: #080839;
+    background-color: var(--color-text);
+    color: var(--color-bg);
     transform: translateY(-2px);
 }
 
@@ -551,7 +616,7 @@ textarea:hover ~ #cursor-outline {
     flex-direction: row;
     flex: 1;
     min-width: 300px;
-    background: rgba(13, 31, 45, 0.6);
+    background: var(--color-surface);
     padding: 15px;
     border-radius: 10px;
     margin: 0;
@@ -572,8 +637,8 @@ textarea:hover ~ #cursor-outline {
     align-items: center;
     width: 50px;
     height: 50px;
-    background: rgba(8, 8, 57, 0.6);
-    color: white;
+    background: var(--color-bg-muted);
+    color: var(--color-text);
     border-radius: 50%;
     text-decoration: none;
     font-size: 20px;
@@ -581,8 +646,8 @@ textarea:hover ~ #cursor-outline {
 }
 
 .social-icons a:hover {
-    background: white;
-    color: #080839;
+    background: var(--color-text);
+    color: var(--color-bg);
     transform: translateY(-5px);
 }
 
@@ -603,19 +668,19 @@ textarea:hover ~ #cursor-outline {
     }
 }
 .refresh-stats-btn {
-    background: rgba(8, 8, 57, 0.6);
-    border: 1px solid #1074bd;
-    color: white;
+    background: var(--color-bg-muted);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
     padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     margin: 0;
     transition: all 0.3s ease;
 }
 
 .refresh-stats-btn:hover {
-    background: rgba(0, 229, 255, 0.15);
+    background: rgba(var(--color-accent-rgb), 0.15);
     transform: translateY(-2px);
 }
 
@@ -640,7 +705,7 @@ textarea:hover ~ #cursor-outline {
     right: 20px;
     z-index: 10001;
     cursor: pointer;
-    background: rgba(8, 8, 57, 0.7);
+    background: var(--color-surface-strong);
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
@@ -655,7 +720,7 @@ textarea:hover ~ #cursor-outline {
 .bar1, .bar2, .bar3 {
     width: 30px;
     height: 3px;
-    background-color: white;
+    background-color: var(--color-text);
     margin: 6px 0;
     transition: 0.4s;
     border-radius: 2px;
@@ -708,7 +773,7 @@ textarea:hover ~ #cursor-outline {
         top: 20px;
         right: 20px;
         z-index: 10001;
-        background: rgba(8, 8, 57, 0.7);
+        background: var(--color-surface-strong);
         border-radius: 5px;
         padding: 10px;
     }
@@ -720,7 +785,7 @@ textarea:hover ~ #cursor-outline {
 
         width: 100%; /* Full width */
         height: 100vh;
-        background: rgba(8, 8, 57, 0.95);
+        background: var(--color-surface-strong);
         display: none; /* Hidden by default */
         flex-direction: column;
         justify-content: center;
@@ -737,7 +802,7 @@ textarea:hover ~ #cursor-outline {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(8, 8, 57, 0.95);
+        background: var(--color-surface-strong);
         z-index: -1;
     }
     #navbar ul {
@@ -1088,15 +1153,15 @@ textarea:hover ~ #cursor-outline {
     min-height: 100vh; /* Make sections full height */
     padding-top: 100px; /* Space from the top */
     margin-top: 90px; /* Space from the bottom */
-    font-family: 'Courier New', Courier, monospace; /* Consistent font */
-    color: white;
+    font-family: var(--font-sans); /* Consistent font */
+    color: var(--color-text);
 }
 
 #Skills h2, #Publications h2, #Recommendations h2 {
     font-size: 36px;
     margin-bottom: 20px;
     font-weight: 900;
-    color: white;
+    color: var(--color-text);
 }
 
 /* Skills Section */
@@ -1107,10 +1172,10 @@ textarea:hover ~ #cursor-outline {
     justify-content: center;
     gap: 25px;
     margin-top: 40px;
-    background: rgba(13, 31, 45, 0.6);
+    background: var(--color-surface);
     border-radius: 10px;
     padding: 30px 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-panel);
 }
 
 .skill-item {
@@ -1120,7 +1185,7 @@ textarea:hover ~ #cursor-outline {
     justify-content: center;
     width: 120px;
     height: 120px;
-    background: rgba(8, 8, 57, 0.6);
+    background: var(--color-bg-muted);
     border-radius: 10px;
     padding: 15px;
     transition: transform 0.3s, background 0.3s;
@@ -1128,18 +1193,18 @@ textarea:hover ~ #cursor-outline {
 
 .skill-item:hover {
     transform: translateY(-5px);
-    background: rgba(0, 229, 255, 0.2);
+    background: rgba(var(--color-accent-rgb), 0.2);
 }
 
 .skill-item i {
     font-size: 40px;
     margin-bottom: 15px;
-    color: #00E5FF;
+    color: var(--color-accent);
 }
 
 .skill-item span {
     text-align: center;
-    color: white;
+    color: var(--color-text);
     font-size: 14px;
 }
 
@@ -1151,11 +1216,11 @@ textarea:hover ~ #cursor-outline {
 }
 
 .publication-card {
-    background: rgba(13, 31, 45, 0.6);
+    background: var(--color-surface);
     border-radius: 10px;
     padding: 25px;
     transition: transform 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-panel);
 }
 
 .publication-card:hover {
@@ -1163,24 +1228,24 @@ textarea:hover ~ #cursor-outline {
 }
 
 .publication-content h3 {
-    color: #00E5FF;
+    color: var(--color-accent);
     margin-bottom: 10px;
     font-size: 22px;
 }
 
 .publication-journal {
-    color: #ffffff;
+    color: var(--color-text);
     font-style: italic;
     margin-bottom: 8px;
 }
 
 .publication-authors {
-    color: #bbbbbb;
+    color: var(--color-text-muted);
     margin-bottom: 15px;
 }
 
 .publication-abstract {
-    color: #ffffff;
+    color: var(--color-text);
     margin-bottom: 20px;
     line-height: 1.6;
 }
@@ -1188,17 +1253,17 @@ textarea:hover ~ #cursor-outline {
 .publication-link {
     display: inline-block;
     background: transparent;
-    color: white;
+    color: var(--color-text);
     padding: 8px 15px;
     font-size: 16px;
-    border: solid 2px #00E5FF;
+    border: solid 2px var(--color-accent);
     border-radius: 30px;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .publication-link:hover {
-    background-color: rgba(0, 229, 255, 0.2);
+    background-color: rgba(var(--color-accent-rgb), 0.2);
     transform: translateY(-2px);
 }
 
@@ -1210,12 +1275,12 @@ textarea:hover ~ #cursor-outline {
 }
 
 .recommendation-card {
-    background: rgba(13, 31, 45, 0.6);
+    background: var(--color-surface);
     border-radius: 10px;
     padding: 25px;
     position: relative;
     transition: transform 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-panel);
 }
 
 .recommendation-card:hover {
@@ -1226,14 +1291,14 @@ textarea:hover ~ #cursor-outline {
     position: absolute;
     top: 15px;
     left: 20px;
-    color: rgba(0, 229, 255, 0.2);
+    color: rgba(var(--color-accent-rgb), 0.2);
     font-size: 24px;
 }
 
 .recommendation-content {
     margin-left: 25px;
     margin-bottom: 20px;
-    color: white;
+    color: var(--color-text);
     line-height: 1.6;
     font-style: italic;
 }
@@ -1248,25 +1313,25 @@ textarea:hover ~ #cursor-outline {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: rgba(0, 229, 255, 0.3);
+    background-color: rgba(var(--color-accent-rgb), 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
     font-weight: bold;
-    color: white;
+    color: var(--color-text);
     margin-right: 15px;
 }
 
 .author-info h4 {
     margin: 0;
-    color: #00E5FF;
+    color: var(--color-accent);
     font-size: 18px;
 }
 
 .author-info p {
     margin: 5px 0 0;
-    color: #bbbbbb;
+    color: var(--color-text-muted);
     font-size: 14px;
 }
 
@@ -1315,7 +1380,7 @@ textarea:hover ~ #cursor-outline {
 .skill-item {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -1326,7 +1391,7 @@ textarea:hover ~ #cursor-outline {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, transparent 0%, rgba(0, 229, 255, 0.2) 100%);
+    background: linear-gradient(135deg, transparent 0%, rgba(var(--color-accent-rgb), 0.2) 100%);
     transition: top 0.5s ease;
     z-index: 1;
 }
@@ -1343,7 +1408,7 @@ textarea:hover ~ #cursor-outline {
 
 .skill-item:hover i {
     transform: scale(1.2);
-    color: #ffffff;
+    color: var(--color-text);
 }
 
 .skill-item span {
@@ -1354,7 +1419,7 @@ textarea:hover ~ #cursor-outline {
 
 .skill-item:hover span {
     transform: translateY(3px);
-    color: #00E5FF;
+    color: var(--color-accent);
 }
 /* Add this to your styles.css */
 #About h2, #Skills h2, #Projects h2, #Publications h2, #Recommendations h2, #Github h2, #Contact h2 {
@@ -1370,7 +1435,7 @@ textarea:hover ~ #cursor-outline {
     bottom: -10px;
     width: 0;
     height: 3px;
-    background: linear-gradient(to right, #00E5FF, transparent);
+    background: linear-gradient(to right, var(--color-accent), transparent);
     transition: width 0.6s ease;
 }
 
@@ -1388,11 +1453,11 @@ textarea:hover ~ #cursor-outline {
 }
 
 .project-card {
-    background: rgba(13, 31, 45, 0.6);
+    background: var(--color-surface);
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    border: 1px solid rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.1);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -1400,7 +1465,7 @@ textarea:hover ~ #cursor-outline {
 
 .project-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(var(--color-accent-rgb), 0.2);
 }
 
 .project-image {
@@ -1426,7 +1491,7 @@ textarea:hover ~ #cursor-outline {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(8, 8, 57, 0.8);
+    background: rgba(10, 10, 10, 0.82);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1449,9 +1514,9 @@ textarea:hover ~ #cursor-outline {
     justify-content: center;
     width: 45px;
     height: 45px;
-    background: rgba(0, 229, 255, 0.2);
+    background: rgba(var(--color-accent-rgb), 0.2);
     border-radius: 50%;
-    color: white;
+    color: var(--color-text);
     text-decoration: none;
     font-size: 20px;
     transition: all 0.3s ease;
@@ -1499,8 +1564,8 @@ textarea:hover ~ #cursor-outline {
 }
 
 .project-link:hover {
-    background: #00E5FF;
-    color: #080839;
+    background: var(--color-accent);
+    color: var(--color-bg);
 }
 
 .project-info {
@@ -1512,12 +1577,12 @@ textarea:hover ~ #cursor-outline {
 
 .project-info h3 {
     margin: 0 0 15px 0;
-    color: #00E5FF;
+    color: var(--color-accent);
 }
 
 .project-info p {
     margin: 0 0 20px 0;
-    color: #ffffff;
+    color: var(--color-text);
     line-height: 1.6;
     flex-grow: 1;
 }
@@ -1532,10 +1597,10 @@ textarea:hover ~ #cursor-outline {
 .project-tech span {
     font-size: 12px;
     padding: 5px 10px;
-    background: rgba(0, 229, 255, 0.1);
+    background: rgba(var(--color-accent-rgb), 0.1);
     border-radius: 20px;
-    color: #00E5FF;
-    font-family: 'Courier New', Courier, monospace;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
     font-style: normal;
 }
 .project-tech .icon {
@@ -1551,7 +1616,7 @@ textarea:hover ~ #cursor-outline {
 }
 
 .publication-card:hover {
-    border-left: 3px solid #00E5FF;
+    border-left: 3px solid var(--color-accent);
 }
 
 .publication-link {
@@ -1567,7 +1632,7 @@ textarea:hover ~ #cursor-outline {
     left: 0;
     width: 0%;
     height: 100%;
-    background-color: #00E5FF;
+    background-color: var(--color-accent);
     transition: width 0.3s ease;
     z-index: -1;
     opacity: 0.2;
@@ -1597,7 +1662,7 @@ textarea:hover ~ #cursor-outline {
     align-items: center;
     margin-top: 20px;
     z-index: 10;
-    background: rgba(8, 8, 57, 0.6);
+    background: var(--color-bg-muted);
     padding: 10px;
     border-radius: 30px;
     width: 200px;
@@ -1607,7 +1672,7 @@ textarea:hover ~ #cursor-outline {
 .slider-btn {
     background: transparent;
     border: none;
-    color: #00E5FF;
+    color: var(--color-accent);
     font-size: 20px;
     cursor: pointer;
     width: 36px;
@@ -1621,7 +1686,7 @@ textarea:hover ~ #cursor-outline {
 }
 
 .slider-btn:hover {
-    background: rgba(0, 229, 255, 0.2);
+    background: rgba(var(--color-accent-rgb), 0.2);
 }
 
 .slider-dots {
@@ -1640,7 +1705,7 @@ textarea:hover ~ #cursor-outline {
 }
 
 .dot.active {
-    background-color: #00E5FF;
+    background-color: var(--color-accent);
     transform: scale(1.2);
 }
 
@@ -1671,7 +1736,7 @@ textarea:hover ~ #cursor-outline {
 }
 /* Add this to your styles.css file */
 .gradient-text {
-    background: linear-gradient(to right, #00E5FF, #007bff);
+    background: linear-gradient(to right, var(--color-accent), var(--color-accent-hover));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -1711,7 +1776,7 @@ textarea:hover ~ #cursor-outline {
     top: -20px;
     left: 0;
     font-size: 12px;
-    color: #00E5FF;
+    color: var(--color-accent);
 }
 
 .form-group input,
@@ -1722,7 +1787,7 @@ textarea:hover ~ #cursor-outline {
 
 .form-group input:focus,
 .form-group textarea:focus {
-    box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+    box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.5);
 }
 
 .submit-btn {
@@ -1747,17 +1812,17 @@ textarea:hover ~ #cursor-outline {
 /* Add interactive hover effects to GitHub cards */
 .github-card {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    border: 1px solid rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.1);
 }
 
 .github-card:hover {
     transform: translateY(-10px) !important;
-    box-shadow: 0 15px 30px rgba(0, 229, 255, 0.15);
+    box-shadow: 0 15px 30px rgba(var(--color-accent-rgb), 0.15);
 }
 
 /* Style GitHub calendar */
 .github-calendar-img {
-    border: 1px solid rgba(0, 229, 255, 0.2);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.2);
     transition: filter 0.3s ease;
 }
 
@@ -1781,11 +1846,11 @@ textarea:hover ~ #cursor-outline {
 /* Update your particle styling */
 .particle {
     position: absolute;
-    background-color: rgba(0, 229, 255, 0.4); /* Brighter cyan color */
+    background-color: rgba(var(--color-accent-rgb), 0.4); /* Accent particle color */
     border-radius: 50%;
     pointer-events: none;
     z-index: 5; /* Make sure particles are visible above other elements */
-    box-shadow: 0 0 5px 2px rgba(0, 229, 255, 0.3); /* Add glow effect */
+    box-shadow: 0 0 5px 2px rgba(var(--color-accent-rgb), 0.3); /* Add glow effect */
 }
 /* Add this to your styles.css file */
 #Github {
@@ -1802,23 +1867,23 @@ textarea:hover ~ #cursor-outline {
     display: block;  /* Changed from inline to block */
     margin-top: 15px;  /* Add spacing below the heading */
     margin-bottom: 25px;  /* Add spacing before stats content */
-    background: linear-gradient(45deg, rgba(8, 8, 57, 0.8), rgba(13, 31, 45, 0.8));
-    color: white;
-    border: 1px solid rgba(0, 229, 255, 0.3);
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.3);
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     font-size: 16px;
     transition: all 0.3s ease;
     max-width: 200px;  /* Limit the width */
 }
 
 .refresh-stats-btn:hover {
-    background: linear-gradient(45deg, rgba(13, 31, 45, 0.8), rgba(8, 8, 57, 0.8));
-    border-color: rgba(0, 229, 255, 0.6);
+    background: var(--color-surface-strong);
+    border-color: rgba(var(--color-accent-rgb), 0.6);
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.2);
 }
 
 .refresh-stats-btn i {
@@ -1833,12 +1898,12 @@ textarea:hover ~ #cursor-outline {
 /* Add this to your styles.css file */
 /* Add this to your styles.css file */
 .site-footer {
-  background: rgba(8, 8, 57, 0.8);
+  background: var(--color-bg-muted);
   padding: 15px 0;
   text-align: center;
   margin-top: 50px;
-  border-top: 1px solid rgba(0, 229, 255, 0.2);
-  font-family: 'Courier New', Courier, monospace;
+  border-top: 1px solid rgba(var(--color-accent-rgb), 0.2);
+  font-family: var(--font-sans);
   width: 100%;
   margin: 0;
   padding-left: 0;
@@ -1860,7 +1925,7 @@ textarea:hover ~ #cursor-outline {
 }
 
 .site-footer p {
-  color: #bbbbbb;
+  color: var(--color-text-muted);
   margin: 5px 0;
   font-size: 14px;
 }
@@ -1874,7 +1939,7 @@ textarea:hover ~ #cursor-outline {
 }
 
 .social-links a {
-  color: #bbbbbb;
+  color: var(--color-text-muted);
   font-size: 20px;
   transition: all 0.3s ease;
   display: flex;
@@ -1887,9 +1952,9 @@ textarea:hover ~ #cursor-outline {
 }
 
 .social-links a:hover {
-  color: #00E5FF;
+  color: var(--color-accent);
   transform: translateY(-3px);
-  background: rgba(0, 229, 255, 0.1);
+  background: rgba(var(--color-accent-rgb), 0.1);
 }
 
 /* Responsive adjustment */
