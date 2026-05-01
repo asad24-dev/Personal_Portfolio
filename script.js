@@ -162,8 +162,7 @@ function initScrollReveals() {
         '.project-card',
         '.skill-group',
         '#Contact .contact-form',
-        '#Contact .contact-links',
-        '.footer-content'
+        '#Contact .contact-links'
     ].join(', ')));
 
     if (revealTargets.length === 0) return;
