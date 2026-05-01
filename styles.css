@@ -2120,3 +2120,151 @@ a {
         min-height: auto;
     }
 }
+
+/* Commit 3: section and card system refinement */
+#About,
+#Skills,
+#Projects {
+    width: min(100%, var(--container-max));
+    padding-top: clamp(88px, 12vw, 112px) !important;
+    padding-bottom: clamp(64px, 8vw, 88px) !important;
+}
+
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    color: var(--color-accent-hover);
+    font-size: 11px;
+    line-height: 1;
+}
+
+.section-label::after {
+    content: "";
+    width: 38px;
+    height: 1px;
+    background: rgba(var(--color-accent-rgb), 0.42);
+}
+
+.about-copy h2,
+.projects-heading h2,
+.skills-heading h2 {
+    max-width: 780px;
+    font-size: clamp(34px, 4.8vw, 58px);
+    line-height: 1.02;
+}
+
+#About .about-copy p,
+.projects-heading p,
+.skills-heading p,
+#Projects .project-info p {
+    color: var(--color-text-muted);
+    font-size: 15px;
+    line-height: 1.68;
+}
+
+#About .about-copy p {
+    max-width: 700px;
+}
+
+#About .about-copy p:first-of-type {
+    color: var(--color-text);
+}
+
+.about-facts {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.about-facts div {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+#Projects .project-card,
+.skill-group {
+    border-color: rgba(255, 255, 255, 0.085);
+    background: rgba(14, 14, 16, 0.74);
+}
+
+#Projects .project-card {
+    min-height: 268px;
+    gap: 20px;
+    padding: 20px;
+}
+
+#Projects .project-card-featured {
+    min-height: 238px;
+    background:
+        linear-gradient(135deg, rgba(var(--color-accent-rgb), 0.12), transparent 38%),
+        rgba(14, 14, 16, 0.82);
+}
+
+#Projects .project-card:hover,
+#Projects .project-card:focus-within,
+.skill-group:hover {
+    border-color: rgba(var(--color-accent-rgb), 0.38);
+    background: rgba(20, 20, 23, 0.86);
+}
+
+.project-topline,
+.skill-group h3,
+.about-facts dt {
+    color: var(--color-text-subtle);
+    letter-spacing: 0;
+}
+
+#Projects .project-info h3 {
+    font-size: clamp(23px, 2.4vw, 28px);
+    line-height: 1.1;
+}
+
+#Projects .project-tech span,
+.project-status {
+    border-color: rgba(255, 255, 255, 0.08);
+    color: var(--color-text-muted);
+}
+
+.skill-group {
+    min-height: 210px;
+    padding: 18px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.skill-list {
+    gap: 9px;
+}
+
+.skill-list li {
+    color: var(--color-text-muted);
+    font-size: 13px;
+}
+
+.skill-list li::before {
+    width: 4px;
+    height: 4px;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+    #About,
+    #Skills,
+    #Projects {
+        padding-top: 78px !important;
+        padding-bottom: 58px !important;
+    }
+
+    .section-label {
+        margin-bottom: 16px;
+    }
+
+    .about-copy h2,
+    .projects-heading h2,
+    .skills-heading h2 {
+        font-size: clamp(31px, 9vw, 44px);
+    }
+
+    #Projects .project-card {
+        padding: 18px;
+    }
+}
