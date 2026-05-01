@@ -36,7 +36,7 @@ html {
 }
 
 body {
-    cursor: none;
+    cursor: auto;
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
@@ -66,148 +66,14 @@ a {
     background: rgba(var(--color-accent-rgb), 0.32);
     color: var(--color-text);
 }
-#main-content { 
-    display: none;   
+#main-content {
+    display: block;
     position: relative;
     z-index: 2;
-    padding-top: 150px; 
+    padding-top: 150px;
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
-}
-
-#cursor-dot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    background-color: var(--color-accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-    box-shadow: var(--shadow-accent);
-}
-
-/* Secondary cursor outline */
-#cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 40px;
-    height: 40px;
-    border: 2px solid rgba(var(--color-accent-rgb), 0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    opacity: 0.6;
-    transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
-    transform: translate(-50%, -50%);
-}
-a:hover ~ #cursor-outline,
-button:hover ~ #cursor-outline,
-.nav-link:hover ~ #cursor-outline,
-input:hover ~ #cursor-outline,
-textarea:hover ~ #cursor-outline {
-    transform: translate(-50%, -50%) scale(1.5);
-    border-color: rgba(var(--color-accent-rgb), 0.8);
-    background-color: rgba(var(--color-accent-rgb), 0.1);
-}
-
-/* Trail container */
-#cursor-trail-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9997;
-    overflow: hidden;
-}
-.trail-particle {
-    position: absolute;
-    font-family: var(--font-mono);
-    color: rgba(var(--color-accent-rgb), 0.7);
-    font-size: 20px;
-    font-weight: bold;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.8;
-    animation: fadeOut 1s forwards;
-    text-shadow: 0 0 5px rgba(var(--color-accent-rgb), 0.5);
-}
-
-/* Fade out animation for trail particles */
-@keyframes fadeOut {
-    0% { opacity: 0.8; transform: scale(1); }
-    100% { opacity: 0; transform: scale(0.5); }
-}
-
-/* Ensure cursor effects work on mobile too */
-@media (max-width: 768px) {
-    #cursor-dot, #cursor-outline {
-        display: none; /* Hide on touch devices */
-    }
-}
-/* The Intro Screen */
-#intro-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: var(--color-bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 1s ease-in-out;
-    opacity: 1;
-}
-#intro-screen.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-#binary-rain-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background: var(--color-bg);
-    /* NEW: Ensure the canvas itself has no background color */
-    /* background-color: transparent;  */
-}
-/* UPDATE: Ensure the SVG is on top */
-#handwriting-svg {
-    position: relative; /* Needed for z-index to work */
-    z-index: 10; /* Place it on the very top layer */
-}
-
-
-/* SVG Styling */
-#handwriting-svg path {
-    /* Set the appearance of the line */
-    stroke: var(--color-text); /* The color of the "ink" */
-    stroke-width: 2px; /* The thickness of the "ink" */
-    fill: none; /* IMPORTANT: No fill, just the line */
-    
-    /* The magic happens here */
-    stroke-dasharray: 1000;  /* A very long dash. We'll fix this with JS. */
-    stroke-dashoffset: 1000; /* Start with the dash hidden. We'll fix this too. */
-    /* transform: scaleX(-1); */
-    /* Apply the animation */
-    /* animation: draw-in 4s linear forwards; */
-}
-
-/* The Keyframe Animation */
-@keyframes draw-in {
-    /* Animate the stroke-dashoffset from its initial value to 0 */
-    to {
-        stroke-dashoffset: 0;
-    }
 }
 
 #navbar{
@@ -318,23 +184,9 @@ textarea:hover ~ #cursor-outline {
     margin-bottom: 20px; /* Space below the heading */
     font-weight: 900; /* Make it stand out */
 }
-#About, #Projects, #Contact, #Github{
-    margin-right:20px;
-    padding-left: 45%; /* Make space for the sidebar */
-    min-height: 100vh; /* Make sections full height */
-    padding-top: 100px; /* Space from the top */
-    margin-top: 90px; /* Space from the bottom */
-}
-#Github{
-    color: var(--color-text); /* White text for readability */
-    font-family: var(--font-sans); /* Base reading font */
-}
-#Github h2{
-    font-size: 36px; /* Larger font size for emphasis */
-    margin-bottom: 20px; /* Space below the heading */
-    font-weight: 900;
-    margin-right: 15px;/* Make it stand out */
-}
+
+
+
 .fas.fa-external-link-alt{
     margin-left: 10px; /* Space between icon and text */ /* Icon color */
     transition: color 0.3s ease; /* Smooth color transition */
@@ -397,47 +249,13 @@ textarea:hover ~ #cursor-outline {
 #description .fa-solid.fa-location-dot{
     margin-right: 10px; /* Space between icon and text */
 }
- 
-.github-stats-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin: 30px 0;
-    background: var(--color-surface);
-    box-shadow: var(--shadow-panel);
-    margin-right: 10px;
-    padding: 20px;
-}
 
-.github-card {
-    border-radius: 10px;
-    padding: 0;
-    transition: transform 0.3s ease;
-    max-width: 495px;
-}
 
-.github-card:hover {
-    transform: translateY(-5px);
-}
 
-.github-stats-image {
-    width: 100%;
-    height: auto;
-    display: block;
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .github-stats-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .github-card {
-        width: 100%;
-        /* max-width: 95%; */
-    }
+
 }
 
 
@@ -654,13 +472,8 @@ textarea:hover ~ #cursor-outline {
     #navbar {
         width: 80%;
     }
-    
-    #About, #Projects, #Contact, #Github {
-        padding-left: 5%; 
-        margin-right: 5%;
-    }
-    
-    #Home {
+
+#Home {
         width: 60%;
         margin-left: 20px;
     }
@@ -822,72 +635,12 @@ textarea:hover ~ #cursor-outline {
         width: 100% !important;
         box-sizing: border-box;
     }
-    /* Content Section Layout */
-    #About, #Projects, #Contact, #Github {
-        margin-left: 40px;
-        padding: 80px 20px 40px 40px;
-        margin-top: 0;
-        margin-right: 0;
-        width: calc(100% - 20px);
-        min-height: auto;
-        height: auto;
-        overflow: visible;
-        box-sizing: border-box;
-    }
-    .contact-container{
+
+.contact-container{
         margin-left: 16px;
     }
-    
-    /* Section Headers */
-    #About h2, #Projects h2, #Contact h2, #Github h2 {
-        position: relative;
-        left: 0;
-        transform: none;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    
-    /* Full Width Content */
-    #About p, .project-container, .github-stats-container, .contact-container {
-        max-width: 100%;
-        padding: 20 20px;
-    }
-    
-    /* Containers and Cards */
-    .github-stats-container, .contact-form, .contact-links {
-        margin: 20px 0;
-        width: 100%;
-        padding: 15px;
-        box-sizing: border-box;
-    }
-    .github-stats-container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        padding: 20px;
-        box-sizing: border-box;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    
-    .github-card {
-        /* width: 100%; */
-        width: 100%;
-        max-width: 450px;
-        margin: 10px auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .github-stats-image {
-        max-width: 100%;
-        height: auto;
-        margin: 0 auto;
-        display: block;
-    }
+
+
 /* Language distribution visualization */
     .most-used-languages {
         width: 100%;
@@ -910,12 +663,7 @@ textarea:hover ~ #cursor-outline {
         padding: 20px 15px;
         box-sizing: border-box;
     }
-    
-    /* Animation Adjustments */
-    #handwriting-svg {
-        width: 80%;
-        height: auto;
-    }
+
 }
 
 /* Small Tablets and Large Phones */
@@ -946,13 +694,7 @@ textarea:hover ~ #cursor-outline {
         width: 250px;
         height: 250px;
     }
-    
-    #About, #Projects, #Contact, #Github {
-        padding: 70px 15px 30px 15px;
-    }
-.github-stats-container {
-        padding: 10px;
-    }
+
 }
 
 /* Mobile Phones */
@@ -973,12 +715,8 @@ textarea:hover ~ #cursor-outline {
         width: 200px;
         height: 200px;
     }
-    
-    #About h2, #Projects h2, #Contact h2, #Github h2 {
-        font-size: 28px;
-    }
-    
-    #About p {
+
+#About p {
         font-size: 16px;
         padding: 15px;
     }
@@ -1001,10 +739,7 @@ textarea:hover ~ #cursor-outline {
         padding: 10px 18px;
         font-size: 14px;
     }
-    
-    #handwriting-svg {
-        width: 90%;
-    }
+
 }
 
 /* Very Small Phones */
@@ -1031,25 +766,7 @@ textarea:hover ~ #cursor-outline {
         height: 35px;
     }
 }
-/* Add this to your styles.css file */
 
-/* Common styles for all new sections */
-#Skills, #Publications, #Recommendations {
-    margin-right: 20px;
-    padding-left: 45%; /* Make space for the sidebar */
-    min-height: 100vh; /* Make sections full height */
-    padding-top: 100px; /* Space from the top */
-    margin-top: 90px; /* Space from the bottom */
-    font-family: var(--font-sans); /* Consistent font */
-    color: var(--color-text);
-}
-
-#Skills h2, #Publications h2, #Recommendations h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    font-weight: 900;
-    color: var(--color-text);
-}
 
 /* Skills Section */
 .skills-container {
@@ -1095,84 +812,6 @@ textarea:hover ~ #cursor-outline {
     font-size: 14px;
 }
 
-/* Publications Section */
-.publications-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.publication-card {
-    background: var(--color-surface);
-    border-radius: 10px;
-    padding: 25px;
-    transition: transform 0.3s;
-    box-shadow: var(--shadow-panel);
-}
-
-.publication-card:hover {
-    transform: translateY(-5px);
-}
-
-.publication-content h3 {
-    color: var(--color-accent);
-    margin-bottom: 10px;
-    font-size: 22px;
-}
-
-.publication-journal {
-    color: var(--color-text);
-    font-style: italic;
-    margin-bottom: 8px;
-}
-
-.publication-authors {
-    color: var(--color-text-muted);
-    margin-bottom: 15px;
-}
-
-.publication-abstract {
-    color: var(--color-text);
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.publication-link {
-    display: inline-block;
-    background: transparent;
-    color: var(--color-text);
-    padding: 8px 15px;
-    font-size: 16px;
-    border: solid 2px var(--color-accent);
-    border-radius: 30px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.publication-link:hover {
-    background-color: rgba(var(--color-accent-rgb), 0.2);
-    transform: translateY(-2px);
-}
-
-/* Recommendations Section */
-.recommendations-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.recommendation-card {
-    background: var(--color-surface);
-    border-radius: 10px;
-    padding: 25px;
-    position: relative;
-    transition: transform 0.3s;
-    box-shadow: var(--shadow-panel);
-}
-
-.recommendation-card:hover {
-    transform: translateY(-5px);
-}
 
 .quote-icon {
     position: absolute;
@@ -1182,19 +821,6 @@ textarea:hover ~ #cursor-outline {
     font-size: 24px;
 }
 
-.recommendation-content {
-    margin-left: 25px;
-    margin-bottom: 20px;
-    color: var(--color-text);
-    line-height: 1.6;
-    font-style: italic;
-}
-
-.recommendation-author {
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
-}
 
 .author-avatar {
     width: 50px;
@@ -1223,32 +849,10 @@ textarea:hover ~ #cursor-outline {
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 1024px) {
-    #Skills, #Publications, #Recommendations {
-        padding-left: 5%;
-        margin-right: 5%;
-    }
-}
 
 @media screen and (max-width: 768px) {
-    #Skills, #Publications, #Recommendations {
-        margin-left: 20px;
-        padding: 80px 20px 40px 20px;
-        margin-top: 0;
-        margin-right: 0;
-        width: calc(100% - 40px);
-    }
-    
-    #Skills h2, #Publications h2, #Recommendations h2 {
-        position: relative;
-        left: 0;
-        transform: none;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    
-    .skills-container {
+
+.skills-container {
         justify-content: center;
     }
 }
@@ -1304,29 +908,9 @@ textarea:hover ~ #cursor-outline {
     transform: translateY(3px);
     color: var(--color-accent);
 }
-/* Add this to your styles.css */
-#About h2, #Skills h2, #Projects h2, #Publications h2, #Recommendations h2, #Github h2, #Contact h2 {
-    position: relative;
-    display: inline-block;
-}
 
-#About h2::after, #Skills h2::after, #Projects h2::after, #Publications h2::after, 
-#Recommendations h2::after, #Github h2::after, #Contact h2::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 0;
-    height: 3px;
-    background: linear-gradient(to right, var(--color-accent), transparent);
-    transition: width 0.6s ease;
-}
 
-#About:hover h2::after, #Skills:hover h2::after, #Projects:hover h2::after, 
-#Publications:hover h2::after, #Recommendations:hover h2::after, 
-#Github:hover h2::after, #Contact:hover h2::after {
-    width: 100%;
-}
+
 /* Add this to your styles.css */
 .projects-container {
     display: grid;
@@ -1491,92 +1075,9 @@ textarea:hover ~ #cursor-outline {
   height: 12px;
   vertical-align: middle;
 }
-/* Enhance your existing publication cards */
-.publication-card {
-    position: relative;
-    border-left: 3px solid transparent;
-    transition: border-left 0.3s ease, transform 0.3s ease;
-}
 
-.publication-card:hover {
-    border-left: 3px solid var(--color-accent);
-}
 
-.publication-link {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
 
-.publication-link:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background-color: var(--color-accent);
-    transition: width 0.3s ease;
-    z-index: -1;
-    opacity: 0.2;
-}
-
-.publication-link:hover:before {
-    width: 100%;
-}
-
-.publication-link:hover {
-    color: #fff;
-}
-/* Add this to your styles.css */
-.recommendations-slider {
-    position: relative;
-    padding: 20px 0 50px; /* Add padding at the bottom for controls */
-    margin-bottom: 30px;
-}
-
-.slider-controls {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    z-index: 10;
-    background: var(--color-bg-muted);
-    padding: 10px;
-    border-radius: 30px;
-    width: 200px;
-    margin: 0 auto;
-}
-
-.slider-btn {
-    background: transparent;
-    border: none;
-    color: var(--color-accent);
-    font-size: 20px;
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    margin: 0 5px;
-}
-
-.slider-btn:hover {
-    background: rgba(var(--color-accent-rgb), 0.2);
-}
-
-.slider-dots {
-    display: flex;
-    gap: 10px;
-    margin: 0 20px;
-}
 
 .dot {
     width: 10px;
@@ -1592,31 +1093,6 @@ textarea:hover ~ #cursor-outline {
     transform: scale(1.2);
 }
 
-.recommendations-container {
-    position: relative;
-    height: auto;
-    min-height: 280px;
-    overflow: visible;
-    margin-bottom: 30px;
-}
-
-.recommendation-card {
-    position: absolute;
-    width: calc(100% - 50px);
-    left: 0;
-    right: 0;
-    margin: auto;
-    opacity: 0;
-    transform: translateX(50px);
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    padding-bottom: 30px; /* Ensure there's space below the card for controls */
-}
-
-.recommendation-card.active {
-    opacity: 1;
-    transform: translateX(0);
-    z-index: 1;
-}
 /* Add this to your styles.css file */
 .gradient-text {
     background: linear-gradient(to right, var(--color-accent), var(--color-accent-hover));
@@ -1691,47 +1167,6 @@ textarea:hover ~ #cursor-outline {
 
 .submit-btn:hover::before {
     left: 100%;
-}
-/* Add interactive hover effects to GitHub cards */
-.github-card {
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    border: 1px solid rgba(var(--color-accent-rgb), 0.1);
-}
-
-.github-card:hover {
-    transform: translateY(-10px) !important;
-    box-shadow: 0 15px 30px rgba(var(--color-accent-rgb), 0.15);
-}
-
-
-/* Add to your styles.css */
-.particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Update your particle styling */
-.particle {
-    position: absolute;
-    background-color: rgba(var(--color-accent-rgb), 0.4); /* Accent particle color */
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 5; /* Make sure particles are visible above other elements */
-    box-shadow: 0 0 5px 2px rgba(var(--color-accent-rgb), 0.3); /* Add glow effect */
-}
-/* Add this to your styles.css file */
-#Github {
-    position: relative;
-}
-
-#Github h2 {
-    display: inline-block;
-    margin-right: 20px;
 }
 
 .site-footer {
@@ -2630,161 +2065,5 @@ textarea:hover ~ #cursor-outline {
 
     .skill-group {
         min-height: auto;
-    }
-}
-
-/* Step 7 revision: polished GitHub stat cards */
-#Github {
-    max-width: var(--container-max);
-    min-height: auto;
-    margin: 0 auto;
-    padding: 104px clamp(20px, 5vw, 72px) 72px !important;
-    color: var(--color-text);
-}
-
-.github-heading {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
-    gap: clamp(24px, 5vw, 72px);
-    align-items: end;
-    margin-bottom: 28px;
-}
-
-.github-heading h2 {
-    margin: 0;
-    color: var(--color-text);
-    font-size: clamp(32px, 4.5vw, 54px);
-    font-weight: 760;
-    line-height: 1;
-}
-
-.github-heading p {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: 15px;
-    line-height: 1.7;
-}
-
-#Github .github-stats-container {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
-}
-
-#Github .github-card {
-    width: 100%;
-    max-width: none;
-    display: grid;
-    gap: 14px;
-    padding: 18px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: rgba(17, 17, 19, 0.72);
-    box-shadow: none;
-    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-}
-
-#Github .github-card:hover {
-    transform: translateY(-3px) !important;
-    border-color: rgba(var(--color-accent-rgb), 0.42);
-    background: rgba(24, 24, 27, 0.84);
-    box-shadow: none;
-}
-
-.github-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    color: var(--color-text-subtle);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.github-card-header a {
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    color: var(--color-text-muted);
-    text-decoration: none;
-}
-
-.github-card-header a:hover {
-    border-color: rgba(var(--color-accent-rgb), 0.5);
-    background: rgba(var(--color-accent-rgb), 0.12);
-    color: var(--color-text);
-}
-
-#Github .github-stats-image {
-    width: 100%;
-    height: 190px;
-    display: block;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: var(--radius-sm);
-    background: var(--color-bg);
-    object-fit: contain;
-}
-
-#Github .github-calendar-card {
-    grid-column: 1 / -1;
-    width: min(100%, 920px);
-    justify-self: center;
-}
-
-#Github .github-calendar-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    padding: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: var(--radius-sm);
-    background: var(--color-bg);
-    object-fit: contain;
-}
-
-@media screen and (max-width: 980px) {
-    #Github .github-stats-container {
-        grid-template-columns: 1fr;
-        max-width: 720px;
-        margin: 0 auto;
-    }
-
-    #Github .github-calendar-card {
-        grid-column: auto;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    #Github {
-        padding: 80px 24px 56px !important;
-    }
-
-    .github-heading {
-        grid-template-columns: 1fr;
-        gap: 14px;
-    }
-
-    #Github h2 {
-        text-align: left;
-    }
-
-    #Github .github-stats-container {
-        grid-template-columns: 1fr;
-    }
-
-    #Github .github-calendar-img {
-        padding: 10px;
-        overflow-x: auto;
     }
 }
