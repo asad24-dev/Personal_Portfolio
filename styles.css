@@ -2497,3 +2497,73 @@ a {
         padding: 18px;
     }
 }
+
+/* Commit 5: scroll reveals, focus states, and quiet interaction polish */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+        opacity 220ms ease,
+        transform 220ms ease,
+        border-color 180ms ease,
+        background 180ms ease,
+        color 180ms ease;
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-item.is-visible,
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+:where(a, button, input, textarea):focus-visible {
+    outline: 2px solid rgba(var(--color-accent-rgb), 0.72);
+    outline-offset: 3px;
+}
+
+#navbar li a:focus-visible::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+#social-links a,
+#Projects .project-link,
+#Contact .submit-btn,
+.contact-action-list a,
+.footer-social-links a,
+.footer-cv-link {
+    will-change: transform;
+}
+
+#Projects .project-card:hover .project-topline,
+#Projects .project-card:focus-within .project-topline,
+.skill-group:hover h3,
+.contact-action-list a:hover i,
+.footer-social-links a:hover i {
+    color: var(--color-accent-hover);
+}
+
+#Projects .project-link:focus-visible,
+.contact-action-list a:focus-visible,
+.footer-social-links a:focus-visible,
+.footer-cv-link:focus-visible {
+    border-color: rgba(var(--color-accent-rgb), 0.62);
+    background: rgba(var(--color-accent-rgb), 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    .reveal-item {
+        opacity: 1;
+        transform: none;
+    }
+}

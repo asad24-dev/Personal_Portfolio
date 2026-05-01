@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroTypewriter();
     initContactForm();
     initMobileNavigation();
+    initScrollReveals();
 });
 
 function initActiveNavigation() {
@@ -151,4 +152,43 @@ function initMobileNavigation() {
             closeMenu();
         }
     });
+}
+
+function initScrollReveals() {
+    const revealTargets = Array.from(document.querySelectorAll([
+        '#main-home #Home',
+        'section',
+        '.about-facts div',
+        '.project-card',
+        '.skill-group',
+        '#Contact .contact-form',
+        '#Contact .contact-links',
+        '.footer-content'
+    ].join(', ')));
+
+    if (revealTargets.length === 0) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+        revealTargets.forEach(target => target.classList.add('is-visible'));
+        return;
+    }
+
+    revealTargets.forEach((target, index) => {
+        target.classList.add('reveal-item');
+        target.style.setProperty('--reveal-delay', `${Math.min(index % 5, 4) * 45}ms`);
+    });
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        });
+    }, {
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.12
+    });
+
+    revealTargets.forEach(target => observer.observe(target));
 }
