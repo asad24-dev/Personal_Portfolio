@@ -20,10 +20,30 @@
     <script src="script.js"></script>
     <script src="js/main.js" defer></script>
     <script src="js/scroll-animate.js" defer></script>
+    <script src="js/terminal.js" defer></script>
     <title>Muhammad Asad Majeed</title>
 </head>
 <body>
     <div id="scroll-bar" aria-hidden="true"></div>
+    <div class="terminal-overlay" id="terminal-overlay" aria-hidden="true">
+        <div class="terminal-window" role="dialog" aria-modal="true" aria-labelledby="terminal-title">
+            <div class="terminal-bar">
+                <div class="terminal-meta">
+                    <span id="terminal-title" class="terminal-title">asad@portfolio ~/</span>
+                    <div class="terminal-shell-tabs" aria-label="Terminal mode">
+                        <button class="terminal-shell-tab active" type="button" data-shell="bash">bash</button>
+                        <button class="terminal-shell-tab" type="button" data-shell="powershell">powershell</button>
+                    </div>
+                </div>
+                <button class="terminal-close" type="button" data-terminal-close>close</button>
+            </div>
+            <div class="terminal-output" id="terminal-output" aria-live="polite"></div>
+            <form class="terminal-input-row" id="terminal-form" autocomplete="off">
+                <span class="terminal-prompt" id="terminal-prompt">$</span>
+                <input class="terminal-input" id="terminal-input" name="command" spellcheck="false" placeholder="ls, cd projects/, open foresight/, help">
+            </form>
+        </div>
+    </div>
     <main id="main-content">
 
         <nav class="site-nav" aria-label="Primary navigation">

@@ -113,7 +113,7 @@ html::before {
     gap: 6px;
     margin-bottom: 2rem;
     padding: 4px 12px;
-    border: 1px solid rgba(34, 211, 160, 0.18);
+    border: 1px solid var(--green-brd);
     border-radius: 999px;
     background: var(--green-dim);
     color: var(--green);
@@ -310,7 +310,7 @@ html::before {
 }
 
 .exp-badge.current {
-    border-color: rgba(34, 211, 160, 0.2);
+    border-color: var(--green-brd);
     background: var(--green-dim);
     color: var(--green);
 }
