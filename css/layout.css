@@ -183,3 +183,160 @@ html::before {
     color: var(--text2);
     font: inherit;
 }
+
+.marquee-wrap {
+    overflow: hidden;
+    width: 100%;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    -webkit-mask: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    mask: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-inner {
+    display: flex;
+    width: max-content;
+    gap: 2.5rem;
+    animation: marquee 22s linear infinite;
+}
+
+.marquee-inner:hover {
+    animation-play-state: paused;
+}
+
+.marquee-item {
+    color: var(--text3);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+}
+
+.marquee-item:hover {
+    color: var(--text2);
+}
+
+#Experience {
+    width: min(100%, var(--container-max));
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: clamp(88px, 12vw, 112px) clamp(20px, 5vw, 72px) clamp(64px, 8vw, 88px);
+    color: var(--text);
+}
+
+.experience-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.exp-item:last-child {
+    border-bottom: 0;
+}
+
+.exp-period {
+    margin: 0 0 6px;
+    color: var(--text3);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.exp-company {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text2);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+
+.exp-company-logo {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    border: 1px solid var(--border2);
+    border-radius: 5px;
+    background: var(--bg3);
+    color: var(--text2);
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.exp-company-logo-accent {
+    color: var(--accent);
+}
+
+.exp-company-logo-green {
+    color: var(--green);
+}
+
+.exp-role {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 4px;
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.exp-badge {
+    padding: 2px 8px;
+    border: 1px solid var(--border2);
+    border-radius: 999px;
+    color: var(--text3);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.exp-badge.incoming {
+    border-color: rgba(245, 158, 11, 0.2);
+    background: rgba(245, 158, 11, 0.07);
+    color: var(--amber);
+}
+
+.exp-badge.current {
+    border-color: rgba(34, 211, 160, 0.2);
+    background: var(--green-dim);
+    color: var(--green);
+}
+
+.exp-desc {
+    max-width: 520px;
+    margin: 0 0 0.75rem;
+    color: var(--text2);
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+.exp-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    #Experience {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+
+    .exp-item {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+    }
+}
