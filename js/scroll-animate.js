@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     initScrollProgress();
     initNavSpy();
+    initRevealGroups();
 });
 
 function initScrollProgress() {
@@ -57,4 +58,34 @@ function initNavSpy() {
     });
 
     pairs.forEach(pair => observer.observe(pair.section));
+}
+
+function initRevealGroups() {
+    const groups = Array.from(document.querySelectorAll(".reveal-group"));
+    if (groups.length === 0) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+        groups.forEach(group => {
+            group.querySelectorAll(".reveal-item").forEach(item => {
+                item.classList.add("revealed", "is-visible");
+            });
+        });
+        return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.querySelectorAll(".reveal-item").forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.06}s`;
+                item.classList.add("revealed", "is-visible");
+            });
+            observer.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.08
+    });
+
+    groups.forEach(group => observer.observe(group));
 }
