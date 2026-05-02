@@ -87,7 +87,7 @@ function initContactForm() {
         event.preventDefault();
 
         formStatus.textContent = 'Sending...';
-        formStatus.style.color = '#3b82f6';
+        formStatus.style.color = 'var(--accent)';
 
         fetch(contactForm.action, {
             method: 'POST',
@@ -102,7 +102,7 @@ function initContactForm() {
                 }
 
                 formStatus.textContent = 'Message sent successfully.';
-                formStatus.style.color = '#3b82f6';
+                formStatus.style.color = 'var(--accent)';
                 contactForm.reset();
 
                 window.setTimeout(() => {
@@ -111,7 +111,7 @@ function initContactForm() {
             })
             .catch(error => {
                 formStatus.textContent = 'Error sending message. Please email me instead.';
-                formStatus.style.color = '#ef4444';
+                formStatus.style.color = 'var(--error)';
                 console.error('Form submission error:', error);
             });
     });

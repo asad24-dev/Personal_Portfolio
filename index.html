@@ -87,10 +87,10 @@
             <div class="section-label">About</div>
             <div class="about-grid">
                 <div class="about-copy">
-                    <h2>Engineer with a research spine.</h2>
-                    <p>I am a UCL Computer Science student and Software Engineering intern building full-stack products with a focus on AI systems.</p>
-                    <p>I like the part where clean interfaces, reliable backend logic, and useful model behavior meet in something people can actually use.</p>
-                    <p>Right now I am obsessed with evaluation, agentic workflows, and turning open-ended technical ideas into shipped software.</p>
+                    <h2>Engineer with a systems bias.</h2>
+                    <p>I am a UCL Computer Science student and Software Engineering intern building full-stack products around AI systems.</p>
+                    <p>At Cuvama, I work across data pipelines, dashboards, and taxonomy automation for B2B SaaS infrastructure.</p>
+                    <p>My current focus is evaluation, agentic workflows, and turning open-ended technical ideas into shipped software.</p>
                 </div>
                 <dl class="about-facts" aria-label="Quick facts">
                     <div>
@@ -397,14 +397,14 @@
             </div>
         </section>
 
-        <section id="Contact">
+        <section id="Contact" class="reveal-group">
             <div class="section-label">Contact</div>
             <div class="contact-heading">
                 <h2>Tell me what you are building.</h2>
-                <p>Use the form for a proper note, or jump straight to email, LinkedIn, or a call slot.</p>
+                <p>Use the form for a proper note, or take a direct route for quick context.</p>
             </div>
-            <div class="contact-container">
-                <div class="contact-form">
+            <div class="contact-shell">
+                <div class="contact-form reveal-item">
                     <h3>Send a message</h3>
                     <form id="contact-form" action="https://formspree.io/f/manjopgz" method="POST">
                         <div class="form-group">
@@ -422,47 +422,48 @@
                             <label for="message">Message</label>
                         </div>
                         <button type="submit" class="submit-btn">
-                            <i class="fa-solid fa-paper-plane"></i> Send Message
+                            <span>send message</span>
                         </button>
                         <div id="form-status"></div>
                     </form>
                 </div>
-                <div class="contact-links">
+                <aside class="contact-links reveal-item">
                     <p class="contact-links-label">Direct routes</p>
-                    <p class="contact-links-copy">For quick notes, professional context, or a scheduled chat.</p>
+                    <p class="contact-links-copy">Short path if you already know what you need.</p>
                     <div class="contact-action-list">
                         <a href="mailto:asadmajeed2005@gmail.com">
-                            <span>Email</span>
-                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                            <span>
+                                <strong>Email</strong>
+                                <small>asadmajeed2005@gmail.com</small>
+                            </span>
+                            <span class="contact-route-meta">mail</span>
                         </a>
                         <a href="https://www.linkedin.com/in/muhammad-asad-majeed" target="_blank" rel="noopener noreferrer">
-                            <span>LinkedIn</span>
-                            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                            <span>
+                                <strong>LinkedIn</strong>
+                                <small>professional context</small>
+                            </span>
+                            <span class="contact-route-meta">in</span>
                         </a>
                         <a href="CALENDLY_URL_HERE">
-                            <span>Book a call</span>
-                            <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                            <span>
+                                <strong>Book a call</strong>
+                                <small>Calendly placeholder</small>
+                            </span>
+                            <span class="contact-route-meta">cal</span>
                         </a>
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
         <footer class="site-footer">
-            <div class="footer-content">
-                <p class="footer-signature">Built by me.</p>
-                <nav class="footer-social-links" aria-label="Footer links">
-                    <a href="https://github.com/asad24-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/muhammad-asad-majeed" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="mailto:asadmajeed2005@gmail.com" aria-label="Email Me">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </nav>
-                <a class="footer-cv-link" href="./images/Majeed_MuhammadAsad_cv (9).pdf">CV</a>
-            </div>
+            <span class="footer-left">built by asad &middot; london</span>
+            <nav class="footer-links" aria-label="Footer links">
+                <a href="https://github.com/asad24-dev" target="_blank" rel="noopener noreferrer">github</a>
+                <a href="https://linkedin.com/in/muhammad-asad-majeed" target="_blank" rel="noopener noreferrer">linkedin</a>
+                <a href="mailto:asadmajeed2005@gmail.com">email</a>
+                <a href="./images/Majeed_MuhammadAsad_cv (9).pdf">cv</a>
+            </nav>
         </footer>
     </main> 
     
