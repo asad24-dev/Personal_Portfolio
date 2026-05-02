@@ -7,12 +7,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="styles.css"/>
     <link rel="stylesheet" href="css/variables.css"/>
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/layout.css"/>
     <link rel="stylesheet" href="css/components.css"/>
     <link rel="stylesheet" href="css/animations.css"/>
-    <link rel="stylesheet" href="styles.css"/>
     <link rel="icon" href="favicon.ico"/>
     <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="any"> <!-- Fallback -->
@@ -35,21 +35,24 @@
                 <li><a href="#Contact" class="site-nav-link">contact</a></li>
             </ul>
         </nav>
-        <div id="main-home">
-            <div id="Home">
-                <p class="hero-kicker">Muhammad Asad Majeed / UCL Computer Science</p>
-                <h1>Software Engineer. UCL CS. Building AI systems that <span class="hero-accent">actually ship.</span></h1>
-                <div id="description" class="hero-terminal" aria-label="Current focus">
-                    <span class="terminal-prompt">$</span>
-                    <p><span id="hero-typewriter" data-phrases="Shipping full-stack AI products.|Building evaluation tools for agentic systems.|Turning research ideas into usable software.">Shipping full-stack AI products.</span><span class="terminal-cursor" aria-hidden="true"></span></p>
+        <div id="main-home" class="hero">
+            <div id="Home" class="hero-inner">
+                <span class="hero-tag">
+                    <span class="hero-tag-dot" aria-hidden="true"></span>
+                    incoming SWE intern &middot; Google &middot; summer 2026
+                </span>
+                <h1 class="hero-title glitch-text" data-split-words>
+                    <span>Muhammad Asad Majeed</span>
+                    <span class="hero-title-muted">builds AI systems that ship.</span>
+                </h1>
+                <p class="hero-sub">CS @ UCL. Software engineer focused on AI pipelines, multi-agent systems, and full-stack products. Incoming SWE Intern at Google.</p>
+                <div class="hero-actions">
+                    <div class="magnetic-wrap">
+                        <a class="btn-primary" href="#Projects">view projects &rarr;</a>
+                    </div>
+                    <button class="btn-ghost" type="button" data-terminal-open>~/terminal</button>
+                    <span class="hero-hint">press <kbd>/</kbd> anywhere</span>
                 </div>
-                <div id="social-links">
-                    <a class="hero-primary" href="#Projects">View projects</a>
-                    <a class="hero-secondary" href="mailto:asadmajeed2005@gmail.com">Email</a>
-                </div>
-            </div>
-            <div id="home-img">
-                <img src="./images/home.jpeg" alt="Profile Image">
             </div>
         </div>
         <section id="About">

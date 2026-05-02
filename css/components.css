@@ -1,3 +1,42 @@
-.v3-token-ready {
+.btn-primary,
+.btn-ghost {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn-primary {
+    padding: 0 22px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
     color: var(--text);
+}
+
+.btn-primary:hover {
+    border-color: var(--accent-brd);
+    background: var(--accent-brd);
+    color: var(--text);
+}
+
+.btn-ghost {
+    padding: 0 22px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text2);
+}
+
+.btn-ghost:hover {
+    border-color: var(--border3);
+    color: var(--text);
+}
+
+.magnetic-wrap {
+    display: inline-flex;
 }
