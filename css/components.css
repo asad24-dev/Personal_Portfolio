@@ -305,6 +305,20 @@ body.terminal-open {
 
     .terminal-window {
         width: 100%;
+        height: calc(100dvh - 24px);
         max-height: none;
+    }
+
+    .terminal-output {
+        flex: 1;
+        min-height: 0;
+    }
+
+    .terminal-bar {
+        align-items: flex-start;
+    }
+
+    .terminal-close {
+        flex: 0 0 auto;
     }
 }
