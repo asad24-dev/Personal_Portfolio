@@ -12,7 +12,9 @@
     --text3: #3d4f62;
     --accent: #3b82f6;
     --accent-dim: rgba(59, 130, 246, 0.10);
+    --accent-glow: rgba(59, 130, 246, 0.05);
     --accent-brd: rgba(59, 130, 246, 0.25);
+    --light-sweep: rgba(255, 255, 255, 0.025);
     --green: #22d3a0;
     --green-dim: rgba(34, 211, 160, 0.08);
     --amber: #f59e0b;

@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     initSplitWords();
     initMagneticButtons();
+    initBentoCards();
 });
 
 function initSplitWords() {
@@ -46,4 +47,35 @@ function initMagneticButtons() {
             target.style.transform = "translate(0, 0)";
         });
     });
+}
+
+function initBentoCards() {
+    document.querySelectorAll(".bento-card").forEach(card => {
+        card.addEventListener("mousemove", event => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty("--mx", `${((event.clientX - rect.left) / rect.width) * 100}%`);
+            card.style.setProperty("--my", `${((event.clientY - rect.top) / rect.height) * 100}%`);
+        });
+
+        card.addEventListener("click", event => {
+            if (event.target.closest("a")) return;
+
+            const expand = card.querySelector(".bento-expand");
+            if (!expand) return;
+
+            if (event.target.closest(".bento-expand-close")) {
+                setBentoExpanded(expand, false);
+                return;
+            }
+
+            if (expand.classList.contains("open")) return;
+
+            setBentoExpanded(expand, true);
+        });
+    });
+}
+
+function setBentoExpanded(expand, isOpen) {
+    expand.classList.toggle("open", isOpen);
+    expand.setAttribute("aria-hidden", String(!isOpen));
 }
