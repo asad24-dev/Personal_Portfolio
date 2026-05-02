@@ -183,110 +183,137 @@
             </div>
         </section>
         <section id="Projects">
-            <div class="section-label">Selected work</div>
+            <div class="section-label">Projects</div>
             <div class="projects-heading">
-                <h2>Projects that shipped, scaled, or solved something real.</h2>
-                <p>Ordered by signal: industry collaboration, applied AI systems, production-style full-stack work, and focused automation tools.</p>
+                <h2>Systems work, ordered by signal.</h2>
+                <p>Industrial collaboration first, then shipped AI and full-stack products with real interfaces.</p>
             </div>
-            <div class="projects-container">
-                <article class="project-card project-card-featured">
-                    <div class="project-topline">
-                        <span>UCL Industrial Project</span>
-                        <span>Microsoft + IFRC</span>
+            <div class="bento" aria-label="Selected projects">
+                <article class="bento-card bento-wide bento-tall">
+                    <!-- SCREENSHOT: capture at 1200x630px, save to assets/thumbs/ifrc.png -->
+                    <!-- Replace placeholder div with: <img src="assets/thumbs/ifrc.png" alt="IFRC Virtual Situation Room interface"> -->
+                    <div class="bento-thumb placeholder">
+                        <div class="thumb-label">IFRC &middot; multi-agent RAG</div>
+                        <div class="bento-thumb-overlay"></div>
                     </div>
-                    <div class="project-info">
-                        <h3>Humanitarian AI Systems Project</h3>
-                        <p>Industrial team project with Microsoft and the International Federation of Red Cross and Red Crescent Societies, delivered through UCL to explore practical software for humanitarian operations.</p>
-                        <div class="project-tech" aria-label="Technology stack">
-                            <span>AI Systems</span>
-                            <span>Humanitarian Tech</span>
-                            <span>Product Engineering</span>
-                            <span>Stakeholder Delivery</span>
+                    <div class="bento-info">
+                        <p class="bento-label">Featured &middot; Humanitarian AI</p>
+                        <h3 class="bento-title">IFRC Virtual Situation Room</h3>
+                        <p class="bento-desc">Multi-agent RAG pipeline ingesting live humanitarian data from HDX, Copernicus, GDELT with verification and taxonomy mapping. Built for the International Federation of Red Cross.</p>
+                        <div class="bento-footer">
+                            <div class="bento-stack" aria-label="Technology stack">
+                                <span class="tag accent">LangChain</span>
+                                <span class="tag accent">RAG</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">FastAPI</span>
+                                <span class="tag green">Multi-agent</span>
+                            </div>
+                            <div class="bento-links" aria-label="Project links">
+                                <a class="tag link" href="IFRC_LIVE_URL_HERE" target="_blank" rel="noopener">live</a>
+                                <a class="tag link" href="IFRC_GITHUB_URL_HERE" target="_blank" rel="noopener">github</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-actions" aria-label="Project links">
-                        <span class="project-status">Private collaboration</span>
                     </div>
                 </article>
-                <article class="project-card">
-                    <div class="project-topline">
-                        <span>AI risk intelligence</span>
-                        <span>Live</span>
+
+                <article class="bento-card bento-mid">
+                    <!-- SCREENSHOT: capture at 1200x630px, save to assets/thumbs/foresight.png -->
+                    <!-- Replace placeholder div with: <img src="assets/thumbs/foresight.png" alt="ForeSight geopolitical risk dashboard"> -->
+                    <div class="bento-thumb placeholder">
+                        <div class="thumb-label">geopolitical risk &middot; AI</div>
+                        <div class="bento-thumb-overlay"></div>
                     </div>
-                    <div class="project-info">
-                        <h3>ForeSight</h3>
-                        <p>AI geopolitical risk platform that connects low-signal global events to market and supply-chain impact using Perplexity-powered source analysis.</p>
-                        <div class="project-tech" aria-label="Technology stack">
-                            <span>Node</span>
-                            <span>React</span>
-                            <span>Tailwind</span>
-                            <span>Perplexity API</span>
+                    <div class="bento-info">
+                        <p class="bento-label">AI &middot; Full-stack</p>
+                        <h3 class="bento-title">ForeSight</h3>
+                        <p class="bento-desc">Geopolitical risk platform using Perplexity API and event graphs to surface supply-chain signals before they break.</p>
+                        <div class="bento-footer">
+                            <div class="bento-stack" aria-label="Technology stack">
+                                <span class="tag">Node.js</span>
+                                <span class="tag accent">Perplexity</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Tailwind</span>
+                            </div>
+                            <div class="bento-links" aria-label="Project links">
+                                <a class="tag link" href="https://signal-xfed.onrender.com/" target="_blank" rel="noopener">live</a>
+                                <a class="tag link" href="https://github.com/asad24-dev/ForeSight" target="_blank" rel="noopener">github</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-actions" aria-label="Project links">
-                        <a href="https://github.com/asad24-dev/ForeSight" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="ForeSight GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://signal-xfed.onrender.com/" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="ForeSight live site"><i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </article>
-                <article class="project-card">
-                    <div class="project-topline">
-                        <span>Full-stack finance</span>
-                        <span>Live</span>
+
+                <article class="bento-card bento-mid">
+                    <!-- SCREENSHOT: capture at 1200x630px, save to assets/thumbs/wonderroute.png -->
+                    <!-- Replace placeholder div with: <img src="assets/thumbs/wonderroute.png" alt="WonderRoute trip planner interface"> -->
+                    <div class="bento-thumb placeholder">
+                        <div class="thumb-label">AI trip planner</div>
+                        <div class="bento-thumb-overlay"></div>
                     </div>
-                    <div class="project-info">
-                        <h3>Finance Tracker</h3>
-                        <p>Cloud-backed finance app with bank-account connectivity, JWT auth, spending insight flows, and a PostgreSQL data layer.</p>
-                        <div class="project-tech" aria-label="Technology stack">
-                            <span>React</span>
-                            <span>Node</span>
-                            <span>PostgreSQL</span>
-                            <span>AWS</span>
-                            <span>Plaid</span>
+                    <div class="bento-info">
+                        <p class="bento-label">AI &middot; Travel</p>
+                        <h3 class="bento-title">WonderRoute</h3>
+                        <p class="bento-desc">Photo-spot-aware trip planner syncing itineraries, ratings, and Google Maps via Gemini.</p>
+                        <div class="bento-footer">
+                            <div class="bento-stack" aria-label="Technology stack">
+                                <span class="tag accent">Gemini</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">Google APIs</span>
+                            </div>
+                            <div class="bento-links" aria-label="Project links">
+                                <a class="tag link" href="https://wonderroute.onrender.com" target="_blank" rel="noopener">live</a>
+                                <a class="tag link" href="https://github.com/asad24-dev/WonderRoute" target="_blank" rel="noopener">github</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-actions" aria-label="Project links">
-                        <a href="https://github.com/asad24-dev/AI-Finance-WebApp" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="Finance Tracker GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://ai-finance-webapp-1.onrender.com" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="Finance Tracker live site"><i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </article>
-                <article class="project-card">
-                    <div class="project-topline">
-                        <span>RAG automation</span>
-                        <span>GitHub</span>
+
+                <article class="bento-card bento-half">
+                    <!-- SCREENSHOT: capture at 1200x630px, save to assets/thumbs/finance.png -->
+                    <!-- Replace placeholder div with: <img src="assets/thumbs/finance.png" alt="Finance Tracker dashboard"> -->
+                    <div class="bento-thumb placeholder">
+                        <div class="thumb-label">finance &middot; data viz</div>
+                        <div class="bento-thumb-overlay"></div>
                     </div>
-                    <div class="project-info">
-                        <h3>AI Job Application Assistant</h3>
-                        <p>RAG-powered application co-pilot that maps job descriptions to the strongest matching skills, projects, and tailored application material.</p>
-                        <div class="project-tech" aria-label="Technology stack">
-                            <span>Python</span>
-                            <span>FastAPI</span>
-                            <span>JavaScript</span>
-                            <span>RAG</span>
+                    <div class="bento-info">
+                        <p class="bento-label">Finance</p>
+                        <h3 class="bento-title">Finance Tracker</h3>
+                        <p class="bento-desc">Personal finance tracker with data visualisation and spending categorisation.</p>
+                        <div class="bento-footer">
+                            <div class="bento-stack" aria-label="Technology stack">
+                                <span class="tag">Python</span>
+                                <span class="tag">SQLite</span>
+                                <span class="tag">Matplotlib</span>
+                            </div>
+                            <div class="bento-links" aria-label="Project links">
+                                <a class="tag link" href="https://ai-finance-webapp-1.onrender.com" target="_blank" rel="noopener">live</a>
+                                <a class="tag link" href="https://github.com/asad24-dev/AI-Finance-WebApp" target="_blank" rel="noopener">github</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-actions" aria-label="Project links">
-                        <a href="https://github.com/asad24-dev/JobApplicationAssistant" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="Job Application Assistant GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://github.com/asad24-dev/JobApplicationAssistant" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="Job Application Assistant repository"><i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </article>
-                <article class="project-card">
-                    <div class="project-topline">
-                        <span>Travel planning AI</span>
-                        <span>Live</span>
+
+                <article class="bento-card bento-half">
+                    <!-- SCREENSHOT: capture at 1200x630px, save to assets/thumbs/job-assistant.png -->
+                    <!-- Replace placeholder div with: <img src="assets/thumbs/job-assistant.png" alt="Job Assistant application interface"> -->
+                    <div class="bento-thumb placeholder">
+                        <div class="thumb-label">LLM &middot; productivity</div>
+                        <div class="bento-thumb-overlay"></div>
                     </div>
-                    <div class="project-info">
-                        <h3>WonderRoute</h3>
-                        <p>Multi-user itinerary planner that syncs locations, preferences, ratings, and Gemini-generated plans into collaborative travel routes.</p>
-                        <div class="project-tech" aria-label="Technology stack">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>Google APIs</span>
-                            <span>Gemini</span>
+                    <div class="bento-info">
+                        <p class="bento-label">Productivity &middot; LLM</p>
+                        <h3 class="bento-title">Job Assistant</h3>
+                        <p class="bento-desc">LLM-powered job application tool for cover letter generation and role matching.</p>
+                        <div class="bento-footer">
+                            <div class="bento-stack" aria-label="Technology stack">
+                                <span class="tag accent">LLM</span>
+                                <span class="tag">FastAPI</span>
+                                <span class="tag">Python</span>
+                            </div>
+                            <div class="bento-links" aria-label="Project links">
+                                <a class="tag link" href="https://github.com/asad24-dev/JobApplicationAssistant" target="_blank" rel="noopener">github</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-actions" aria-label="Project links">
-                        <a href="https://github.com/asad24-dev/WonderRoute" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="WonderRoute GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://wonderroute.onrender.com" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="WonderRoute live site"><i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </article>
             </div>

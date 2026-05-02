@@ -5,3 +5,5 @@
 .env
 /coverage
 /tsconfig.tsbuildinfo
+*README.md
+
