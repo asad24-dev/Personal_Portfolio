@@ -1,0 +1,24 @@
+:root {
+    color-scheme: dark;
+    --bg: #07090d;
+    --bg2: #0d1117;
+    --bg3: #121920;
+    --bg4: #1a2330;
+    --border: rgba(255, 255, 255, 0.06);
+    --border2: rgba(255, 255, 255, 0.11);
+    --border3: rgba(255, 255, 255, 0.18);
+    --text: #dde3ec;
+    --text2: #7a8899;
+    --text3: #3d4f62;
+    --accent: #3b82f6;
+    --accent-dim: rgba(59, 130, 246, 0.10);
+    --accent-brd: rgba(59, 130, 246, 0.25);
+    --green: #22d3a0;
+    --green-dim: rgba(34, 211, 160, 0.08);
+    --amber: #f59e0b;
+    --error: #f87171;
+    --font-sans: "DM Sans", system-ui, sans-serif;
+    --font-mono: "DM Mono", "Fira Code", monospace;
+    --r: 6px;
+    --rl: 10px;
+}

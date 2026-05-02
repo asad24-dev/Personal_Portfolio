@@ -1,0 +1,7 @@
+/.specstory
+/.vscode
+/node_modules
+/dist
+.env
+/coverage
+/tsconfig.tsbuildinfo
