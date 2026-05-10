@@ -89,7 +89,8 @@ const TERMINAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/muhammad-asad-majeed",
     github: "https://github.com/asad24-dev",
     calendly: "CALENDLY_URL_HERE",
-    cv: "./images/Majeed_MuhammadAsad_cv (9).pdf"
+    cv: "./images/Majeed_MuhammadAsad_cv (9).pdf",
+    "cv.pdf": "./images/Majeed_MuhammadAsad_cv (9).pdf"
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -247,19 +248,19 @@ function handleCommand(name, args, state) {
         "tree - show the portfolio filesystem",
         "profile - print a compact bio",
         "projects / skills / contact - jump to high-signal portfolio data",
-        "repo / cv - open GitHub profile or CV",
+        "repo / cv / cv.pdf - open GitHub profile or CV",
         "history - show recent commands",
         "shell bash|powershell - switch terminal mode",
         "clear / cls / Clear-Host - clear output",
         "whoami / date / uname -a / exit - small system commands",
-        "AI commands are deferred until the serverless proxy pass."
+        "ask <question> - ask the portfolio assistant about Asad"
     ]);
 
     if (name === "pwd") return lines([state.cwd]);
     if (name === "whoami") return lines(["Muhammad Asad Majeed - UCL CS, SWE intern, AI systems builder."]);
     if (name === "date") return lines([new Date().toISOString()]);
     if (name === "uname") return lines([args[0] === "-a" ? "portfolio-os v3.0 London" : "portfolio-os"]);
-    if (name === "ask") return lines(["ask is deferred: AI features will be implemented after the revamp."], "terminal-dim");
+    if (name === "ask") return handleAskPlaceholder(args);
     if (name === "tree") return tree();
     if (name === "profile") return readFile("/about.md", state);
     if (name === "projects") return listPath("/projects/", state);
@@ -325,6 +326,7 @@ function readFile(target, state) {
 function openEntry(target, state) {
     if (!target) return lines(["usage: open <project/company/link>"], "terminal-error");
 
+    const linkTarget = target.replace(/^\.\/+/, "").toLowerCase();
     const clean = target.endsWith("/") ? target : `${target}/`;
     const entry = TERMINAL_ENTRIES[clean];
     if (entry) {
@@ -333,7 +335,7 @@ function openEntry(target, state) {
         return describeEntry(entry, preferred ? `opened ${preferred}` : "no public link available");
     }
 
-    const link = TERMINAL_LINKS[target.toLowerCase()];
+    const link = TERMINAL_LINKS[linkTarget];
     if (link) {
         window.open(link, "_blank", "noopener");
         return lines([`opened ${escapeHtml(link)}`]);
@@ -352,6 +354,12 @@ function openEntry(target, state) {
     if (fallback) return describeEntry(fallback, "entry details");
 
     return lines([`cannot open: ${escapeHtml(target)}`], "terminal-error");
+}
+
+function handleAskPlaceholder(args) {
+    const question = args.join(" ").trim();
+    if (!question) return lines(["usage: ask <question>"], "terminal-error");
+    return lines(["Assistant endpoint is being connected."], "terminal-dim");
 }
 
 function grepProjects(args) {
