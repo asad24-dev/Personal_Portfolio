@@ -449,13 +449,30 @@ body::after {
     height: 100%;
     object-fit: cover;
     object-position: top;
-    filter: brightness(0.7) saturate(0.8);
+    filter: brightness(0.76) saturate(0.86);
     transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .bento-card:hover .bento-thumb img {
     transform: scale(1.04);
-    filter: brightness(0.88) saturate(1);
+    filter: brightness(0.94) saturate(1);
+}
+
+.bento-featured-thumb {
+    height: 185px;
+    margin: 10px 10px 0;
+    width: calc(100% - 20px);
+    border: 1px solid var(--border2);
+    border-radius: var(--r);
+}
+
+.bento-featured-thumb img {
+    object-position: top center;
+    filter: brightness(0.86) saturate(0.92) contrast(0.96);
+}
+
+.bento-card:hover .bento-featured-thumb img {
+    filter: brightness(1) saturate(1) contrast(1);
 }
 
 .bento-thumb.placeholder {
@@ -465,17 +482,56 @@ body::after {
     background: linear-gradient(135deg, var(--bg3), var(--bg4));
 }
 
+.bento-thumb.project-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 50% 35%, var(--accent-dim), transparent 45%),
+        linear-gradient(135deg, var(--bg3), var(--bg2));
+}
+
+.bento-thumb.project-logo img {
+    width: auto;
+    max-width: 76%;
+    height: auto;
+    max-height: 72%;
+    object-fit: contain;
+    object-position: center;
+    filter: brightness(0.82) saturate(0.9);
+}
+
+.bento-thumb.project-logo img.thumb-invert {
+    filter: invert(1) brightness(0.86) saturate(0.8);
+}
+
+.bento-tall .bento-thumb.project-logo img {
+    max-width: 54%;
+    max-height: 58%;
+}
+
 .thumb-label {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
     color: var(--text3);
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .bento-thumb-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, var(--bg2) 100%);
+    background: linear-gradient(to bottom, transparent 58%, rgba(13, 17, 23, 0.72) 100%);
+}
+
+.bento-featured-thumb .bento-thumb-overlay {
+    background:
+        linear-gradient(to bottom, transparent 48%, rgba(13, 17, 23, 0.55) 76%, var(--bg2) 100%),
+        linear-gradient(to right, rgba(13, 17, 23, 0.18), transparent 20%, transparent 80%, rgba(13, 17, 23, 0.18));
 }
 
 .bento-info {

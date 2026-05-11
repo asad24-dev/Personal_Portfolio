@@ -19,7 +19,7 @@ const TERMINAL_FILES = {
     "/contact.txt": [
         ["email", "asadmajeed2005@gmail.com"],
         ["linkedin", "linkedin.com/in/muhammad-asad-majeed"],
-        ["calendly", "CALENDLY_URL_HERE"]
+        ["calendly", "calendly.com/asadmajeed2005/30min"]
     ],
     "/skills/languages.txt": "Python, TypeScript, JavaScript, Java, SQL",
     "/skills/frameworks.txt": "React, Node.js, FastAPI, Tailwind",
@@ -88,7 +88,7 @@ const TERMINAL_LINKS = {
     email: "mailto:asadmajeed2005@gmail.com",
     linkedin: "https://www.linkedin.com/in/muhammad-asad-majeed",
     github: "https://github.com/asad24-dev",
-    calendly: "CALENDLY_URL_HERE",
+    calendly: "https://calendly.com/asadmajeed2005/30min",
     cv: "./images/Majeed_MuhammadAsad_cv (9).pdf",
     "cv.pdf": "./images/Majeed_MuhammadAsad_cv (9).pdf"
 };
