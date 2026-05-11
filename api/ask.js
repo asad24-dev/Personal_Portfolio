@@ -1,28 +1,19 @@
 "use strict";
 
+const fs = require("fs");
+const path = require("path");
+
 const MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL)}:generateContent`;
 
-const SYSTEM_PROMPT = [
-    "You are the portfolio assistant for Muhammad Asad Majeed.",
-    "Answer only questions about Muhammad Asad Majeed, his education, experience, projects, skills, contact routes, and professional fit.",
-    "Politely refuse unrelated questions, private personal questions, speculation, medical/legal/financial advice, or anything not grounded in the provided facts.",
-    "Keep answers factual, concise, and professional. Use 2 to 4 short sentences. No markdown.",
-    "",
-    "Facts:",
+const PORTFOLIO_FILE = path.join(process.cwd(), "index.html");
+const FALLBACK_CONTEXT = [
     "Name: Muhammad Asad Majeed.",
-    "Location: London.",
-    "Education: Computer Science student at UCL.",
-    "Current role: Software Engineering Intern at Cuvama, building AI-driven B2B SaaS data pipelines, dashboards, and taxonomy automation across production infrastructure.",
-    "Incoming role: Software Engineering Intern at Google, Summer 2026.",
-    "Experience: Robotics Instructor at BlueShift Education, teaching programming and Arduino-based embedded systems. IT Assistant at UCL One Desk, providing technical support and IT services.",
-    "Projects: IFRC Virtual Situation Room, a multi-agent RAG pipeline ingesting humanitarian data from HDX, Copernicus, and GDELT with verification and taxonomy mapping for the International Federation of Red Cross.",
-    "Projects: ForeSight, a geopolitical risk platform using Perplexity API and event graphs to surface supply-chain signals.",
-    "Projects: WonderRoute, an AI trip planner using Gemini, Google Maps, ratings, and collaborative itineraries.",
-    "Projects: Finance Tracker, a personal finance tracker with data visualisation and spending categorisation.",
-    "Projects: Job Assistant, an LLM-powered job application helper for role matching and application drafts.",
-    "Skills: Python, TypeScript, JavaScript, Java, SQL, React, Node.js, FastAPI, Tailwind, PostgreSQL, Docker, AWS, Git, REST APIs, LangChain, RAG pipelines, LLM APIs, evaluation workflows.",
-    "Contact: asadmajeed2005@gmail.com, LinkedIn at linkedin.com/in/muhammad-asad-majeed, GitHub at github.com/asad24-dev."
+    "Education: UCL Computer Science.",
+    "Roles: Software Engineering Intern at Cuvama, incoming Software Engineering Intern at Google, Robotics Instructor at BlueShift Education, IT Assistant at UCL One Desk.",
+    "Projects: IFRC Virtual Situation Room, ForeSight, WonderRoute, Finance Tracker, Job Assistant.",
+    "Skills: Python, React, Node.js, FastAPI, LangChain, RAG, PostgreSQL, Docker, AWS, Java, TypeScript, Tailwind.",
+    "Contact: asadmajeed2005@gmail.com, linkedin.com/in/muhammad-asad-majeed, github.com/asad24-dev."
 ].join("\n");
 
 module.exports = async function handler(req, res) {
@@ -62,7 +53,7 @@ module.exports = async function handler(req, res) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 systemInstruction: {
-                    parts: [{ text: SYSTEM_PROMPT }]
+                    parts: [{ text: buildSystemPrompt(buildPortfolioContext()) }]
                 },
                 contents: [{
                     role: "user",
@@ -106,6 +97,102 @@ function parseBody(body) {
     } catch {
         return {};
     }
+}
+
+function buildSystemPrompt(portfolioContext) {
+    return [
+        "You are the portfolio assistant for Muhammad Asad Majeed.",
+        "Answer only questions about Muhammad Asad Majeed, his education, experience, projects, skills, contact routes, and professional fit.",
+        "Use only the portfolio context below. Do not invent facts, dates, employers, links, achievements, private details, or live web information.",
+        "Politely refuse unrelated questions, private personal questions, speculation, medical/legal/financial advice, or anything not grounded in the portfolio context.",
+        "Keep answers factual, concise, and professional. Use 2 to 4 short sentences. No markdown.",
+        "",
+        "Portfolio context:",
+        portfolioContext
+    ].join("\n");
+}
+
+function buildPortfolioContext() {
+    try {
+        const html = fs.readFileSync(PORTFOLIO_FILE, "utf8");
+        const blocks = [
+            makeBlock("Hero", extractBetween(html, "id=\"main-home\"", "class=\"marquee-wrap\"")),
+            makeBlock("Toolkit", extractToolkit(html)),
+            makeBlock("About", extractSection(html, "About")),
+            makeBlock("Experience", extractSection(html, "Experience")),
+            makeBlock("Projects", extractSection(html, "Projects")),
+            makeBlock("Contact", extractSection(html, "Contact")),
+            makeBlock("Footer links", extractBetween(html, "<footer", "</footer>")),
+            makeBlock("Visible links", extractLinks(html))
+        ].filter(Boolean);
+
+        const context = blocks.join("\n\n").slice(0, 14000).trim();
+        return context || FALLBACK_CONTEXT;
+    } catch {
+        return FALLBACK_CONTEXT;
+    }
+}
+
+function extractSection(html, id) {
+    return extractBetween(html, `id="${id}"`, "</section>");
+}
+
+function extractBetween(html, startNeedle, endNeedle) {
+    const startIndex = html.indexOf(startNeedle);
+    if (startIndex === -1) return "";
+
+    const blockStart = html.lastIndexOf("<", startIndex);
+    const contentStart = blockStart === -1 ? startIndex : blockStart;
+    const endIndex = html.indexOf(endNeedle, startIndex);
+    if (endIndex === -1) return html.slice(contentStart);
+
+    return html.slice(contentStart, endIndex + endNeedle.length);
+}
+
+function extractToolkit(html) {
+    const matches = [...html.matchAll(/<span class="marquee-item"(?: aria-hidden="true")?>([\s\S]*?)<\/span>/g)]
+        .filter(match => !match[0].includes("aria-hidden"))
+        .map(match => cleanText(match[1]));
+
+    return matches.length ? `Core toolkit: ${matches.join(", ")}` : "";
+}
+
+function extractLinks(html) {
+    const links = [...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)]
+        .map(([, href, label]) => {
+            const text = cleanText(label);
+            return text && href && !href.startsWith("#") && !href.includes("_HERE") ? `${text}: ${href}` : "";
+        })
+        .filter(Boolean);
+
+    return Array.from(new Set(links)).join("\n");
+}
+
+function makeBlock(label, html) {
+    const text = cleanText(html);
+    return text ? `${label}:\n${text}` : "";
+}
+
+function cleanText(html) {
+    return decodeHtml(String(html || "")
+        .replace(/<script[\s\S]*?<\/script>/gi, " ")
+        .replace(/<style[\s\S]*?<\/style>/gi, " ")
+        .replace(/<!--[\s\S]*?-->/g, " ")
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim());
+}
+
+function decodeHtml(value) {
+    return value
+        .replace(/&mdash;/g, "-")
+        .replace(/&middot;/g, "·")
+        .replace(/&rarr;/g, "->")
+        .replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, "\"")
+        .replace(/&#39;/g, "'");
 }
 
 function readGeminiAnswer(data) {
