@@ -144,7 +144,7 @@ function initTerminal() {
         output.scrollTop = output.scrollHeight;
     }
 
-    function runCommand(raw) {
+    async function runCommand(raw) {
         const command = raw.trim();
         if (!command) return;
 
@@ -166,7 +166,7 @@ function initTerminal() {
             return;
         }
 
-        const result = handleCommand(lower, args, state);
+        const result = await handleCommand(lower, args, state, appendLine);
         if (result.clear) output.innerHTML = "";
         result.lines.forEach(line => appendLine(line.html, line.className));
         updateTitle();
@@ -237,7 +237,7 @@ function initTerminal() {
     appendLine("type <span class=\"terminal-key\">help</span> for commands, or press <span class=\"terminal-key\">/</span> anywhere to reopen", "terminal-dim");
 }
 
-function handleCommand(name, args, state) {
+function handleCommand(name, args, state, appendLine) {
     if (name === "help") return lines([
         "ls / dir - list files in the current directory",
         "cd / Set-Location - move between portfolio directories",
@@ -260,7 +260,7 @@ function handleCommand(name, args, state) {
     if (name === "whoami") return lines(["Muhammad Asad Majeed - UCL CS, SWE intern, AI systems builder."]);
     if (name === "date") return lines([new Date().toISOString()]);
     if (name === "uname") return lines([args[0] === "-a" ? "portfolio-os v3.0 London" : "portfolio-os"]);
-    if (name === "ask") return handleAskPlaceholder(args);
+    if (name === "ask") return handleAsk(args, appendLine);
     if (name === "tree") return tree();
     if (name === "profile") return readFile("/about.md", state);
     if (name === "projects") return listPath("/projects/", state);
@@ -356,10 +356,28 @@ function openEntry(target, state) {
     return lines([`cannot open: ${escapeHtml(target)}`], "terminal-error");
 }
 
-function handleAskPlaceholder(args) {
+async function handleAsk(args, appendLine) {
     const question = args.join(" ").trim();
     if (!question) return lines(["usage: ask <question>"], "terminal-error");
-    return lines(["Assistant endpoint is being connected."], "terminal-dim");
+
+    appendLine("thinking...", "terminal-dim");
+
+    try {
+        const response = await fetch("/api/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question })
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok || data.error) {
+            return lines([data.error || "Ask failed. Try again later."], "terminal-error");
+        }
+
+        return lines([data.answer || "No answer returned."]);
+    } catch {
+        return lines(["Ask is unavailable right now. The server endpoint may not be deployed yet."], "terminal-error");
+    }
 }
 
 function grepProjects(args) {
@@ -438,7 +456,7 @@ function completeCommand(input, state, appendLine) {
     const value = input.value;
     const parts = value.split(/\s+/);
     const current = parts[parts.length - 1] || "";
-    const pool = ["ls", "dir", "cd", "Set-Location", "pwd", "Get-Location", "cat", "type", "Get-Content", "open", "start", "Start-Process", "grep", "tree", "profile", "projects", "skills", "contact", "repo", "cv", "history", "echo", "shell", "clear", "cls", "Clear-Host", "help", "whoami", "date", "uname", "exit"]
+    const pool = ["ls", "dir", "cd", "Set-Location", "pwd", "Get-Location", "cat", "type", "Get-Content", "open", "start", "Start-Process", "grep", "tree", "profile", "projects", "skills", "contact", "repo", "cv", "ask", "history", "echo", "shell", "clear", "cls", "Clear-Host", "help", "whoami", "date", "uname", "exit"]
         .concat(TERMINAL_FS[state.cwd] || [])
         .concat(Object.keys(TERMINAL_LINKS));
     const matches = pool.filter(item => item.toLowerCase().startsWith(current.toLowerCase()));
