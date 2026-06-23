@@ -2,7 +2,7 @@
 
 const TERMINAL_FS = {
     "/": ["about.md", "cv.pdf", "contact.txt", "projects/", "skills/", "experience/"],
-    "/projects/": ["ifrc-situation-room/", "foresight/", "wonderroute/", "finance-tracker/", "job-assistant/"],
+    "/projects/": ["ifrc-situation-room/", "dealbreakers/", "foresight/", "wonderroute/", "finance-tracker/", "job-assistant/"],
     "/skills/": ["languages.txt", "frameworks.txt", "infrastructure.txt", "ai-ml.txt"],
     "/experience/": ["google-2026/", "cuvama-2025/", "blueshift-education/", "ucl-one-desk/"],
     "/contact/": ["email", "linkedin", "calendly"]
@@ -32,8 +32,14 @@ const TERMINAL_ENTRIES = {
         title: "IFRC Virtual Situation Room",
         desc: "Multi-agent RAG pipeline for humanitarian data ingestion, verification, and taxonomy mapping.",
         stack: "LangChain, RAG, Python, FastAPI, Multi-agent",
-        live: "IFRC_LIVE_URL_HERE",
-        github: "IFRC_GITHUB_URL_HERE"
+        live: "https://red-bush-0738d4f03.2.azurestaticapps.net/",
+        github: "https://github.com/Ammar1919/COMP0016_2025_Team21_AgentOrchestrationForHumanitarianSystems"
+    },
+    "dealbreakers/": {
+        title: "DealBreakers",
+        desc: "1st-place autonomous seller agent for Listo Deal Room, using MCP travel inventory, structured offers, and pricing guardrails.",
+        stack: "Python, MCP, LangChain, Pydantic, Rich CLI",
+        github: "https://github.com/asad24-dev/DealBreakers"
     },
     "foresight/": {
         title: "ForeSight",
@@ -398,6 +404,7 @@ function tree() {
         "  contact.txt",
         "  projects/",
         "    ifrc-situation-room/",
+        "    dealbreakers/",
         "    foresight/",
         "    wonderroute/",
         "    finance-tracker/",
