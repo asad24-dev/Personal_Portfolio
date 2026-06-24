@@ -25,6 +25,16 @@
     color: var(--text);
 }
 
+:root[data-theme="light"] .btn-primary {
+    color: #f2f5f7;
+}
+
+:root[data-theme="light"] .btn-primary:hover {
+    border-color: var(--accent);
+    background: transparent;
+    color: var(--accent);
+}
+
 .btn-ghost {
     padding: 0 22px;
     border: 1px solid var(--border2);

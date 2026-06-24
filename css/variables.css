@@ -34,3 +34,35 @@
     --rl: 10px;
     --container-max: 1120px;
 }
+
+:root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #e7ecf1;
+    --bg2: #f0f3f6;
+    --bg3: #dce3e9;
+    --bg4: #ccd6df;
+    --grid-line: rgba(49, 95, 186, 0.075);
+    --grid-dot: rgba(27, 39, 55, 0.075);
+    --page-fade: rgba(220, 227, 233, 0.72);
+    --nav-bg: rgba(231, 236, 241, 0.9);
+    --border: rgba(27, 39, 55, 0.09);
+    --border2: rgba(27, 39, 55, 0.16);
+    --border3: rgba(27, 39, 55, 0.27);
+    --overlay: rgba(204, 214, 223, 0.9);
+    --text: #1b2737;
+    --text2: #526174;
+    --text3: #738194;
+    --accent: #315fba;
+    --accent-dim: rgba(49, 95, 186, 0.1);
+    --accent-glow: rgba(49, 95, 186, 0.065);
+    --accent-brd: rgba(49, 95, 186, 0.3);
+    --light-sweep: rgba(49, 95, 186, 0.04);
+    --cursor-card: rgba(27, 39, 55, 0.17);
+    --green: #187765;
+    --green-dim: rgba(24, 119, 101, 0.09);
+    --green-brd: rgba(24, 119, 101, 0.25);
+    --amber: #9a5a16;
+    --amber-dim: rgba(154, 90, 22, 0.09);
+    --amber-brd: rgba(154, 90, 22, 0.24);
+    --error: #bd3f4a;
+}

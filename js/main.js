@@ -1,10 +1,38 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
+    initThemeToggle();
     initSplitWords();
     initMagneticButtons();
     initBentoCards();
 });
+
+function initThemeToggle() {
+    const toggle = document.querySelector("[data-theme-toggle]");
+    if (!toggle) return;
+
+    const updateToggle = theme => {
+        const nextTheme = theme === "dark" ? "light" : "dark";
+        const label = `Switch to ${nextTheme} theme`;
+        toggle.setAttribute("aria-label", label);
+        toggle.setAttribute("title", label);
+    };
+
+    updateToggle(document.documentElement.dataset.theme);
+
+    toggle.addEventListener("click", () => {
+        const currentTheme = document.documentElement.dataset.theme;
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+        document.documentElement.dataset.theme = nextTheme;
+        try {
+            localStorage.setItem("portfolio-theme", nextTheme);
+        } catch {
+            // The current page can still switch themes without persistence.
+        }
+        updateToggle(nextTheme);
+    });
+}
 
 function initSplitWords() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

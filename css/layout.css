@@ -76,6 +76,12 @@ body::after {
     color: var(--accent);
 }
 
+.site-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
 .site-nav-links {
     display: flex;
     align-items: center;
@@ -83,6 +89,60 @@ body::after {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+.theme-toggle {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--border2);
+    border-radius: var(--r);
+    background: var(--bg2);
+    color: var(--text2);
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent-brd);
+    background: var(--accent-dim);
+    color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.theme-toggle:active {
+    transform: scale(0.94);
+}
+
+.theme-toggle span {
+    position: absolute;
+    font-size: 20px;
+    line-height: 1;
+    transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle-moon {
+    opacity: 0;
+    transform: translateY(12px) rotate(25deg);
+}
+
+:root[data-theme="light"] .theme-toggle-sun {
+    opacity: 0;
+    transform: translateY(-12px) rotate(-25deg);
+}
+
+:root[data-theme="light"] .theme-toggle-moon {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
 }
 
 .site-nav-link {
@@ -541,6 +601,25 @@ body::after {
     color: var(--green);
     font-family: var(--font-mono);
     font-size: 10px;
+}
+
+:root[data-theme="light"] .project-mark {
+    background: rgba(240, 243, 246, 0.68);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+:root[data-theme="light"] .bento-thumb.project-logo img.thumb-invert {
+    filter: brightness(0.35) saturate(0.8);
+}
+
+:root[data-theme="light"] .bento-thumb-overlay {
+    background: linear-gradient(to bottom, transparent 58%, rgba(220, 227, 233, 0.78) 100%);
+}
+
+:root[data-theme="light"] .bento-featured-thumb .bento-thumb-overlay {
+    background:
+        linear-gradient(to bottom, transparent 48%, rgba(220, 227, 233, 0.58) 76%, var(--bg2) 100%),
+        linear-gradient(to right, rgba(220, 227, 233, 0.24), transparent 20%, transparent 80%, rgba(220, 227, 233, 0.24));
 }
 
 .bento-tall .bento-thumb.project-logo img {
@@ -1074,6 +1153,11 @@ body::after {
         padding-left: 16px;
     }
 
+    .site-nav-actions {
+        min-width: 0;
+        gap: 0.75rem;
+    }
+
     .site-nav-links {
         gap: clamp(0.7rem, 3vw, 1rem);
         overflow-x: auto;
@@ -1144,8 +1228,13 @@ body::after {
         padding-bottom: 12px;
     }
 
-    .site-nav-links {
+    .site-nav-actions {
         width: 100%;
+    }
+
+    .site-nav-links {
+        min-width: 0;
+        flex: 1;
         justify-content: space-between;
     }
 
