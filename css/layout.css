@@ -31,6 +31,22 @@ body::after {
     background: linear-gradient(to bottom, transparent, var(--page-fade));
 }
 
+:root[data-theme="light"] html::before {
+    opacity: 0.018;
+}
+
+:root[data-theme="light"] body::before {
+    opacity: 0.28;
+}
+
+:root[data-theme="light"] body::after {
+    background:
+        linear-gradient(145deg, rgba(188, 205, 235, 0.24), transparent 34%),
+        linear-gradient(215deg, rgba(215, 197, 224, 0.18), transparent 40%),
+        linear-gradient(25deg, rgba(190, 222, 210, 0.16), transparent 36%),
+        linear-gradient(to bottom, transparent, var(--page-fade));
+}
+
 #main-content {
     position: relative;
     z-index: 2;
@@ -457,6 +473,18 @@ body::after {
     transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
+:root[data-theme="light"] .bento-card:nth-child(3n + 1) {
+    background: var(--surface-blue);
+}
+
+:root[data-theme="light"] .bento-card:nth-child(3n + 2) {
+    background: var(--surface-mint);
+}
+
+:root[data-theme="light"] .bento-card:nth-child(3n) {
+    background: var(--surface-lilac);
+}
+
 .bento-card::before {
     content: "";
     position: absolute;
@@ -604,7 +632,7 @@ body::after {
 }
 
 :root[data-theme="light"] .project-mark {
-    background: rgba(240, 243, 246, 0.68);
+    background: rgba(244, 243, 241, 0.7);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
@@ -613,13 +641,13 @@ body::after {
 }
 
 :root[data-theme="light"] .bento-thumb-overlay {
-    background: linear-gradient(to bottom, transparent 58%, rgba(220, 227, 233, 0.78) 100%);
+    background: linear-gradient(to bottom, transparent 58%, rgba(227, 230, 231, 0.78) 100%);
 }
 
 :root[data-theme="light"] .bento-featured-thumb .bento-thumb-overlay {
     background:
-        linear-gradient(to bottom, transparent 48%, rgba(220, 227, 233, 0.58) 76%, var(--bg2) 100%),
-        linear-gradient(to right, rgba(220, 227, 233, 0.24), transparent 20%, transparent 80%, rgba(220, 227, 233, 0.24));
+        linear-gradient(to bottom, transparent 48%, rgba(227, 230, 231, 0.56) 76%, var(--surface-blue) 100%),
+        linear-gradient(to right, rgba(227, 230, 231, 0.22), transparent 20%, transparent 80%, rgba(227, 230, 231, 0.22));
 }
 
 .bento-tall .bento-thumb.project-logo img {
@@ -886,6 +914,18 @@ body::after {
     padding: 12px 14px;
 }
 
+:root[data-theme="light"] .about-facts div:nth-child(1) {
+    background: var(--surface-blue);
+}
+
+:root[data-theme="light"] .about-facts div:nth-child(2) {
+    background: var(--surface-mint);
+}
+
+:root[data-theme="light"] .about-facts div:nth-child(3) {
+    background: var(--surface-lilac);
+}
+
 .about-facts dt {
     color: var(--text3);
     font-family: var(--font-mono);
@@ -921,6 +961,14 @@ body::after {
     border-radius: var(--rl);
     background: var(--bg2);
     padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+:root[data-theme="light"] #Contact .contact-form {
+    background: var(--surface-blue);
+}
+
+:root[data-theme="light"] #Contact .contact-links {
+    background: var(--surface-mint);
 }
 
 #Contact .contact-form h3 {
