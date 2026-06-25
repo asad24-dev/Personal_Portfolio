@@ -2,6 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
+    initInteractiveTexture();
     initSplitWords();
     initMagneticButtons();
     initBentoCards();
@@ -31,6 +32,49 @@ function initThemeToggle() {
             // The current page can still switch themes without persistence.
         }
         updateToggle(nextTheme);
+    });
+}
+
+function initInteractiveTexture() {
+    if (
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+        window.matchMedia("(hover: none)").matches
+    ) {
+        return;
+    }
+
+    const root = document.documentElement;
+    let frameId = null;
+    let pointerX = window.innerWidth / 2;
+    let pointerY = window.innerHeight / 2;
+
+    const render = () => {
+        const x = (pointerX / window.innerWidth - 0.5) * 14;
+        const y = (pointerY / window.innerHeight - 0.5) * 14;
+
+        root.style.setProperty("--texture-x", `${x.toFixed(2)}px`);
+        root.style.setProperty("--texture-y", `${y.toFixed(2)}px`);
+        root.style.setProperty("--wash-x", `${(-x * 0.55).toFixed(2)}px`);
+        root.style.setProperty("--wash-y", `${(-y * 0.55).toFixed(2)}px`);
+        frameId = null;
+    };
+
+    window.addEventListener("pointermove", event => {
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+
+        if (frameId === null) {
+            frameId = requestAnimationFrame(render);
+        }
+    }, { passive: true });
+
+    document.documentElement.addEventListener("mouseleave", () => {
+        pointerX = window.innerWidth / 2;
+        pointerY = window.innerHeight / 2;
+
+        if (frameId === null) {
+            frameId = requestAnimationFrame(render);
+        }
     });
 }
 
