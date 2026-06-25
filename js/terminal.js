@@ -95,8 +95,8 @@ const TERMINAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/muhammad-asad-majeed",
     github: "https://github.com/asad24-dev",
     calendly: "https://calendly.com/asadmajeed2005/30min",
-    cv: "./images/Majeed_MuhammadAsad_cv (9).pdf",
-    "cv.pdf": "./images/Majeed_MuhammadAsad_cv (9).pdf"
+    cv: "./images/asad-majeed-cv.pdf",
+    "cv.pdf": "./images/asad-majeed-cv.pdf"
 };
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -25,13 +25,21 @@ function initThemeToggle() {
         const currentTheme = document.documentElement.dataset.theme;
         const nextTheme = currentTheme === "dark" ? "light" : "dark";
 
-        document.documentElement.dataset.theme = nextTheme;
-        try {
-            localStorage.setItem("portfolio-theme", nextTheme);
-        } catch {
-            // The current page can still switch themes without persistence.
+        const applyTheme = () => {
+            document.documentElement.dataset.theme = nextTheme;
+            try {
+                localStorage.setItem("portfolio-theme", nextTheme);
+            } catch {
+                // The current page can still switch themes without persistence.
+            }
+            updateToggle(nextTheme);
+        };
+
+        if (document.startViewTransition) {
+            document.startViewTransition(applyTheme);
+        } else {
+            applyTheme();
         }
-        updateToggle(nextTheme);
     });
 }
 
@@ -144,10 +152,14 @@ function initBentoCards() {
 
             setBentoExpanded(expand, true);
         });
+
     });
 }
 
 function setBentoExpanded(expand, isOpen) {
+    const card = expand.closest(".bento-card");
+    const opener = card?.querySelector(".bento-view");
     expand.classList.toggle("open", isOpen);
     expand.setAttribute("aria-hidden", String(!isOpen));
+    opener?.setAttribute("aria-expanded", String(isOpen));
 }

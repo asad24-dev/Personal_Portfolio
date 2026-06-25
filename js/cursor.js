@@ -18,8 +18,13 @@ function initCursor() {
         element.addEventListener("mouseleave", () => cursor.classList.remove("hovering"));
     });
 
-    document.querySelectorAll(".bento-card, .exp-item, .contact-shell").forEach(element => {
+    document.querySelectorAll(".exp-item, .contact-shell").forEach(element => {
         element.addEventListener("mouseenter", () => cursor.classList.add("on-card"));
         element.addEventListener("mouseleave", () => cursor.classList.remove("on-card"));
+    });
+
+    document.querySelectorAll(".bento-card").forEach(element => {
+        element.addEventListener("mouseenter", () => cursor.classList.add("on-project"));
+        element.addEventListener("mouseleave", () => cursor.classList.remove("on-project"));
     });
 }

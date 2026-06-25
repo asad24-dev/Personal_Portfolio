@@ -17,6 +17,7 @@
     --text3: #3d4f62;
     --accent: #3b82f6;
     --accent-dim: rgba(59, 130, 246, 0.10);
+    --accent-muted: rgba(59, 130, 246, 0.16);
     --accent-glow: rgba(59, 130, 246, 0.05);
     --accent-brd: rgba(59, 130, 246, 0.25);
     --light-sweep: rgba(255, 255, 255, 0.025);
@@ -57,6 +58,7 @@
     --text3: #7a8495;
     --accent: #526fae;
     --accent-dim: rgba(82, 111, 174, 0.1);
+    --accent-muted: rgba(82, 111, 174, 0.16);
     --accent-glow: rgba(82, 111, 174, 0.075);
     --accent-brd: rgba(82, 111, 174, 0.3);
     --light-sweep: rgba(255, 255, 255, 0.24);
