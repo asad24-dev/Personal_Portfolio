@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (() => {
+            let savedTheme = null;
+            try {
+                savedTheme = localStorage.getItem("portfolio-theme");
+            } catch {
+                // Storage can be unavailable in strict privacy modes.
+            }
+            const theme = savedTheme === "dark" ? "dark" : "light";
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="A public-source look at atomic changes, shared ownership, and why repository scale is mostly a tooling problem.">
+    <title>What Monorepos Actually Buy You | Muhammad Asad Majeed</title>
+</head>
+<body class="blog-page">
+    <div id="scroll-bar" aria-hidden="true"></div>
+    <div id="cursor" aria-hidden="true"></div>
+    <main id="main-content">
+        <nav class="site-nav" aria-label="Primary navigation">
+            <a class="site-nav-logo glitch-text" href="../index.html" aria-label="Muhammad Asad Majeed home">asad<span>.</span>dev</a>
+            <div class="site-nav-actions">
+                <ul class="site-nav-links">
+                    <li><a href="../index.html#About" class="site-nav-link">about</a></li>
+                    <li><a href="../index.html#Experience" class="site-nav-link">experience</a></li>
+                    <li><a href="../index.html#Projects" class="site-nav-link">projects</a></li>
+                    <li><a href="./index.html" class="site-nav-link active">blog</a></li>
+                    <li><a href="../index.html#Contact" class="site-nav-link">contact</a></li>
+                </ul>
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+                    <span class="theme-toggle-sun" aria-hidden="true">&#9788;</span>
+                    <span class="theme-toggle-moon" aria-hidden="true">&#9790;</span>
+                </button>
+            </div>
+        </nav>
+
+        <article class="article-shell">
+            <header class="article-header">
+                <a class="article-back" href="./index.html">&larr; all writing</a>
+                <div class="article-kicker">
+                    <span>Software systems</span>
+                    <time datetime="2026-07-26">26 Jul 2026</time>
+                    <span>7 min read</span>
+                </div>
+                <h1>What Monorepos Actually Buy You</h1>
+                <p class="article-deck">A public-source look at atomic changes, shared ownership, and why repository scale is mostly a tooling problem.</p>
+                <div class="article-tags" aria-label="Topics">
+                    <span class="tag">Monorepos</span>
+                    <span class="tag">Version control</span>
+                    <span class="tag">Developer tooling</span>
+                </div>
+            </header>
+            <div class="article-layout">
+                <aside class="article-aside">
+                    <p>Field note 01</p>
+                    <span>Written from public sources and practical engineering experience.</span>
+                </aside>
+                <div class="article-body">
+                    <p>A monorepo is easy to describe and surprisingly hard to evaluate.</p>
+                    <p>The simple definition is one repository containing many projects. The useful definition is more demanding: a monorepo is an engineering model where code, dependency information, build rules, ownership, and change history can be reasoned about as one connected system.</p>
+                    <p>That distinction matters. Putting several folders into one Git repository gives you shared storage. It does not automatically give you the properties that make very large repositories valuable.</p>
+
+                    <blockquote>
+                        <p>This note synthesises publicly documented material. It does not describe private code, unreleased systems, or non-public operational details.</p>
+                    </blockquote>
+
+                    <h2>The real advantage is atomic change</h2>
+                    <p>Imagine a shared interface used by hundreds of services. In a multi-repository setup, changing that interface can require a sequence of coordinated releases:</p>
+                    <ol>
+                        <li>Publish a compatible version of the interface.</li>
+                        <li>Update every consumer.</li>
+                        <li>Wait for those updates to deploy.</li>
+                        <li>Remove the old interface.</li>
+                    </ol>
+                    <p>Each step introduces a temporary state that must be supported. With a monorepo and a build system that understands dependencies, the interface and its consumers can often change together. The repository records one coherent transition from the old state to the new state.</p>
+                    <p>That is the important property: related code can move atomically.</p>
+
+                    <h2>Visibility changes engineering behaviour</h2>
+                    <p>Shared visibility makes several workflows easier:</p>
+                    <ul>
+                        <li>Searching for every use of an API before changing it.</li>
+                        <li>Finding an existing library instead of creating a second one.</li>
+                        <li>Applying a security fix across many consumers.</li>
+                        <li>Establishing one version of a third-party dependency.</li>
+                        <li>Understanding ownership through code rather than organisational memory.</li>
+                    </ul>
+                    <p>This can reduce duplication, but only when discovery is good. A repository containing millions of files is not useful if search, navigation, and indexing feel slow.</p>
+                    <p>Repository scale therefore becomes a developer-tooling problem. Fast search, code intelligence, dependency graphs, build caching, ownership metadata, and automated refactoring are the interface through which engineers experience the repository.</p>
+
+                    <h2>Piper is not "Git, but bigger"</h2>
+                    <p>Google has publicly described Piper as its source-control system for a large monolithic repository. The interesting lesson is not that every company should build a custom version-control system. It is that repository architecture and surrounding tooling have to be designed together.</p>
+                    <p>At sufficiently large scale, several assumptions made by ordinary local clones stop working:</p>
+                    <ul>
+                        <li>A developer should not need every file on their machine.</li>
+                        <li>Reading a file and editing a file can be separate operations.</li>
+                        <li>Repository-wide operations need indexes rather than filesystem scans.</li>
+                        <li>Build and test selection must use dependency information.</li>
+                        <li>Large refactors need automation and reviewable intermediate steps.</li>
+                    </ul>
+                    <p>The repository is therefore better understood as a service than a folder. A developer works with a relevant view of a much larger source graph.</p>
+
+                    <h2>Monorepo does not mean monolith</h2>
+                    <p>A monorepo is a source-management choice. A monolith is a runtime architecture.</p>
+                    <p>One repository can contain hundreds of independently deployed services. Conversely, one large application can be split across several repositories. The repository answers where source code lives and how changes cross boundaries. The runtime answers how the system is built, deployed, scaled, and isolated.</p>
+
+                    <h2>The costs are real</h2>
+                    <p>Large repositories concentrate complexity:</p>
+                    <ul>
+                        <li>Access control becomes more subtle.</li>
+                        <li>Continuous integration can become expensive.</li>
+                        <li>A poorly designed change can affect a wide surface area.</li>
+                        <li>Build tooling has to avoid rebuilding the world.</li>
+                        <li>Ownership boundaries need to stay legible.</li>
+                    </ul>
+                    <p>The strongest monorepo examples work because organisations invest in the systems around the repository. Copying the directory structure without the tooling can produce the costs without the benefits.</p>
+
+                    <h2>A practical decision test</h2>
+                    <h3>Do changes regularly cross repository boundaries?</h3>
+                    <p>If a product change frequently requires coordinated updates across services and shared packages, atomic changes may be valuable.</p>
+                    <h3>Can the build system understand dependencies?</h3>
+                    <p>Without dependency-aware builds and test selection, repository growth quickly slows feedback loops.</p>
+                    <h3>Is ownership visible?</h3>
+                    <p>A shared repository should make responsibility clearer, not create a large unowned commons.</p>
+                    <h3>Are teams willing to standardise?</h3>
+                    <p>Monorepos reward common conventions for formatting, testing, dependency management, and release metadata. If every directory behaves independently, shared storage achieves little.</p>
+
+                    <h2>The broader lesson</h2>
+                    <p>The valuable idea is not that one repository always wins. It is that code organisation should optimise the movement of changes through a system.</p>
+                    <p>Good version control makes a change easy to understand, review, validate, and reverse. At small scale, Git and a few repositories may do that perfectly. At very large scale, a monorepo can offer unusually strong consistency, but only when supported by equally strong infrastructure.</p>
+                    <p>The repository is not the strategy. The developer experience around change is.</p>
+
+                    <h2>Public references</h2>
+                    <ul>
+                        <li>Rachel Potvin and Josh Levenberg, <a href="https://research.google.com/pubs/pub45424.html" target="_blank" rel="noopener noreferrer">Why Google Stores Billions of Lines of Code in a Single Repository</a>.</li>
+                        <li>Google Open Source, <a href="https://opensource.google/documentation/reference/glossary" target="_blank" rel="noopener noreferrer">Glossary: Piper and google3</a>.</li>
+                        <li>Titus Winters, Tom Manshreck, and Hyrum Wright, <a href="https://abseil.io/resources/swe-book" target="_blank" rel="noopener noreferrer">Software Engineering at Google</a>.</li>
+                    </ul>
+                </div>
+            </div>
+            <footer class="article-footer">
+                <p>More notes on systems, AI, and software engineering.</p>
+                <a class="btn-ghost" href="./index.html">Browse the archive</a>
+            </footer>
+        </article>
+
+        <footer class="site-footer site-footer-editorial">
+            <div class="footer-signoff">
+                <a class="footer-name" href="../index.html">Muhammad Asad Majeed</a>
+                <p>Engineering reliable AI systems in London.</p>
+            </div>
+            <nav class="footer-links" aria-label="Footer links">
+                <a href="https://github.com/asad24-dev" target="_blank" rel="noopener noreferrer">github</a>
+                <a href="https://linkedin.com/in/muhammad-asad-majeed" target="_blank" rel="noopener noreferrer">linkedin</a>
+                <a href="mailto:asadmajeed2005@gmail.com">email</a>
+                <a href="../images/asad-majeed-cv.pdf" download="Muhammad-Asad-Majeed-CV.pdf">cv</a>
+            </nav>
+        </footer>
+    </main>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/scroll-animate.js" defer></script>
+    <script src="../js/cursor.js" defer></script>
+</body>
+</html>

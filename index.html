@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -11,14 +11,14 @@
             } catch {
                 // Storage can be unavailable in strict privacy modes.
             }
-            const theme = savedTheme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+            const theme = savedTheme === "dark" ? "dark" : "light";
             document.documentElement.dataset.theme = theme;
         })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="css/variables.css"/>
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/layout.css"/>
@@ -63,6 +63,7 @@
                     <li><a href="#About" class="site-nav-link active">about</a></li>
                     <li><a href="#Experience" class="site-nav-link">experience</a></li>
                     <li><a href="#Projects" class="site-nav-link">projects</a></li>
+                    <li><a href="#Blog" class="site-nav-link">blog</a></li>
                     <li><a href="#Contact" class="site-nav-link">contact</a></li>
                 </ul>
                 <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme">
@@ -75,47 +76,105 @@
             <div id="Home" class="hero-inner">
                 <span class="hero-tag">
                     <span class="hero-tag-dot" aria-hidden="true"></span>
-                    SWE intern &middot; Google &middot; summer 2026
+                    currently &middot; Google SWE intern &middot; summer 2026
                 </span>
                 <h1 class="hero-title glitch-text" data-split-words>
-                    <span>Muhammad Asad Majeed</span>
-                    <span class="hero-title-muted">builds AI systems that ship.</span>
+                    <span class="hero-name">Muhammad Asad Majeed</span>
+                    <span class="hero-title-muted">Builds AI systems that ship.</span>
                 </h1>
-                <p class="hero-sub">CS @ UCL. Software engineer focused on AI pipelines, multi-agent systems, and full-stack products. SWE Intern at Google.</p>
+                <p class="hero-sub">Software engineer working across AI pipelines, multi-agent systems, and full-stack products. CS at UCL and SWE Intern at Google.</p>
                 <div class="hero-actions">
                     <div class="magnetic-wrap">
-                        <a class="btn-primary" href="#Projects">view projects &rarr;</a>
+                        <a class="btn-primary" href="./images/asad-majeed-cv.pdf" download="Muhammad-Asad-Majeed-CV.pdf">download CV &darr;</a>
                     </div>
                     <button class="btn-ghost" type="button" data-terminal-open>~/terminal</button>
                     <span class="hero-hint">press <kbd>/</kbd> anywhere</span>
                 </div>
+                <dl class="hero-meta" aria-label="Profile overview">
+                    <div>
+                        <dt>Based</dt>
+                        <dd>London, UK</dd>
+                    </div>
+                    <div>
+                        <dt>Current</dt>
+                        <dd>Google SWE</dd>
+                    </div>
+                    <div>
+                        <dt>Writing about</dt>
+                        <dd>AI and systems</dd>
+                    </div>
+                </dl>
             </div>
         </div>
         <div class="marquee-wrap" aria-label="Core toolkit">
             <div class="marquee-inner">
+                <span class="marquee-item">Go</span>
                 <span class="marquee-item">Python</span>
-                <span class="marquee-item">React</span>
-                <span class="marquee-item">LangChain</span>
-                <span class="marquee-item">Node.js</span>
-                <span class="marquee-item">FastAPI</span>
-                <span class="marquee-item">Multi-agent RAG</span>
-                <span class="marquee-item">PostgreSQL</span>
-                <span class="marquee-item">Docker</span>
-                <span class="marquee-item">AWS</span>
                 <span class="marquee-item">Java</span>
                 <span class="marquee-item">TypeScript</span>
+                <span class="marquee-item">JavaScript</span>
+                <span class="marquee-item">SQL</span>
+                <span class="marquee-item">C</span>
+                <span class="marquee-item">Haskell</span>
+                <span class="marquee-item">React</span>
+                <span class="marquee-item">Node.js</span>
+                <span class="marquee-item">FastAPI</span>
+                <span class="marquee-item">Flask</span>
+                <span class="marquee-item">Spring Boot</span>
+                <span class="marquee-item">PostgreSQL</span>
+                <span class="marquee-item">MySQL</span>
+                <span class="marquee-item">MongoDB</span>
+                <span class="marquee-item">Redis</span>
+                <span class="marquee-item">SQLite</span>
+                <span class="marquee-item">LangChain</span>
+                <span class="marquee-item">LangGraph</span>
+                <span class="marquee-item">RAG</span>
+                <span class="marquee-item">Multi-agent systems</span>
+                <span class="marquee-item">LLM evaluation</span>
+                <span class="marquee-item">PyTorch</span>
+                <span class="marquee-item">scikit-learn</span>
+                <span class="marquee-item">spaCy</span>
+                <span class="marquee-item">OpenCV</span>
+                <span class="marquee-item">Gemini</span>
+                <span class="marquee-item">Azure OpenAI</span>
+                <span class="marquee-item">OpenAI APIs</span>
+                <span class="marquee-item">Hugging Face</span>
+                <span class="marquee-item">Docker</span>
+                <span class="marquee-item">AWS</span>
                 <span class="marquee-item">Tailwind</span>
+                <span class="marquee-item" aria-hidden="true">Go</span>
                 <span class="marquee-item" aria-hidden="true">Python</span>
-                <span class="marquee-item" aria-hidden="true">React</span>
-                <span class="marquee-item" aria-hidden="true">LangChain</span>
-                <span class="marquee-item" aria-hidden="true">Node.js</span>
-                <span class="marquee-item" aria-hidden="true">FastAPI</span>
-                <span class="marquee-item" aria-hidden="true">Multi-agent RAG</span>
-                <span class="marquee-item" aria-hidden="true">PostgreSQL</span>
-                <span class="marquee-item" aria-hidden="true">Docker</span>
-                <span class="marquee-item" aria-hidden="true">AWS</span>
                 <span class="marquee-item" aria-hidden="true">Java</span>
                 <span class="marquee-item" aria-hidden="true">TypeScript</span>
+                <span class="marquee-item" aria-hidden="true">JavaScript</span>
+                <span class="marquee-item" aria-hidden="true">SQL</span>
+                <span class="marquee-item" aria-hidden="true">C</span>
+                <span class="marquee-item" aria-hidden="true">Haskell</span>
+                <span class="marquee-item" aria-hidden="true">React</span>
+                <span class="marquee-item" aria-hidden="true">Node.js</span>
+                <span class="marquee-item" aria-hidden="true">FastAPI</span>
+                <span class="marquee-item" aria-hidden="true">Flask</span>
+                <span class="marquee-item" aria-hidden="true">Spring Boot</span>
+                <span class="marquee-item" aria-hidden="true">PostgreSQL</span>
+                <span class="marquee-item" aria-hidden="true">MySQL</span>
+                <span class="marquee-item" aria-hidden="true">MongoDB</span>
+                <span class="marquee-item" aria-hidden="true">Redis</span>
+                <span class="marquee-item" aria-hidden="true">SQLite</span>
+                <span class="marquee-item" aria-hidden="true">LangChain</span>
+                <span class="marquee-item" aria-hidden="true">LangGraph</span>
+                <span class="marquee-item" aria-hidden="true">RAG</span>
+                <span class="marquee-item" aria-hidden="true">Multi-agent systems</span>
+                <span class="marquee-item" aria-hidden="true">LLM evaluation</span>
+                <span class="marquee-item" aria-hidden="true">PyTorch</span>
+                <span class="marquee-item" aria-hidden="true">scikit-learn</span>
+                <span class="marquee-item" aria-hidden="true">spaCy</span>
+                <span class="marquee-item" aria-hidden="true">OpenCV</span>
+                <span class="marquee-item" aria-hidden="true">Gemini</span>
+                <span class="marquee-item" aria-hidden="true">Azure OpenAI</span>
+                <span class="marquee-item" aria-hidden="true">OpenAI APIs</span>
+                <span class="marquee-item" aria-hidden="true">Hugging Face</span>
+                <span class="marquee-item" aria-hidden="true">Docker</span>
+                <span class="marquee-item" aria-hidden="true">AWS</span>
                 <span class="marquee-item" aria-hidden="true">Tailwind</span>
             </div>
         </div>
@@ -151,14 +210,20 @@
                     <div class="exp-left">
                         <p class="exp-period">Jun 2026 &mdash; Sep 2026</p>
                         <div class="exp-company">
-                            <span class="exp-company-logo exp-company-logo-google" aria-hidden="true">G</span>
+                            <span class="exp-company-logo exp-company-logo-google" aria-hidden="true">
+                                <img src="images/companies/google.svg" alt="">
+                            </span>
                             <span class="exp-company-name">Google</span>
                         </div>
                     </div>
                     <div class="exp-right">
-                        <h2 class="exp-role">Software Engineering Intern</h2>
-                        <p class="exp-desc">SWE Intern &mdash; details to follow.</p>
+                        <h2 class="exp-role">Software Engineering Intern <span class="exp-badge current">current</span></h2>
+                        <p class="exp-team">Engineering Velocity Insights &middot; Android Platform &amp; Devices</p>
+                        <p class="exp-desc">Building a race-condition-safe asynchronous upload pipeline for Android's atest and Tradefed infrastructure, parallelising result uploads to accelerate the testing workflow.</p>
                         <div class="exp-stack">
+                            <span class="tag accent">Android</span>
+                            <span class="tag">Async systems</span>
+                            <span class="tag">Developer infrastructure</span>
                             <span class="tag">London, UK</span>
                         </div>
                     </div>
@@ -167,12 +232,14 @@
                     <div class="exp-left">
                         <p class="exp-period">Sep 2025 &mdash; Present</p>
                         <div class="exp-company">
-                            <span class="exp-company-logo exp-company-logo-cuvama" aria-hidden="true">C</span>
+                            <span class="exp-company-logo exp-company-logo-cuvama" aria-hidden="true">
+                                <img src="images/companies/Cuvama_Dark_Blue_Teal.webp" alt="">
+                            </span>
                             <span class="exp-company-name">Cuvama</span>
                         </div>
                     </div>
                     <div class="exp-right">
-                        <h2 class="exp-role">Software Engineering Intern <span class="exp-badge current">current</span></h2>
+                        <h2 class="exp-role">AI Engineering Intern</h2>
                         <p class="exp-desc">Building AI-driven B2B SaaS data pipelines, dashboards, and taxonomy automation systems. Working across the full stack on production infrastructure.</p>
                         <div class="exp-stack">
                             <span class="tag accent">AI Pipelines</span>
@@ -186,12 +253,14 @@
                     <div class="exp-left">
                         <p class="exp-period">2024 &mdash; Present</p>
                         <div class="exp-company">
-                            <span class="exp-company-logo exp-company-logo-blueshift" aria-hidden="true">B</span>
+                            <span class="exp-company-logo exp-company-logo-blueshift" aria-hidden="true">
+                                <img src="images/companies/blueshift.webp" alt="">
+                            </span>
                             <span class="exp-company-name">BlueShift Education</span>
                         </div>
                     </div>
                     <div class="exp-right">
-                        <h2 class="exp-role">Robotics Instructor</h2>
+                        <h2 class="exp-role">Robotics and Programming Instructor</h2>
                         <p class="exp-desc">Teaching robotics and programming. Designing hands-on curriculum using Arduino and embedded systems.</p>
                         <div class="exp-stack">
                             <span class="tag">Arduino</span>
@@ -204,7 +273,9 @@
                     <div class="exp-left">
                         <p class="exp-period">2024 &mdash; Present</p>
                         <div class="exp-company">
-                            <span class="exp-company-logo exp-company-logo-ucl" aria-hidden="true">U</span>
+                            <span class="exp-company-logo exp-company-logo-ucl" aria-hidden="true">
+                                <img src="images/companies/ucl.svg" alt="">
+                            </span>
                             <span class="exp-company-name">UCL One Desk</span>
                         </div>
                     </div>
@@ -482,6 +553,67 @@
             </div>
         </section>
 
+        <section id="Blog" class="reveal-group">
+            <div class="section-label">Blog</div>
+            <div class="blog-section-heading reveal-item">
+                <div>
+                    <p class="section-index">04 / Field notes</p>
+                    <h2>Ideas, properly unpacked.</h2>
+                </div>
+                <p>Notes on software engineering at scale, AI foundations, and the practical work of building reliable systems.</p>
+            </div>
+            <div class="home-blog-list">
+                <article class="home-blog-item reveal-item">
+                    <a href="./blog/monorepos-and-piper.html" aria-label="Read What Monorepos Actually Buy You">
+                        <div class="home-blog-number">01</div>
+                        <div class="home-blog-copy">
+                            <div class="blog-card-meta">
+                                <span>Software systems</span>
+                                <time datetime="2026-07-26">26 Jul 2026</time>
+                                <span>7 min</span>
+                            </div>
+                            <h3>What Monorepos Actually Buy You</h3>
+                            <p>A public-sources look at repository-scale engineering, atomic changes, ownership, and why tooling matters more than folder count.</p>
+                        </div>
+                        <span class="home-blog-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </article>
+                <article class="home-blog-item reveal-item">
+                    <a href="./blog/transformers-from-first-principles.html" aria-label="Read Transformers From First Principles">
+                        <div class="home-blog-number">02</div>
+                        <div class="home-blog-copy">
+                            <div class="blog-card-meta">
+                                <span>AI foundations</span>
+                                <time datetime="2026-07-19">19 Jul 2026</time>
+                                <span>9 min</span>
+                            </div>
+                            <h3>Transformers From First Principles</h3>
+                            <p>A systems-minded explanation of attention, residual streams, causal masking, and the real cost of long context.</p>
+                        </div>
+                        <span class="home-blog-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </article>
+                <article class="home-blog-item reveal-item">
+                    <a href="./blog/evaluating-agentic-systems.html" aria-label="Read Evaluating Agentic Systems Without Vibes">
+                        <div class="home-blog-number">03</div>
+                        <div class="home-blog-copy">
+                            <div class="blog-card-meta">
+                                <span>Applied AI</span>
+                                <time datetime="2026-07-12">12 Jul 2026</time>
+                                <span>8 min</span>
+                            </div>
+                            <h3>Evaluating Agentic Systems Without Vibes</h3>
+                            <p>A practical framework for testing tool use, retrieval, decisions, fallbacks, and end-to-end outcomes.</p>
+                        </div>
+                        <span class="home-blog-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </article>
+            </div>
+            <div class="blog-section-action reveal-item">
+                <a class="btn-ghost" href="./blog/index.html">all writing &rarr;</a>
+            </div>
+        </section>
+
         <section id="Contact" class="reveal-group">
             <div class="section-label">Contact</div>
             <div class="contact-heading">
@@ -541,13 +673,17 @@
                 </aside>
             </div>
         </section>
-        <footer class="site-footer">
-            <span class="footer-left">built by asad &middot; london</span>
+        <footer class="site-footer site-footer-editorial">
+            <div class="footer-signoff">
+                <a class="footer-name" href="#main-home">Muhammad Asad Majeed</a>
+                <p>Engineering reliable AI systems in London.</p>
+            </div>
             <nav class="footer-links" aria-label="Footer links">
                 <a href="https://github.com/asad24-dev" target="_blank" rel="noopener noreferrer">github</a>
                 <a href="https://linkedin.com/in/muhammad-asad-majeed" target="_blank" rel="noopener noreferrer">linkedin</a>
                 <a href="mailto:asadmajeed2005@gmail.com">email</a>
-                <a href="./images/Majeed_MuhammadAsad_cv (15).pdf">cv</a>
+                <a href="./images/asad-majeed-cv.pdf" download="Muhammad-Asad-Majeed-CV.pdf">cv</a>
+                <a href="./blog/index.html">writing</a>
             </nav>
         </footer>
     </main> 

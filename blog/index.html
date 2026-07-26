@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (() => {
+            let savedTheme = null;
+            try {
+                savedTheme = localStorage.getItem("portfolio-theme");
+            } catch {
+                // Storage can be unavailable in strict privacy modes.
+            }
+            const theme = savedTheme === "dark" ? "dark" : "light";
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="Field notes by Muhammad Asad Majeed on AI systems, software engineering, evaluation, and building at scale.">
+    <title>Writing | Muhammad Asad Majeed</title>
+</head>
+<body class="blog-page">
+    <div id="scroll-bar" aria-hidden="true"></div>
+    <div id="cursor" aria-hidden="true"></div>
+    <main id="main-content">
+        <nav class="site-nav" aria-label="Primary navigation">
+            <a class="site-nav-logo glitch-text" href="../index.html" aria-label="Muhammad Asad Majeed home">asad<span>.</span>dev</a>
+            <div class="site-nav-actions">
+                <ul class="site-nav-links">
+                    <li><a href="../index.html#About" class="site-nav-link">about</a></li>
+                    <li><a href="../index.html#Experience" class="site-nav-link">experience</a></li>
+                    <li><a href="../index.html#Projects" class="site-nav-link">projects</a></li>
+                    <li><a href="./index.html" class="site-nav-link active">blog</a></li>
+                    <li><a href="../index.html#Contact" class="site-nav-link">contact</a></li>
+                </ul>
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+                    <span class="theme-toggle-sun" aria-hidden="true">&#9788;</span>
+                    <span class="theme-toggle-moon" aria-hidden="true">&#9790;</span>
+                </button>
+            </div>
+        </nav>
+
+        <header class="blog-hero">
+            <div class="section-label">Writing</div>
+            <p class="blog-eyebrow">Systems, models, and the details between them.</p>
+            <h1>Notes from building and learning.</h1>
+            <p class="blog-intro">Clear explanations of AI systems, software engineering at scale, and the decisions that turn prototypes into dependable products.</p>
+        </header>
+
+        <section class="blog-archive" aria-labelledby="blog-archive-title">
+            <div class="blog-archive-heading">
+                <h2 id="blog-archive-title">All field notes</h2>
+                <span>3 published</span>
+            </div>
+            <div class="blog-list">
+                <article class="blog-list-item">
+                    <a href="./monorepos-and-piper.html" aria-label="Read What Monorepos Actually Buy You">
+                        <div class="blog-list-index">01</div>
+                        <div class="blog-list-copy">
+                            <div class="blog-card-meta">
+                                <span>Software systems</span>
+                                <time datetime="2026-07-26">26 Jul 2026</time>
+                            </div>
+                            <h3>What Monorepos Actually Buy You</h3>
+                            <p>A public-source look at atomic changes, shared ownership, and why repository scale is mostly a tooling problem.</p>
+                            <div class="blog-card-topics">
+                                <span>Monorepos</span>
+                                <span>Version control</span>
+                                <span>Developer tooling</span>
+                            </div>
+                        </div>
+                        <span class="blog-list-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </article>
+                <article class="blog-list-item">
+                    <a href="./transformers-from-first-principles.html" aria-label="Read Transformers From First Principles">
+                        <div class="blog-list-index">02</div>
+                        <div class="blog-list-copy">
+                            <div class="blog-card-meta">
+                                <span>AI foundations</span>
+                                <time datetime="2026-07-19">19 Jul 2026</time>
+                            </div>
+                            <h3>Transformers From First Principles</h3>
+                            <p>A systems-minded explanation of attention, residual streams, causal masking, and the real cost of long context.</p>
+                            <div class="blog-card-topics">
+                                <span>Transformers</span>
+                                <span>Attention</span>
+                                <span>Language models</span>
+                            </div>
+                        </div>
+                        <span class="blog-list-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </article>
+                <article class="blog-list-item">
+                    <a href="./evaluating-agentic-systems.html" aria-label="Read Evaluating Agentic Systems Without Vibes">
+                        <div class="blog-list-index">03</div>
+                        <div class="blog-list-copy">
+                            <div class="blog-card-meta">
+                                <span>Applied AI</span>
+                                <time datetime="2026-07-12">12 Jul 2026</time>
+                            </div>
+                            <h3>Evaluating Agentic Systems Without Vibes</h3>
+                            <p>A practical framework for testing tool use, retrieval, decisions, fallbacks, and end-to-end outcomes.</p>
+                            <div class="blog-card-topics">
+                                <span>Evaluation</span>
+                                <span>Agents</span>
+                                <span>Reliability</span>
+                            </div>
+                        </div>
+                        <span class="blog-list-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <footer class="site-footer site-footer-editorial">
+            <div class="footer-signoff">
+                <a class="footer-name" href="../index.html">Muhammad Asad Majeed</a>
+                <p>Engineering reliable AI systems in London.</p>
+            </div>
+            <nav class="footer-links" aria-label="Footer links">
+                <a href="https://github.com/asad24-dev" target="_blank" rel="noopener noreferrer">github</a>
+                <a href="https://linkedin.com/in/muhammad-asad-majeed" target="_blank" rel="noopener noreferrer">linkedin</a>
+                <a href="mailto:asadmajeed2005@gmail.com">email</a>
+                <a href="../images/asad-majeed-cv.pdf" download="Muhammad-Asad-Majeed-CV.pdf">cv</a>
+            </nav>
+        </footer>
+    </main>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/scroll-animate.js" defer></script>
+    <script src="../js/cursor.js" defer></script>
+</body>
+</html>

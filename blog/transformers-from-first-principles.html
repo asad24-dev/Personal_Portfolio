@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (() => {
+            let savedTheme = null;
+            try {
+                savedTheme = localStorage.getItem("portfolio-theme");
+            } catch {
+                // Storage can be unavailable in strict privacy modes.
+            }
+            const theme = savedTheme === "dark" ? "dark" : "light";
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="A systems-minded explanation of attention, residual streams, causal masking, and the real cost of long context.">
+    <title>Transformers From First Principles | Muhammad Asad Majeed</title>
+</head>
+<body class="blog-page">
+    <div id="scroll-bar" aria-hidden="true"></div>
+    <div id="cursor" aria-hidden="true"></div>
+    <main id="main-content">
+        <nav class="site-nav" aria-label="Primary navigation">
+            <a class="site-nav-logo glitch-text" href="../index.html" aria-label="Muhammad Asad Majeed home">asad<span>.</span>dev</a>
+            <div class="site-nav-actions">
+                <ul class="site-nav-links">
+                    <li><a href="../index.html#About" class="site-nav-link">about</a></li>
+                    <li><a href="../index.html#Experience" class="site-nav-link">experience</a></li>
+                    <li><a href="../index.html#Projects" class="site-nav-link">projects</a></li>
+                    <li><a href="./index.html" class="site-nav-link active">blog</a></li>
+                    <li><a href="../index.html#Contact" class="site-nav-link">contact</a></li>
+                </ul>
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+                    <span class="theme-toggle-sun" aria-hidden="true">&#9788;</span>
+                    <span class="theme-toggle-moon" aria-hidden="true">&#9790;</span>
+                </button>
+            </div>
+        </nav>
+
+        <article class="article-shell">
+            <header class="article-header">
+                <a class="article-back" href="./index.html">&larr; all writing</a>
+                <div class="article-kicker">
+                    <span>AI foundations</span>
+                    <time datetime="2026-07-19">19 Jul 2026</time>
+                    <span>9 min read</span>
+                </div>
+                <h1>Transformers From First Principles</h1>
+                <p class="article-deck">A systems-minded explanation of attention, residual streams, causal masking, and the real cost of long context.</p>
+                <div class="article-tags" aria-label="Topics">
+                    <span class="tag">Transformers</span>
+                    <span class="tag">Attention</span>
+                    <span class="tag">Language models</span>
+                </div>
+            </header>
+            <div class="article-layout">
+                <aside class="article-aside">
+                    <p>Field note 02</p>
+                    <span>A conceptual model for reasoning about modern language models.</span>
+                </aside>
+                <div class="article-body">
+                    <p>A Transformer is often introduced through a large architecture diagram. That diagram is accurate, but it can hide the simple idea underneath: every token repeatedly gathers useful information from other tokens, transforms what it has learned, and passes an updated representation forward.</p>
+                    <p>The architecture is easier to understand when we follow the information rather than memorise the boxes.</p>
+
+                    <h2>Start with token representations</h2>
+                    <p>Text is first split into tokens. Each token becomes a vector: a list of numbers that the model can update. Because attention alone does not know order, positional information is added so that the model can distinguish the first token from the fiftieth.</p>
+                    <p>The resulting vectors enter a stack of Transformer layers. Each layer refines them, but keeps the sequence length stable. A token that began as a generic representation gradually becomes contextual: its meaning reflects the sentence around it.</p>
+
+                    <h2>Attention is learned routing</h2>
+                    <p>For every token, the model creates three projections called a query, a key, and a value. A query describes what information a token is looking for. A key describes what information another token offers. A value contains the information that can be passed along.</p>
+                    <pre><code>scores = query * transpose(keys)
+weights = softmax(scores / sqrt(d))
+output = weights * values</code></pre>
+                    <p>The score between one query and every key determines where information should come from. Softmax turns those scores into positive weights that sum to one. Dividing by the square root of the vector dimension keeps values numerically controlled as the model gets wider.</p>
+                    <p>The routing is computed from the current sequence. The same token can gather different information in different contexts.</p>
+
+                    <h2>Why multiple heads?</h2>
+                    <p>A single attention calculation produces one routing pattern. Multi-head attention runs several smaller attention operations in parallel. This gives the model room to represent different relationships at the same time:</p>
+                    <ul>
+                        <li>Nearby syntactic structure.</li>
+                        <li>Long-range references.</li>
+                        <li>Delimiters and formatting.</li>
+                        <li>Agreement between subjects and verbs.</li>
+                        <li>Task-specific patterns that resist simple labels.</li>
+                    </ul>
+                    <p>Some heads show interpretable behaviour, but the model is trained as a whole. The important point is capacity: several routing patterns can operate at once.</p>
+
+                    <h2>Communicate, then compute</h2>
+                    <p>After attention moves information between positions, a feed-forward network transforms each position independently. The common structure expands the vector into a wider hidden space, applies a non-linearity, and projects it back to the model width.</p>
+                    <pre><code>hidden = activation(input * W1)
+output = hidden * W2</code></pre>
+                    <p>Attention communicates across tokens. The feed-forward network computes over the features available at one token. That alternating pattern is a durable systems-level model of a Transformer layer.</p>
+
+                    <h2>Residual streams preserve information</h2>
+                    <p>If every layer completely replaced its input, deep models would be difficult to train and useful information could disappear. Residual connections add each operation's output back to the existing representation:</p>
+                    <pre><code>state = state + attention(normalize(state))
+state = state + feed_forward(normalize(state))</code></pre>
+                    <p>The residual stream acts like shared working memory. Each layer reads from it and writes an update into it. Layer normalisation keeps activation scales controlled so deep optimisation behaves predictably.</p>
+
+                    <h2>Causal masking creates a language model</h2>
+                    <p>During next-token prediction, a token must not inspect future tokens. Otherwise the answer would leak into the input.</p>
+                    <p>A causal mask removes attention connections to future positions. Position five can attend to positions one through five, but not position six. The model then predicts a probability distribution for the next token, compares it with the actual token, and adjusts its parameters to reduce error.</p>
+                    <p>Repeated across large datasets, this objective teaches statistical structure, factual associations, syntax, style, and reusable computational patterns.</p>
+
+                    <h2>The quadratic cost</h2>
+                    <p>Standard attention compares every token with every other token. If sequence length doubles, the attention score matrix becomes roughly four times larger. Long context is therefore a memory, latency, and systems-design problem, not only a model feature.</p>
+                    <p>Modern systems manage this cost through techniques including efficient attention kernels, sparse or local attention, grouped-query attention, retrieval, and architectures that compress or reuse state.</p>
+
+                    <h2>Architecture is only part of the model</h2>
+                    <p>The Transformer defines how information can move and transform. It does not specify what a model knows. Behaviour emerges from the combination of training data, objectives, optimisation, scale, post-training, and inference-time context and tools.</p>
+                    <p>Two models can share nearly identical architecture and behave very differently because the rest of the training system differs.</p>
+
+                    <h2>A durable mental model</h2>
+                    <p>When reading about a new Transformer variant, ask:</p>
+                    <ol>
+                        <li>How does information move between tokens?</li>
+                        <li>How is information transformed at each position?</li>
+                        <li>What is stored in the residual stream?</li>
+                        <li>How does the design control memory and compute?</li>
+                        <li>What training signal shapes the final behaviour?</li>
+                    </ol>
+                    <p>These questions transfer across language, vision, audio, multimodal, and code models. They are more useful than memorising one architecture diagram.</p>
+
+                    <h2>Public references</h2>
+                    <ul>
+                        <li>Vaswani et al., <a href="https://research.google/pubs/attention-is-all-you-need/" target="_blank" rel="noopener noreferrer">Attention Is All You Need</a>.</li>
+                        <li>Google Research, <a href="https://research.google/blog/transformer-a-novel-neural-network-architecture-for-language-understanding/" target="_blank" rel="noopener noreferrer">Transformer: A Novel Neural Network Architecture for Language Understanding</a>.</li>
+                        <li>Jay Alammar, <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener noreferrer">The Illustrated Transformer</a>.</li>
+                    </ul>
+                </div>
+            </div>
+            <footer class="article-footer">
+                <p>More notes on systems, AI, and software engineering.</p>
+                <a class="btn-ghost" href="./index.html">Browse the archive</a>
+            </footer>
+        </article>
+
+        <footer class="site-footer site-footer-editorial">
+            <div class="footer-signoff">
+                <a class="footer-name" href="../index.html">Muhammad Asad Majeed</a>
+                <p>Engineering reliable AI systems in London.</p>
+            </div>
+            <nav class="footer-links" aria-label="Footer links">
+                <a href="https://github.com/asad24-dev" target="_blank" rel="noopener noreferrer">github</a>
+                <a href="https://linkedin.com/in/muhammad-asad-majeed" target="_blank" rel="noopener noreferrer">linkedin</a>
+                <a href="mailto:asadmajeed2005@gmail.com">email</a>
+                <a href="../images/asad-majeed-cv.pdf" download="Muhammad-Asad-Majeed-CV.pdf">cv</a>
+            </nav>
+        </footer>
+    </main>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/scroll-animate.js" defer></script>
+    <script src="../js/cursor.js" defer></script>
+</body>
+</html>

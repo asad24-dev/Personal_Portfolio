@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (() => {
+            let savedTheme = null;
+            try {
+                savedTheme = localStorage.getItem("portfolio-theme");
+            } catch {
+                // Storage can be unavailable in strict privacy modes.
+            }
+            const theme = savedTheme === "dark" ? "dark" : "light";
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="A practical framework for testing tool use, retrieval, decisions, fallbacks, and end-to-end outcomes.">
+    <title>Evaluating Agentic Systems Without Vibes | Muhammad Asad Majeed</title>
+</head>
+<body class="blog-page">
+    <div id="scroll-bar" aria-hidden="true"></div>
+    <div id="cursor" aria-hidden="true"></div>
+    <main id="main-content">
+        <nav class="site-nav" aria-label="Primary navigation">
+            <a class="site-nav-logo glitch-text" href="../index.html" aria-label="Muhammad Asad Majeed home">asad<span>.</span>dev</a>
+            <div class="site-nav-actions">
+                <ul class="site-nav-links">
+                    <li><a href="../index.html#About" class="site-nav-link">about</a></li>
+                    <li><a href="../index.html#Experience" class="site-nav-link">experience</a></li>
+                    <li><a href="../index.html#Projects" class="site-nav-link">projects</a></li>
+                    <li><a href="./index.html" class="site-nav-link active">blog</a></li>
+                    <li><a href="../index.html#Contact" class="site-nav-link">contact</a></li>
+                </ul>
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+                    <span class="theme-toggle-sun" aria-hidden="true">&#9788;</span>
+                    <span class="theme-toggle-moon" aria-hidden="true">&#9790;</span>
+                </button>
+            </div>
+        </nav>
+
+        <article class="article-shell">
+            <header class="article-header">
+                <a class="article-back" href="./index.html">&larr; all writing</a>
+                <div class="article-kicker">
+                    <span>Applied AI</span>
+                    <time datetime="2026-07-12">12 Jul 2026</time>
+                    <span>8 min read</span>
+                </div>
+                <h1>Evaluating Agentic Systems Without Vibes</h1>
+                <p class="article-deck">A practical framework for testing tool use, retrieval, decisions, fallbacks, and end-to-end outcomes.</p>
+                <div class="article-tags" aria-label="Topics">
+                    <span class="tag">Evaluation</span>
+                    <span class="tag">Agents</span>
+                    <span class="tag">Reliability</span>
+                </div>
+            </header>
+            <div class="article-layout">
+                <aside class="article-aside">
+                    <p>Field note 03</p>
+                    <span>A practical scorecard for turning agent demos into dependable software.</span>
+                </aside>
+                <div class="article-body">
+                    <p>Agent demos are easy to make impressive. Production agents are difficult to make dependable. The difference is evaluation.</p>
+                    <p>An agent usually combines a language model with retrieval, tools, state, orchestration, and business rules. Looking only at the final answer hides which component failed and makes improvements difficult to measure. A useful evaluation system therefore works at several levels.</p>
+
+                    <h2>Define the contract first</h2>
+                    <p>Before choosing metrics, define what the system is allowed to do. For an agent that prepares a commercial offer, the contract might include:</p>
+                    <ul>
+                        <li>Use only inventory returned by approved tools.</li>
+                        <li>Never price below verified cost.</li>
+                        <li>Include a valid source URL.</li>
+                        <li>Preserve the buyer's hard constraints.</li>
+                        <li>Ask for clarification when required information is missing.</li>
+                        <li>Return a schema that downstream software can parse.</li>
+                    </ul>
+                    <p>These rules are more useful than a vague target such as "produce a good offer". They turn expectations into testable properties.</p>
+
+                    <h2>Layer one: deterministic checks</h2>
+                    <p>Start with everything that ordinary code can verify. Deterministic checks are fast, cheap, and repeatable:</p>
+                    <ul>
+                        <li>Does the output match the schema?</li>
+                        <li>Are required fields present?</li>
+                        <li>Does the selected item exist in the tool response?</li>
+                        <li>Is price greater than or equal to cost?</li>
+                        <li>Did the agent exceed its tool-call budget?</li>
+                        <li>Did it attempt to call an unapproved tool?</li>
+                    </ul>
+                    <p>If a rule can be expressed without a model, it usually should be. Using an LLM judge for arithmetic or schema validation adds cost and uncertainty without adding insight.</p>
+
+                    <h2>Layer two: component evaluations</h2>
+                    <p>An end-to-end failure often begins earlier in the pipeline. Evaluate important components independently.</p>
+                    <h3>Retrieval</h3>
+                    <ul>
+                        <li>Did the correct evidence appear in the top results?</li>
+                        <li>Was irrelevant context excluded?</li>
+                        <li>Did chunking separate information that belongs together?</li>
+                        <li>Are sources recent and authoritative enough for the task?</li>
+                    </ul>
+                    <h3>Tool selection</h3>
+                    <ul>
+                        <li>Did the agent choose the correct tool?</li>
+                        <li>Were arguments complete and valid?</li>
+                        <li>Did it retry only when retrying could help?</li>
+                        <li>Did it distinguish a tool failure from an empty result?</li>
+                    </ul>
+                    <h3>Planning and state</h3>
+                    <ul>
+                        <li>Were hard constraints preserved across turns?</li>
+                        <li>Did the agent repeat completed work?</li>
+                        <li>Did it stop when the task was done?</li>
+                        <li>Did it recover from partial failure without corrupting state?</li>
+                    </ul>
+                    <p>Component tests provide diagnostic resolution. They tell you whether to improve a prompt, retrieval policy, tool description, or orchestration rule.</p>
+
+                    <h2>Layer three: model-graded quality</h2>
+                    <p>Some properties genuinely require judgement: clarity, usefulness, faithful use of evidence, and whether a recommendation handles the user's underlying intent.</p>
+                    <p>A model judge can help, but only with a precise rubric and examples of different score levels. Replace a broad question such as "Is this answer good?" with explicit criteria:</p>
+                    <pre><code>Constraint satisfaction: 0-2
+Evidence grounding:      0-2
+Decision usefulness:    0-2
+Clarity:                 0-2
+Unsupported claims:     0-2 penalty</code></pre>
+                    <p>The judge should return a score and a short reason. Periodically compare those judgements with human ratings to detect drift or systematic bias.</p>
+
+                    <h2>Layer four: end-to-end scenarios</h2>
+                    <p>Real users do not interact with isolated components. Maintain a scenario suite that covers the complete workflow:</p>
+                    <ul>
+                        <li>A normal successful case.</li>
+                        <li>Missing information or conflicting constraints.</li>
+                        <li>No valid inventory.</li>
+                        <li>A tool timeout or malformed result.</li>
+                        <li>Adversarial or irrelevant instructions.</li>
+                        <li>A case where the correct action is to stop.</li>
+                    </ul>
+                    <p>Each scenario should define observable success conditions. Avoid asserting one exact paragraph when several responses could be correct.</p>
+
+                    <h2>Measure trajectories, not only answers</h2>
+                    <p>Two agents can produce the same final answer with very different risk and cost. Capture the trajectory: the sequence of tool calls, tokens consumed, latency by stage, retries, state changes, selected evidence, and final validation results.</p>
+                    <p>Trajectory data reveals loops, unnecessary searches, brittle ordering, and expensive behaviour that a final-answer score will miss.</p>
+
+                    <h2>Build evaluation sets from failures</h2>
+                    <p>The best evaluation dataset is a memory of ways the system has failed. When a real issue appears:</p>
+                    <ol>
+                        <li>Reduce it to the smallest reproducible case.</li>
+                        <li>Add that case to the evaluation set.</li>
+                        <li>Record the expected property, not only an exact output.</li>
+                        <li>Verify the proposed fix improves the case.</li>
+                        <li>Run the complete suite to check for regressions.</li>
+                    </ol>
+                    <p>Over time, the suite becomes a behavioural specification for the product.</p>
+
+                    <h2>A practical scorecard</h2>
+                    <table>
+                        <thead>
+                            <tr><th>Area</th><th>Example signal</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Correctness</td><td>Constraint and schema pass rate</td></tr>
+                            <tr><td>Grounding</td><td>Claims supported by retrieved evidence</td></tr>
+                            <tr><td>Tool use</td><td>Valid tool calls and argument accuracy</td></tr>
+                            <tr><td>Efficiency</td><td>Cost, latency, and calls per successful task</td></tr>
+                            <tr><td>Robustness</td><td>Recovery rate across failure scenarios</td></tr>
+                            <tr><td>Safety</td><td>Policy violations and unsafe actions</td></tr>
+                            <tr><td>Experience</td><td>Human usefulness rating and clarification rate</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2>The main lesson</h2>
+                    <p>Agent reliability does not come from one better prompt. It comes from designing the workflow so that failures are observable, localised, and testable.</p>
+                    <p>Use deterministic code for hard rules. Use component tests for diagnosis. Use model judges for genuinely qualitative properties. Use end-to-end scenarios for product behaviour. Then keep every meaningful failure as a permanent regression case.</p>
+                    <p>That is how an agent stops being a demo and becomes software.</p>
+                </div>
+            </div>
+            <footer class="article-footer">
+                <p>More notes on systems, AI, and software engineering.</p>
+                <a class="btn-ghost" href="./index.html">Browse the archive</a>
+            </footer>
+        </article>
+
+        <footer class="site-footer site-footer-editorial">
+            <div class="footer-signoff">
+                <a class="footer-name" href="../index.html">Muhammad Asad Majeed</a>
+                <p>Engineering reliable AI systems in London.</p>
+            </div>
+            <nav class="footer-links" aria-label="Footer links">
+                <a href="https://github.com/asad24-dev" target="_blank" rel="noopener noreferrer">github</a>
+                <a href="https://linkedin.com/in/muhammad-asad-majeed" target="_blank" rel="noopener noreferrer">linkedin</a>
+                <a href="mailto:asadmajeed2005@gmail.com">email</a>
+                <a href="../images/asad-majeed-cv.pdf" download="Muhammad-Asad-Majeed-CV.pdf">cv</a>
+            </nav>
+        </footer>
+    </main>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/scroll-animate.js" defer></script>
+    <script src="../js/cursor.js" defer></script>
+</body>
+</html>

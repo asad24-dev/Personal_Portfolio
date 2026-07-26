@@ -26,7 +26,7 @@
 }
 
 :root[data-theme="light"] .btn-primary {
-    color: #f2f5f7;
+    color: #fffaf4;
 }
 
 :root[data-theme="light"] .btn-primary:hover {

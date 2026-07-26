@@ -10,9 +10,10 @@ const PORTFOLIO_FILE = path.join(process.cwd(), "index.html");
 const FALLBACK_CONTEXT = [
     "Name: Muhammad Asad Majeed.",
     "Education: UCL Computer Science.",
-    "Roles: Software Engineering Intern at Cuvama, incoming Software Engineering Intern at Google, Robotics Instructor at BlueShift Education, IT Assistant at UCL One Desk.",
+    "Roles: Software Engineering Intern at Google, AI Engineering Intern at Cuvama, Robotics Instructor at BlueShift Education, IT Assistant at UCL One Desk.",
     "Projects: IFRC Virtual Situation Room, DealBreakers, ForeSight, WonderRoute, Finance Tracker, Job Assistant.",
-    "Skills: Python, React, Node.js, FastAPI, LangChain, RAG, PostgreSQL, Docker, AWS, Java, TypeScript, Tailwind.",
+    "Writing: public field notes on monorepos and version control, Transformers, and evaluating agentic systems.",
+    "Skills: Go, Python, Java, TypeScript, JavaScript, SQL, C, Haskell, PostgreSQL, MySQL, MongoDB, Redis, SQLite, LangChain, LangGraph, RAG, multi-agent systems, LLM evaluation, PyTorch, scikit-learn, spaCy, OpenCV, Gemini, Azure OpenAI, OpenAI APIs, Hugging Face, Docker, AWS, FastAPI, Flask, Spring Boot, Node.js.",
     "Contact: asadmajeed2005@gmail.com, linkedin.com/in/muhammad-asad-majeed, github.com/asad24-dev."
 ].join("\n");
 
@@ -114,6 +115,8 @@ function buildSystemPrompt(portfolioContext) {
 
 function buildPortfolioContext() {
     try {
+        if (!fs.existsSync(PORTFOLIO_FILE)) return FALLBACK_CONTEXT;
+
         const html = fs.readFileSync(PORTFOLIO_FILE, "utf8");
         const blocks = [
             makeBlock("Hero", extractBetween(html, "id=\"main-home\"", "class=\"marquee-wrap\"")),
@@ -121,6 +124,7 @@ function buildPortfolioContext() {
             makeBlock("About", extractSection(html, "About")),
             makeBlock("Experience", extractSection(html, "Experience")),
             makeBlock("Projects", extractSection(html, "Projects")),
+            makeBlock("Writing", extractSection(html, "Blog")),
             makeBlock("Contact", extractSection(html, "Contact")),
             makeBlock("Footer links", extractBetween(html, "<footer", "</footer>")),
             makeBlock("Visible links", extractLinks(html))
@@ -186,7 +190,7 @@ function cleanText(html) {
 function decodeHtml(value) {
     return value
         .replace(/&mdash;/g, "-")
-        .replace(/&middot;/g, "·")
+        .replace(/&middot;/g, " - ")
         .replace(/&rarr;/g, "->")
         .replace(/&amp;/g, "&")
         .replace(/&lt;/g, "<")

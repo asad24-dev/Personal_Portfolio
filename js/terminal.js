@@ -3,7 +3,7 @@
 const TERMINAL_FS = {
     "/": ["about.md", "cv.pdf", "contact.txt", "projects/", "skills/", "experience/"],
     "/projects/": ["ifrc-situation-room/", "dealbreakers/", "foresight/", "wonderroute/", "finance-tracker/", "job-assistant/"],
-    "/skills/": ["languages.txt", "frameworks.txt", "infrastructure.txt", "ai-ml.txt"],
+    "/skills/": ["languages.txt", "databases.txt", "ai-systems.txt", "models-platforms.txt", "infrastructure.txt"],
     "/experience/": ["google-2026/", "cuvama-2025/", "blueshift-education/", "ucl-one-desk/"],
     "/contact/": ["email", "linkedin", "calendly"]
 };
@@ -12,8 +12,8 @@ const TERMINAL_FILES = {
     "/about.md": [
         ["name", "Muhammad Asad Majeed"],
         ["education", "UCL Computer Science"],
-        ["current", "SWE Intern @ Cuvama"],
-        ["incoming", "SWE Intern @ Google, Summer 2026"],
+        ["current", "SWE Intern @ Google, Android Platform & Devices"],
+        ["also", "AI Engineering Intern @ Cuvama"],
         ["focus", "AI pipelines, multi-agent systems, full-stack products"]
     ],
     "/contact.txt": [
@@ -21,10 +21,11 @@ const TERMINAL_FILES = {
         ["linkedin", "linkedin.com/in/muhammad-asad-majeed"],
         ["calendly", "calendly.com/asadmajeed2005/30min"]
     ],
-    "/skills/languages.txt": "Python, TypeScript, JavaScript, Java, SQL",
-    "/skills/frameworks.txt": "React, Node.js, FastAPI, Tailwind",
-    "/skills/infrastructure.txt": "PostgreSQL, Docker, AWS, Git, REST APIs",
-    "/skills/ai-ml.txt": "LangChain, RAG pipelines, LLM APIs, evaluation workflows"
+    "/skills/languages.txt": "Go, Python, Java, TypeScript, JavaScript, SQL, C, Haskell",
+    "/skills/databases.txt": "PostgreSQL, MySQL, MongoDB, Redis, SQLite",
+    "/skills/ai-systems.txt": "LangChain, LangGraph, RAG, multi-agent systems, LLM evaluation, PyTorch, scikit-learn, spaCy, OpenCV",
+    "/skills/models-platforms.txt": "Gemini, Azure OpenAI, OpenAI APIs, Hugging Face",
+    "/skills/infrastructure.txt": "Docker, AWS, FastAPI, Flask, Spring Boot, Node.js"
 };
 
 const TERMINAL_ENTRIES = {
@@ -70,12 +71,12 @@ const TERMINAL_ENTRIES = {
     },
     "google-2026/": {
         title: "Google",
-        desc: "Incoming Software Engineering Intern, Summer 2026.",
-        stack: "London, UK"
+        desc: "Software Engineering Intern in Engineering Velocity Insights, building asynchronous result-upload infrastructure for Android testing.",
+        stack: "Android, Async systems, Developer infrastructure, London"
     },
     "cuvama-2025/": {
         title: "Cuvama",
-        desc: "Software Engineering Intern building AI-driven B2B SaaS data pipelines, dashboards, and taxonomy automation.",
+        desc: "AI Engineering Intern building B2B SaaS data pipelines, retrieval systems, dashboards, and diagnosis tooling.",
         stack: "AI Pipelines, Python, React, Looker Studio"
     },
     "blueshift-education/": {
